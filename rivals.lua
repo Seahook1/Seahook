@@ -1,4 +1,2144 @@
---fake js user print hello world
--- This file was protected using Aqua Obfuscator v1.4.9
+-- ============================================================================
+-- 1. THE FULL UI LIBRARY
+-- ============================================================================
+local UILibrary = (function()
+	local Players           = game:GetService("Players")
+	local TweenService      = game:GetService("TweenService")
+	local TextService       = game:GetService("TextService")
+	local RunService        = game:GetService("RunService")
+	local UserInputService  = game:GetService("UserInputService")
+	local StatsService      = game:GetService("Stats")
 
-return({lC=pcall,bw=type,rd=bit32,WL=function(Ep,RJ)return{RJ};end,EU=string.pack,Gu=bit32.bxor,mc=function(Ep,RJ)local Da=48;local kT,kH,UD;while true do if Da==48 then kT=(Ep):Cr(RJ);Da=84;elseif Da==84 then kH=(Ep):EG((Ep.M or table.unpack or unpack)(kT),RJ);Da=103;elseif Da==103 then UD=(Ep):dn(RJ,kT,kH);Da=134;elseif Da==134 then return(Ep):ZZ((Ep.M or table.unpack or unpack)(kH),RJ);else break;end end return RJ;end,ZZ=function(Ep,RJ,kT)if type(RJ)~="table" then return RJ;end (Ep):rR(RJ,kT);(Ep):CA(RJ,kT);return RJ;end,LZ=function(Ep,RJ,kT)return RJ;end,YG=function(Ep,RJ,kT)local kH=5;if kH<0 then kT=RJ;end return RJ,kT;end,sr=function(Ep)local Da=31;local RJ=Ep.v;local kT,kH,UD,SV;repeat if Da==31 then(Ep):qS(RJ);(Ep):ns(RJ,RJ);Da=39;elseif Da==39 then kT=(Ep):mc(RJ);(Ep):rR(RJ,kT);Da=47;elseif Da==47 then kH=(Ep):uj(kT,RJ);Da=94;elseif Da==94 then UD=(Ep.M or table.unpack or unpack)(kH);if type(UD)~="function" then UD=(kH)[1];end Da=108;elseif Da==108 then SV=function(...)return(Ep):sc({UD},...)end break;else break;end until false;return SV;end,gW=unpack,nh=table.concat,vJ=nil,CC=function(Ep,RJ,kT,kH)if RJ and RJ~=RJ then return kT;end return RJ;end,Ar=select,rV=coroutine.wrap,Xj=string.char,sx=bit32.band,uj=function(Ep,RJ,kT)local kH=function(...)local dg=Ep;local VT={} local RY=function(VT,...)local gA,Kd,WS,Hu,mM,Ms=string.byte,string.sub,string.len,table.insert,table.concat,math.floor local zE=string.char local FZ if bit32 then FZ=bit32.bxor else FZ=function(ae,Qn)local FL=0 for bj=0,31 do local a1=ae%2 local CY=Qn%2 if a1~=CY then FL=FL+2^bj end ae=(ae-a1)/2 Qn=(Qn-CY)/2 end return FL end end local qz=zE(32)local sa=0 local ZH ZH=function()local ae=pcall(function() if type(ZH)~="function" then error(qz,0) end if type(FZ)~="function" then error(qz,0) end if FZ(170,85)~=255 then error(qz,0) end if FZ(1,1)~=0 then error(qz,0) end if FZ(255,0)~=255 then error(qz,0) end if math.floor(math.pi*100)~=314 then error(qz,0) end if type(zE)~="function" or #zE(65)~=1 then error(qz,0) end if type(string)~="table" or type(string.byte)~="function" then error(qz,0) end if type(debug)=="table" and type(debug.info)=="function" then local Ye,Af=pcall(debug.info,ZH,"s") if Ye and type(Af)=="string" and #Af>0 and #Af<96 then if string.find(Af,"hook",1,true) or string.find(Af,"dump",1,true) then error(qz,0) end end local mJ,sE=pcall(debug.info,ZH,"n") if mJ and type(sE)=="string" and (sE=="hook" or sE=="wrap" or sE=="dump") then error(qz,0) end end end) if not ae then error(qz,0) end end ZH()local Nk=(function()local vz={} vz[1]="4M2<LJQjCG*GqYO^;mri=cH!N\\++([#Q)-BAJs2A8S_(+P=1-*A95I[`$ct%(&);+@bRV%CRCP-*&GkoVpUe?k>A2FoReq999,b`5\\(rUVp/Fb!@,6D.^ha/L]l`X6r5r=/hUE93h!UER&k'[h7ZZslbJ&h:-F-q[,;,n$(k@L]8nc\"6*KZEHBnW@k1Y1m@7uQ.2csCbbZeU:r1#W;oWl8a\"Co`)YP0\"rgPn%[^I+4F4bQPs7d0$o[0+BNcLMQAqW`'?k-UUD.kt%_K3]*P!I4>!^`prVR4FOA(+tFLH`J+n%lDt+lT&S`V([Z&:V]/uMr!]jn[j70B3G8ob=Mh^@(B+d*]h%)8NU6%FJ_r4!]cd\\68ClDfhXd`BWf>\\ih2]HDN6^c.rb^<DX_U'gt3SGm8#YeM18fHLg5pZm&0''8CU<hNU-QXQ?@''.A/m]VUcocKC-SDG,g1a-M2[H+@[rN/oGf%]NfSROGM!3<7Vcnb,5-@W.UXH,I\"Ia*_cHXGbCgsrJu?-WaV:7cbA#=B5MM&DLNXI_5WBlPaD9k\"OO*ofqX-,g)r09qC.daM&.9gM]iqC5Q-^-PPatnCD\"e*PufE3.s],W3N>qH[rFd688JVHmSJXo]V&Aij^3kJfsB#2e9E&O^]f_&q-XS<At#sd8INsWs/$(M0a_Z>A5t1Z,ObHYJU8%d4f?qi,8J;T<rr5f:OcsCU!m6jRt2.-/_`<7\"aL>kGB(J:gLY94;IWK@kJius?a_#jEt&H2SA7rZBB^:N&+mES>YoFXZoGb;)<#eN_CoZJ\\\\FlCP]RU`VNr=9JFEIo_t?'e0p`!bPHdC0=jDk9T./K-Hu-mQ::q\\Z_\"_4i86['6TJ.6+AK1Ki-e(MAAe2ISAZK[;^jmL/W&+I3V\\=k)+A^m73_n/5Eo7q/Zm'?Ab4b4d(s'+QBH5[m\\16U\"%UQ]d*5CS=UL[O.RZJKS\"Bb-+rR\\DMSh5Wlo=E\\ecb2&&[P@p\\q;VE]5\\npd=>[tSZ/=iE:71L*F:4+<_\"aER<UX61L+&uQ<%Wdub1aQlq57tWc>;E2n;K0?MfG%)m!Q.d;):0Ej%)UYgn%kcbtHgck[88`J9r_\"'7FW))`c$nrgMMGH:[$D:u#\"(:$\\j(\\2Y:Od.I;[F@<GG/p8o/`=;;)B/nsIras.F(b?[tS?,Q8^)^f*s%K\\1CH7.]VL&7\\S/?6kXSi9lTKH8TF]XrW0!MTl/@fG!6rXNM'iX=W\\sUa_b.#)'/fk/PNF/'*7UTQHb`.9r'7lBV\\DW?39k-ZVpRDge2A2tiZ\"!g(f^PZ^JE+Q!5Q'p;kJ_?g,)2F715La47&D+^l%:E0n9@MV=CafL.)$Q*iS::G<I'99lO7ZAo#+$'4HKYVIS@b?L.*4sX!X/r^Pt+VCR0(.KIB@N@)l/S.!/QrREpd>363V&<;2iI+FqQ\"`BPPB_WCd*L&l9@*g0.:Tf;[(54%i&*qk04egfDq#foDn]P;PS[R>c::4?i^Qq57\\L:@T##j*!V48CV\"]YrFQcFNO2eWtTS]PkN?@gBCS2E_FXPr-)X%WheH(n<:;0jRL^b8$6II/hBqk%'NUX),2+An&/D:G3G.=X-M<c=?VVF)=<uQtDH1,F&e.^&0UE7KU)'&f1\"A--Ir#j3cOGWa/3l=[R^M&o*lJ>U1tJpL5PZKb[sX%HElgNt]Eb^Hg,Foa]G&WP=G000S0,ktdgeHQ02P[o&Mc]oV!Z,nh'0*N]=rG\\!#d(+T*S@Zpb@)LAR9Taju?5_pTH<G\"+bljp;WPLr)+e_?3k)$cBaX#R[agS=!7ii_eN9(X*\\dd>F^mB.rK>HJ8D4EB^LL7\"D4+C`kYGee7S,MV$s-!tb'fuJ@8&:AjgJd13s#%cELOTr_F;^HFprP*ZW4+:A'g1d+K1LHk7'&MK'ht8)l.c('ZE'/)L;]T^%V!NJVch%uhVW;/2/k.&:hjq#&4N&6*nTCFE\\fN/a\"da/L&l?ElZU6aV..g\"5HPo`g%(jGm4%it#QO34$$MLk>lZD1E`Y`Z(QL'fTZ[(EWY^GPlpppZCMP02WZ_?)`nFD#VGS0$T6CLH!8_<B8]T6tQ.pNj[\\*\\7J6>ir:Z03P(**!I4;<:P.aQWIDk`uGB1gtO75,-7s'uLd]b5/j3Sf^l<e`Ze3N-ms;9m[nQm1TD8kX<n#oZfjc1CPM[qRnTW6ILj=.`b)5V/k5q88d<Z(=.Y2oO<?WpCPep[TKZl=/>QT^Rj1pnq<[pl5g$je[lkoL64HJnXqiU&msX6?OLhsQI[&sSA(/B\\2uk8mtl]UW8krg3-/sc\"CQb2iHl&c,/bi#]>`Zfi/6Y&31\"d$j$[4q#Wt?Z^c_Itl*F9H>lb0FP#M>#:]/EMGI$Cn*ct)rl-fiH1ltl5e&hbubqV#]-bTQem&YUi9?!&5d$FZQ#4VJTJJYPP0Em_99=QQf$K@B7\"*Be!e%S'#`1/IS&$^f+/2(E<f!a!<BjEfM?S+!$:kP\"KaRtjC?\\.\"(_R:enJLeUT\"u6&/Tl+)4&1[)rcC=Mk\"9n0Rjp6iGrRji`baaDhe6r.V!A0U(eoZ\"IX.ijVjS3onkYO2F'sop)$GP\\tgu*4se,YA]V0MI<!Kf>@n\"Gq4/@ZJu9e*GtL3Z(EU.6Xpdg\\sr,m.i$&R)c2d!sd_m@t/STDkj6@ota_Z\\UlD,*F^c`hReLb_0p<&+]gD+a:OLi0J.DR9XQQKZ_Y\\1!557[A(Pu5>4Mu)Zs(ecBGo.(5.Vb<`b<%@lFM@;i-YsQ/6`eS7m\",APnP*R;.i/<WT&Qph;F-m1oWLO(f1J3A1aOkcFNfeo7D2i.n`\\YuhbQYfYB9_9h`*ISLC6GCN+\\I$EiIF:b9ReS]8@D4Q2jKJ8o;VRcB]>]fjm6cEFY3.V;?NeTk,J<m_6,9F=5YdFTue(pe>:HUYlfeSsJV[so`?63-u'bbfb/QiP0`,86,d@_>]1'!sK/l@07B(,m0Z7=9P/[lOp^+PklM:Zd8A^?GDn:@)]@.o]MrX8rTmH:($#uk^cUUm`m1!1]Nnm=ZTop<aoi-qL>VCPCHEM2*P%&%#HQ4B2`37)TjTZ@g\")McBT\\Kf%:E3-V%39-gl$X#oGqapcPW+%BdC4sBOJbMgXabe#fQUS29LXN-f;%mO\\P<ahC[P%'JYE#$H\\a4`Sc$mP.]H1^L,aEC1=Yj\\$$7)RYMfHYJ<75:u<Y+)C2c@Hu9Z`-5a/]\"G_(0U3#/X\\N(KK<R5<KF*,uZ3f9M)>uj2dCB(YYi&F]).&9*<a/;PL#tH<:aP>T((%.,R%/#ER]#-gKUVHZDq\"#cQK$:'+g@k.5OToPr#7]AWZmPtqh\\\"nYUuGLTpE4-.a(1Z8Lr8I#_Xq9(H(rE9+gm@qB;DY]h,f]ed-JZ6P*:<%iK#3Kseb%c?rTc@92?\"AU<jR(C`OgZ;alDM!rWctMWDEck`<\"m<dEkAhDP%b.INc8$>?XEfb?:mPZ?]n?S->8hZ2.ae?lDRf'DR1\\TCsFr:fo<75Qu'@K#DEJQia-CH'K>ml`1Pgq=C.Al`XiB?;\\oP&`LeA;i%3at&)Kb6_eLi?25SdB(TK#U;Q-===iB9*1lreIba8Mm]DjrW\\SuI4[g0k*%G;m&A?%_5Y@oNYEh$tD,798b95FJpA^&*d60bsT<]b?#2fYCDVXk%rFqp=+:eX9U'n\\K?QcfuO_4W3>c(*snj'=I'+VSNgA6],pp_It2fYnJt@,475`<E1*B9jC[39,Z.;ABo?>_tW`,8F>q$.5qqof^3130pt>OGPLV.5arQ8$mt(bT(M5PW9Sf32RHj@QnBQ)jRnqrshP7!(k=.6E\\mq[-ueZK?:63r$cOYrCW\\Kq+rab0t<O\"nEYDbLFhckSD=B\\LI=#\\WrD#L\"$'*;!lRBOQ3k;YZnpU;oC/d$$R*=i'DoOr_,M9\\6E4?R;gZ\\p[W31H_Ao2)<^(aTqNbcmHXh*%WhNPWonR8#hE.Jd,;.@SOjl?#>/39qGku\\_WNW3iP;W\"5iD0W!C)$%1:#MI%Vc/BelVR%3U5oE,W58.]pnW#EjIDZV9=k>PpU`1#cTKba?JsVepXD&QGM@>?5A=roK/$qf/csqWQdEXFh]+>2\\%r<!c" vz[2]="LC6L8dVET/NFMhJu@f$-q*5!WIC3!cPFmuR\\:[-qkE[IMm-oUg>FfRhB$-+-u^iFeJeGKGPAlnFFR0<2]W?Y'l0CN1Y[&a7Q;kq<;ZiT7,7\\W7FO-'N_dFC=AP0a:ujgjs)WLUB@t46?)$1@^W%Zc9(CfFs,Rqs0hTCJWmoRiVr9MA\\jERSa'Wa&EsTqepq7E!nPX_/EaS1,RfWtj32F$iJY1sNFoo:h6r'*QPRe6(SXBe<UEe^2mk>tja?[@=BGtu],PHnbALImIC&Qb_DLE]'iEW!Y%r69+2Dm<l$Y&W7UG,i,SDLTR'K&7mERRW,'X8Ial'mHd.5/3Y4f5H@;WVQC;lH:92l5+JZ1n`;r;!C*0`b;68t*6N9=Uh_:&Yfc]E%>oad628$/>#-\"YkdRXB1uL6XCV(o:'A3Dh->$`6>6tI6#GHF2\"gn%Y(F\"baomMa^>A2Q_g$mFq-iE^#*>>PMb.4Xj#f9<!`t7:<\"%h(]bW#(b]@VYY@W3S'&XX.[lRgs(Qu<GAtMf!#sbX?E#JaAR1PLB&c<#T2h!$'1`(8#q>,Y1;=b*9e:[U6hS\\/I)4Zgh>f#Ylp/qJPP*Ajc*jSLs.\"j&'Yko4CQ@tAQ\\B<1&$;2/(*HAN#at:Q=$JPQ0s%'5f(:4fqfue<Qau=ec8BDc)NJ\"*&A0\\C'XhW;7(MlMQ`5h0\"`<+4R;(VNH0l:A&m?+;7_f=\"m?1B,,TJ_ge;?s@.e*[j__dfMpYnpoXY4n6rAe7ic[4`c6kW]fZgu5XisDXQK2sJ#EYFjRPA-J3Hg@YPMH8n]B$dp5O`/`4kp#efl*8<f%T#d'm$)l,Sh*oQYis0GW^-Q4$!=P.bRe-P.DD$M9&V^Q`Jh,IUX!`DA@mqS!CpXoF883nT4EW.L_7S1MpY=]C[<\"\"(TKM2?Vp1o=$$XiDqt^Vs0I^\\-7a)D3Q69\\f2pq!);NebD_UC;qHS)TYoY>'.%F.q]hc[6+%DE,L*:>`:*Z(uno:XJ8,&%DK>,&\"?_OqALAP8VgMtTX%=gTT/n&4M0f=Ch-T5W%VAr6I3=&E9,&$:q=dm$W%:)^<IqBL5m+.ZFL4<k3q_/+Zfdj8'2e?*VpM*Pj2[u?H7+pNZOj:-Nf,Vj-5gkKc&uRapG<OVq'sZ)d-8,_&8pn\\BT]:IV.gNFD$ub(D$$iS\"GUS?u5N9O<I:@:)G$m>?s8/!)8$eI-Peh(L1$;'!c4^4u`f2)9gn`;'<prdM@*:?[,kE*!1P8h8-5,Th?@#K)9+Z>GZOa8.?_H.(.Oad1\"5[?un:Zn;Z`SJfE:;>Qhoo^Icn'n;cJD\"qWM?b`j\\%ZLN=W$r[.qjG(@TUPq@\\G)`-jn5Rl^23W(\\I(@N:@!UcsCu\\]<6V?U7P#X$6reHQ9;L&nBUP6lQeF++&^dp]L'Kc%g[F1!UiOVXX.21e4.n$ugf@2X3Z[V*OFhkE%`E_=UYt\"k%ql)%eC/olL-h=(C^\"c,GXS[+g_\"l9W./.DslSMWLrM3PfNF<l0t9#R'Znf`b-\\I+3kGK;8PSbHIaGXEYFH=$;1cJt^hmS-S\\D6'rTu*[E1(A]!AO#\"b^[G,q'ol>!RQ\"A`B\"^_BH_'D9r[5W/3Pb5nZ>08m*#R?Th\"gFb9F4\"B88lkJP,_EKlgcMFTY:IIt(bD?\"7;$kY?GE)PU'0kbY@WJI_&q4Ose2:4#eJ4eC#JLnlL`/Z`oK.T8l,ZjMS(\\Z<[u$8@HtJ$5B)o4gn0-]d]G.hWG'N4AS@8+.[Jp=[INk'\\@0_h_TSh\"kbkgb_LuXjQ@Us*L4^&d'3Bk[=rt2Z-c+N9Gc]#,YbZI0LMB%X=S7WRCB3N5^Z*1cK-^,do>tV&gK52URPSkX8>t3X%EfjYR%3H3udVq;-cr:-D'JMJ2Dlqpt6tj;r-;/8!ZTtLhqA&s7@+3A1m$!`7M!WpI.BC5mE2;7)-4;_^l^qXjj[fd'#;%3,34H,:5?oV3.rUh^@?<jtas$GC!\\TM$U9;2B:6pc(YVHnb,ps!M_NdV=ClHMfVO49]'80R8)?\\O.X4`Zt_Y>`1Q(30K[A$&9:(9&]ObRTuccR@517+7&ShrH#jTkZTS4M93UMuk?@P\"Q82*YD!\"mP/Ik$P)bp2KB9S:)Upo$sV!327;S019;//U$O\\p0l>s'-eLem)&a,csrhLZeH(>anZZ2\\&^GL6l`k7AgRRsVd)NaIq]EDnY`4WF`('!56h9hCM=+]31fm@Y\\`A,\\!<9BVRgR:kMWb1gFltY:%H]LI6i(?PR`>Q@qY<sRXXDrC%%.&\\)KHY;k;,1n#JJ=29^M;0E/lPVo_K+O1#1'c?f0tY9esPK]KU4]TcAj0Eml8l+2fKKKG^b;Mkn;oNUHW!9E@Ae/YO<FAp>*]g:&k9UZ1\\TS9D18'2kdZm^=X.t_KE&onWZl&2HJFKN?kM@MH:\\VFJH&PrJAqD29UpBk->2WH[?eW1W-M-KlT:\"kOL,b;aZE89V:CKjhIemW.=7.gT&X\\dBa&B=_tl'?1qpnG?g:u'i>cZ<=PM<0p@r3B#Q/PYa5i$\\S_/LmChFV.IE8a?b]V7eiR&@D3gBK7[?0C6Ce%lLK:d1\\Oso%nnO?@E#]P5+YN@ft%f9YkZo%JR\\I`ID-?2IpIkCe5;%b@HD7R%Vm3R'8t0Jq57n6EHNZdhpLe^mUFq#;nAe%M;3$@FuE$Q`2oWHrOR<-th\\r>fDaK\"]-8MRB\"J-oEQ,tJ;*`@hDHh1\\GS^@r+P0X='\"5hP\"!b)X7mfHl>Fj#]P,=arq9q)H6aK9K!t@3rneN@f2l8&]q1-bpT7,u_I<iHPgHn0cL0+`R_01@+X72#EH-k9J0c-:]cF<]fm$Lf:,69?=5gV.QhcmHjOUb4\"MhRSgW]E>af33uS]f%ELa=kn5YYnT>'B7f)6!>,=ohO+pqID&2c@XTl9[6`iLe%7I<i[+:%?oZ2A2lfPP_hKJ%6UR5l1^MJmjir8IS:$bhHnP7t\"#J_Zn%X<+$4I<9nB!n'(QO;7\\G00];:E@/XHJC-K0-SajdKS4dCWYMDpr*e+BC@IRbAKK+h^h<Pb<r]3KsY!Rn$]k;A'l['L]`AUU7QXjm1h8dJ$'Z\\>GLR-ch9^:1CCo+6R!GfqB1=mKh'\"h(!m]aUQ/IhS%VDKrsLk>D\\)lC.<Q\"08u7j\\d565*4uA@A#=I3\\]MS^;<n9-F>SiCg\\N@DT67bF;;&ndY&A0FbWnPoQY_gj9`qfs^;tNe5HR%UF-/9KrdsAOjG&FS>=&>E7-$&mUb4>A&U#mik-!)(%iK2R1MJK/&QC'/`M8mhnZQhPf#L:*PpuJbjdk;HkS)Nk'ecRg\"Z3b6-1(G\\j;l(4VBPosD$o&3(I>-e)%6JC0[5jEu^.k8cG(@!goE/mH1'.(K@-]EG->.>s#jBG,ES7Me\"uL,Rr`K0D\"/Znnj$!SOR65f4K%lOKULhhg76:RkbdGThaKc)[/f*)=pEq[gPK=i^,Gh+pX9gc/Z69<5-IrgdV?*S.-^QZll[X)h=$Zg*tG#h88;@P1$dT+G`G0r*Jsq+Xu<6\",\\P3=t).,FU13p(;FAI?jJh'J![B4$=^^<*UPWKr`\\5Tf&OPVAg&Ij5?rqI&H?XWMT']E'_c<p]X_n<s8W]quD=`OXr\"3WA8AMLu9QXP4\\iQM3sX(Jt'BKP!+bQ!lcPpB@0%XS_En51'qRZe/@r,[A8mbomS_QXm5Y_<BN+T6B\\@d-S8Sh@$]J:%]g0tg&m,B$VDlO>aBBZ[]%h)hrM4L7QS[2jd-X\"?Ct>S2b;&hdOWeE03D'j9qL\"DG=.NZW2\\NiiL^dp3Di;g`LVCP3+#!D9pPoG8iN8L_'>[ai2t2B_brmX+0kcni(+pGKjZC=,@??OA(0ZW7C67V)YJlmitg`Y0g%RTQ-Tj+KC*VJ81=i=l#N@5<:g.!bNQ\"'7?NQRWG='9HLsrA%>2E1rRW#5FR0)/GC8ZcEHA.aV$3t5*/\"'M<3(s_jC*V'-MkQpa6\\VjS?)#K!S0&9`NapH`X^p-C?7)@\\h2T9[XWUFB/UU]5UbMX/jpQrm4ZqTAYT[!bW)TBgm\"dVh_IS4%d<fgXYd6MZkFo!$:gV6Yi'SV.Zsti!8sEF[A57VJXg8j9h" vz[3]="?._T7-]p,\\TSe-E_KRcWDE8B/_3.-YtshW4CuT0qY<]<^A:\"U4#jIqc1FpFYa@c-c#l\\;1>5JV&hOIGcN8@h4hci?\",3;0)aDJb1_W!9#Hm#@.c*ccQ*$S9sM5K3S4V+UO)?UU^E`8-Dnh_gZo7+>=UZFQVC`Php9#VW7tr;fGKo\\NYTBe;dVOg@J,(&8=o>[.0581PWS>-?;l\"@,^%\"LXi][)r+&5DdcA[ene[Y>=J1>ST;78rKC?WeJeF[Og<sdm!hSU2Qg\"Vom</ngaXN'IMh6=p>)*M[\"_M\\%*A\\de>e)DK'd?0Zkpr0La171<kmq^uYo8cRD!\\_]_HM@(\\+(t]@4Ujn&;W5!+`3liee`)9Ap'LXc:+h#\\2\"?OG)rR]n+6sX6WT,Qc]01`KXU\\>LPYdC/bd(qO#7$!oon`bmjB8VBC,E*:b$1OQIuQLgl)^T(;mBM\"\\k_7^Gh_N!t_+p&o&U`%9u8sZ0SYbV@%Sk46<ao7!\\9d=Jr,)*\"Mo&FW)$lZF4YhVV:FR\"to^kKD8r%@cmZ;cs264Th@AsSj=8YPWYVY\"!K3:9<KNZ4;\"'#a*G()WJngL2?\\W0de?#9W]+i<2rKa`aQ@@ek,(G<d[SAfQq6GC)hj;M?uURN_S_=u3OTPGe-IV6i=^[G7n*:mr[b)6$7Pl#j3QkHrfk]s\"mO-1REIiZCKN>)\\Z`nG.j>i&E,1R$)@m\">Rh\\Gc9Ff@L7Oi\"f(W3^JS\"rL<s+#SrPWmDfLmStnqL94Y.;J\\RkZPPe=^:BV,F.s9pPq9sU]tn;>QIiGHe\";lC@VPE<IAJ-KD&JR!@MD^ESO3,IHMp)gTuiDoHKg'52u\\h?aAE'`l'(&02I1o36f+k9p_`-ZX^*BrSh$lh&qq>J7[%\"9diaN`Bbo/-FNTCPr2TYNVmJjX(^Oi4J9L%H[u6J!GA\"WJ=P>Ig0g_lEPp6+1U$.fC90=%r@;O%bY/9NC!._,_\"9F6^`d,,+eV.Ml/O+]HJ6C7B1)r%=uL\\Vh`6%8*@=WKTSkR*#<871`WX&9<'B0?h2ci*K#0fW_@4[#@'>2q@WPG2mT)l>+IYkG-Zj947Abe`b'_hdm-8CMD[1L8fpb\\D?+PH#i#mh0?0,3FlpkLk#E9/e3$PHA,Cif5#aC$2\"-W$h%l/c6cdd1R6Aim.m;I>-Mq.r;69?lmOMls:=cG?YNhWBUa1l`E0ll3PIW\\A*S#@rrgNRhjYfZ9L+-8!rTAF.)C3-)R$[9[%MVX@<]\\LlX!EBp`M44`C/Q8,@*5d7H4E_R/T#=\"=#s\"Ysm@$rn_W9)]@/\\QcF%pX;e$j6d>9qql@a<![9KWGpAoZ-uM=L/l.Ck:]I(@nF/5j%MlM,nW0jYN#T%O=5'\"fLC8V=4;[\"/RHfBKnPbTPuD:Npc5:5V=!:*(\\'P@H[^?)ub7\\jR6&7*7V%ch62Rj;KH:9Ij*6M\\uoA?J^_OY5rndm/mWk/jNDURZuOu*!BMELpe6l&d2=V)P2*E]WXiiO!HDm;OUu#Ic_/_:f>Of/R3>#\"`fp#Ve3G.kT8(P0'p^lN5@ZY%n(5?O9A86qGtmKKu1ULh8-ZCRPQ:U5+>=`MFu5LK3W-b^)IP\\D50UO=3g@<`rYubs'tn5OseFX[(+cRcpZQq[S\"P([(BJhEZ+d`7_,]3:bPUW+gL-l5V'46#U'N1gu`'O1<gUsFWFT/c<`6BZDIsMX)i2sAEPZ/_lL0,+6:TO;N;-,)S<4qToXsnZis(>P.>?ieos_S6?f,K#&^eiY-p1:HBLnK[CZu]Y)j'lf&A0DNZo>Y*LmenLiY+J3NjL;Zs&im0W=ue[oF0oHd)L$0(^,EVfG);k-h!(L5%O+CgnqjZ@q\\G.8$@3Q?Vt(*Hj@T0Ou+>I>gi^&58CL3qotrPdU?hb^lp;M#4['rQe=uXbZ;^Isu9c+EV]P:&5p[0(SPF4$hdACC5dsG<U_mE:cb$:TUT)70f=$E>QPmPq=kDKVVT\"]kbtS(I]LDqg/J<2COe[-Z@uDV!LUMnl,<^g_GI!o\"Wi,PJ1$AqY]^*rRWkfIjNk6eUM5I0jS3fK5aqmZAM1Bo,]Xpg\"\\3W=5WPtWD#TL<7L?%^ZKi=%$O\\t@t;(VUBZ8K;IIPBfDi'L]g!fjpS;?rm^/frjArhL'\\pL(G2?-iBDCipfe!8DOU/Hu,b%!r*8.B$nI<PYCge92T>Tf/EW#4To13g5[K&THl(\\/@e@6&j-oc+ol0$K/dd%!dA]9uF51QoL!*m2b!7=IV'u!8MXs]q'$-F_^#$9K'e+pa!:9,td%_B*s)4>+u_0M;OLlVFlZ\"*!R#[UM#[fr5J:bR!&AFnnqhOacZK?]C_8?B6>IA+\"1-r./]Cm<TIX)4(Nm!(Z1;F5t'NUkBCji^OhT;\\WtI<:$,koXW.=<oU<Q\\d(;<:V],H;TVcW26>S01AsaE`g+aD`S)I&6^a7Z[-]dRhm;6QnA%@UT7h>%Q\\@>e.'cDXE$FTn:PqT*G,`.L=1f^LS9W->@G=qp6NMjNeGaK7oRDr9#Yi&BJ=\\)61gAte\\_h6%7MA)fEDVr1c-6&17LR8_(r0J4Q(aELsXecK+%-d@;.XDD;^qYkuuMVY8)M`lRWRLf:O$RchI$_3qM6c!50jrcfAi>dMp458OGYVZ\\t4'-+=!*-%Abuif:nHMOUra<J*6&,fqW)I%UrAf!$E!qG-]u_@AZ1=&]GgiB_<jbk7q-ed+)R1>.G\\BpV=GM%Bp1r+L1C;gAYL5BhB%aRRrPf8L5.3dLNsWA^!*FZbE.n<2/!CWRhVgbjZs3RX2r&-RSe[q?R-.dkW\"6D1Euc9i(I5kE2i3p,X(>;\"K?,l;kr.9[Os?_j>maC_UIle=.PECDaoV)@4D_-f8J)!KVc:#?KJ4#MeUDrr'<d);`W5i_%fc&6UGE+pr$V<M1BC18^]`,lg><M4gY!qA%44On/nX%V8g(Q5_^q]);)+32L&8K\\#fNYMJpiV*i-%ELHT/X0dF,qHp@eZMPsh^_b5mPg\\DYMMo#Lb^5#rTjXN=\\N2Wnk3dgYD<7oR`[impM/QB$bnhWncQ!W03$OlD.)>%+oJf_&1#\\,;/aq+_[H5_WC,dA$3Wgc,7bF^M^@gA#\"<bGq=PIiF'd_MRWb>WiKK:5%e9Dg,!CbZ1ehoC@`8e\"6cJ\\kN7bK$q,@-2M^g.p#F#0.Y^W.rQ$C0HTOQ1K!Qd-_E%s1S^5pf58VEG&C#aKeCiiegZ0=#sn?rFCWj7FnpNXo4)8c,p:_d`/lbIqrrj+>\".YQCY82_9r\\U%oACtpl$ou<lMKmX6JN`hT0JcBSY%Eh__/Lf%%i8\\i[a%T8+#(I>-IZ6RGlie6rB#Bdt%Tm8fIFG./]bUo_6p8U5Rinb;RK3qG^aE;/)T06@&J2=_jMe]ST?Hi-P%[`Ioam^.g*K97osWtBSgI^DPNeNCSH!?=4=TXLKYFZ(QJ+kB4<(*%_e80(0(OO/T97LI>%Tn1O8\"8Ag+5Vb1Tb5)\\^ZKPd%H4q<'rqmebLebP;:ALLNr7*i$7K:o$[a(FV_<]XhT-^Nc,78)V&ti9',OTWChQ;1FtG1S\\J6&hI8eZTSA=;A*qTQO#X]KaL!@,J@4TNO*[I4kN[Oo@NAu,eiWeNQrJ*V/^`FmX1s/GDqYSATS:%aOcrlK(oV.b`_D/k&Z<Sj),TWT?3%`\"-sjRkqh=^YI3nd>^9)YD]e/$eb=jOqI#g6NoNJ$X*]@%c(TB#cC\\8e!iIq+U-BU,jrPH%iGjXZD<FBLPIQ8Ej?SR8ZY<@U1PBBDRl(KF>liTGchJ)/ObYCG:Xfo'\\asN[Djqal2QANMgZ9T#$Nd/OpDnnb&qW>!6\"%.AD%ra)Z2MHs$<s0QSZ+S%Bb(rX'$,X)<7P8g:?@r++%_<tlN.n7E&7&e=nLVHk+D\\-uWbNsR@#W,R**<a,^[t/+cb5c$MsYZ7Pr+YA_9i$4F26`O!&1'@_<j_dUt_($^Z1Zl65mo=TfTrh6ZX>c7B8T5SX/]],*VDhF,kJ'Fi/#)4=DY.O#V+5T`\"DZ.oe$bkUIE\\HuKYXVfi_l\\eV7R0gI(>hTb:Q$uX@)cS[N=kOc!AVIpAk0BUnnd\"3Ej<7Vb`.'%<>5oul`A2e" vz[4]="/%mhdJ?j;(\\c6ddQ\\jRoES*NCOfgAM2QL2=Y\"b`pei3b[oU_&%eL9i+L9]tHsPghijS$*E_bK,N2L$J:^#.X+JM;t,d]`?U.m>=jW&+4m1KK0?Q!^']m($GqCCpjc:]'&$8Q'W$@Paj.8Nl4l,@:)lL5\\XYrT\"`?Wp#K]?<oZU&!?Ol+]->/G](stH&6\\(ep-ZQ?`T0%c:p)#W)Ndr(Fd,ZsPF6mceIWp.(YRO8a5\"(2?SFbq6ENf2&W;[N%fn*W2/rR68m+DHMCGKQd-e92uocGus%O.Qn33+i\\RQDg\"(He;M5W+)7eM-pG0*]!@QU6%BC2QKV\",4&:Jk6D%'@mN?W_R(64=*s[s!b0oC$I\\Q\"\\#,m.r$nq)%Iq7f<r-<n/JK4c91nVMW<L0pFs)KO']F1(mP1kpl0jT<F/`oGZ%3.^c1g4\"8:(NZ#aQ(8YJ<5f\"gO_7:d=S<%$kpQ`/qC3-9alaMkK(LDMK!WmY([hhgbj=Qr%f5<Pk2K4AW_1$Y1CC.<NJoJ46k*H/,500O;SCV;tp!$al0b/A,@gi<UP<%5DGP9gS).:071QRYl?Gef!dKTL@>]n<bT\"hjFlGgGXQ$m8\\0KCt^)jjt@9(#p%kCC,$EhM^h'/VS/)^EAe<Lgg</g)hX.07N@,)*D5E$@a?2K\\\"K$_sNNZ;5jiq%scKVbD^jJ.@ZRpJj]A`'Icll)M4t)4fcSY#&S+N8qY^#Oo\\%Jguts>&8V]K07N`6SuD`!$oK77Keg8&0n]),Fk_$T0dIX(jRh(3\\7hJ<;WNQ&i+[;k_P#+\\$7%u]PGcs6.&,I=&Kcb.od/Ia+!\\p'n61mp\\)g/bLR`LEHB[gRU+`jJ\\\\>IJDhlnr)Yq[pPVh35hZsjFC],KlTZWcNr32EscM).Rbi\\a!dQ(k\\F_7-BKWMPgf0MdXqou!&'L?'4;b9us4*T]8F?NXK\\(/#_IB-f\\8Xu^jAW!i8,q&N-PoN8HS[\\PsC)R2%TR1j)1!fGrn6iFZ8WGl$#(P,Rl3n*P`^t%#6#?3\\6:l0O+>L-R_&L_I\"D!.gWI]DHa-:XV*D+k$ms`%VAuo`3F<8&Z\\Ed]HccH=n`Nbop2>iS5XU_Yb#rd-4%4lC9jsu.8)qi&3J%D]'k$ff.%(sc+)tj`8M>f5r>CJ4)Z'bJq\"4BlmStL1_oV_Ye8RDmah_XITDl];&rQ7K`(;]J%&>]@9c\\MW#:W`RR?uZk)aIIa$1BFVWP,'(`7a!`phkT4+'=s)3@=qK^gaHE)`CpUY;t\\?Uk\\[ZYM/iP[\"(n_@,BSAbPlO\\(m)6p<o6FnR;>CXf(0\"`qm=F[(PJF2oOI`CbNl++1jLfnu']Y0IB@W,<$JK1j#s^LZ6r#r(.:pb\\-dRhsDIA3C>=!CD4J5lopiBK9+Ko-L5di^-Zi`T#0W',VU\\LZD21to%%dLWD9fEe/dHHRTaDM_ad?9UFVJUlu\"=ZIJ,r\":1_*`*qpIU'\\n!-)WLB<^o9b_4#8kB'J%J[Tq!t7fF4Iu!a7<R_nEBc6WFWJ4ag`#7YqhSX`X>CL./d9KGIBJJG:CCuU6:fD`1J,bCIgJm#V$C^3dAE]Tc(d(f'.9_@l`8=$>c8lI(d(#a**6b_@AL(#K;rAtI3thl3*2h/?+1c]\"Y6nGjSsF8XgD\\:1t]H%5/4=d![4'Q;SJ_`SI6XuRTe8m[0%;@ZA8Fo`4Nflc0,$+@J&W@(FbAOdgj[\":CX,0n45)BK;lsfRdW@22*A-%G4TY@#Fb4r4pK/HrWo[5mJ\\fV`ZEiF&;m-P+-\\_(GrQ&7QreWuG:^3>f#99a:P7)P8=icNcnq-_2_jR1M(:P*iY>::L>'62:rV3>QWW<E0N'T<[a-%o#%B26n7kpa;J2tB\"MR*hk7#'I<:@\"Tl$0B?9/_@nmFY-))]<cb7`N,Xker8H5f]_AnbDg^W(EMjLZ^Hg4h$](&?2F'#s6J!&+(uF1!3+]eSK7Zm6*,Kf-]irlrp@pZq)li+PI>fR?'F1;9S%DqOa?MgA^QXjOHD!<>tCARZPaj\\GV9YUWL$Vje&m1%2fVP^,'fJLVok9B6+L_j_1$-L<R@)%&/KS4a_PbR8__5@P3&V4p6JdX)iZ%%S(kMgJE=[Zs>J9@`pjD5X)LiLrdB(*Yt[L'SA<79D^5GVedE9KHYLOoQq%qkI[\"Nj*:2<[jfRh[A=K5RQ2$^nbT9jCAb^W1,Eb=Cm/;SQc.'[`PjPRg!f,%>;:<Y'4S%R$kkoh<Q9-(qBlE1*kMdZ+t:)YDA1`KC^a,Ba<2d0b]r)9]!PSmn$'[i9]oc(+UD#4+h[Z)/`\"M_As,?;^=XPrbS9#qE0W:K1(r@XQ?G5opg8_@p-aGAs39>dImU)McY#^)$7a$uSG/kB`IabSf_p#j%$`W'?H29B(Fe4C\"e)bpU6LkgJ&(RL]<_\"S>:$64-V,p^*Ka4'^/PsJ^ZhK=YJ;N!=K4R7(ZdY@$m5?KegnIVF[,,1k*ob#FC%02klXp9i[?(&pooB'[u?9kIMoE\\1<U46IB^pg5(J0Xo[^%EVOgkoaBY&UZ;%?<QqUIDYuCj0iKJ'&FL0tMlHWIMiW2h3,ksQ+4ZH?1@_('?&^S4c[0WANqEt9BP%=L@\\fAFE\\`Ri[$&;^s[&BZ!klck*RUI53)jZ.PE_Uf3Z)'GQoEJ.15ZkP\"69a30F%B^V?FjLt*cHT@c7S-XV2QuL9Oa#jj`RF3hW*^BI5C$-A/P/:ca\\sV+LDE8RC%or&%60hX0`2h`6ZWoUElSEoFTR%6@oicZFu6Z8g3#Jj=T5'KQ0Uk+a0KlFAO0q7%-/(N=4fAjj@Dj]k3m1r5.TbroXck]Q2!`!nc)p9U'tHma\\(?dXjf6;:!j>9=-H^Z-nTch0.+qR?uX$c1f&mi0L3lrT.U\"-Gfb=i,g2R7o>^3Y>[Gq`N6FihP#8&\"23D:MrRbmCDD]K#,]qBh:*lPNJ?\";J\"*^i:5(F-iLY3fh1\",rlG,s^_[$J4rDOQ@PmC#i;_.Vj0l@7N`0K7s>S6nJWTb3>0$UhNFOGUS\"8N!\"oId4%&,YmYHSe^O[#4r>0*.OfbBuh\\%!?i?Ai2AFad\"FY1gs$Of&'<4P8I'X8JhLWl4)QE%I?DFbG4F3=eNX00.$-QqMkts#fHM_&.u)W$DX+RUo$;,/m>ushQ*uu:jH!L^kdB/&#lC%<T3^/m-l3*qXHLscs4T=_n^W-'bM973uP.WgR3(75aip?*5VSH=?&PXT46qJ^7L8d1:Uj%;4Td;=iiu#MFQ\\:`14K-s1r1aSafeMP@0@bXrTUK2RWjh9upSkOZ4h/,Is5WXf<'SoOS9f$!e4sW[0rNjpn>j6.]`2bpITDEYr$t4JY=IVudI(UY*lXRY]`3d`^-`ZZ>uQFJdL1f*SlZqW<fh+?&`\"\"lFQTm(OrIiL80r*k>e8:SWg#LW*!3>=^U[^;='=c3!#A8q(q+o8H#feLoJd)q'6hZ:%;<6M+&&ar[RcC;MGHJAcR8M;5q!mN;X@8M);<c5#0C6j[SQ1SqIdBYdT87dJ<0A`&;igaKG9<9)rmiY7?bG7FVu!7jeGIocUi56s@^'sB-0%-X-VnGKdW/.[Z.+;aqD0,CFtH*GT-'eIWVquEcbcbfSb=Baj+j6b\"H\\[XNjTh.!&\"p_^ZWIK&2i[jK?OI;R$\"rij\"\\SG1.[S*67j\\`<s$!uV_)Qfc%rPoCgK;.Fg5Ze[+\"0;hkOl$TV:IkpOP#>BHO>%aHK#&Z6XI6#O'tdIYkV5DU0EH7YVWn1<Xq\\sjb4@+VZQbDr:9/tMf_;,eO7O^?3bD]h(HKb8/c\"T-#$8?(AF!SKC*7]$T]*mS0J,3(V%JgS*4r]o3Km82IS.R0n^E&$d'b*oY,:,2.$qp#,J5%[]XH$id2$I+mh6YMDJB=X&:Y*](8K-HbG_3J`:3gk;+99n'5lK]28A@[c'jjt+ht/S)s&KkR)nH=G4$'Sf_+_Z*5fKr\"ct4k`\"5m%:>qOgYJ44)c9n_*oX9.#IqT7KC!_ScMe&uSCVGoS(bXO5`s/1e.^\\.0c=#jP$EguW58QDP4]WSc&@1r+)bV<fGCR2_jsQkZhYQF.WK`i`n'n#leA9790K&2dNKgU57(,3+K1SgFMl\"N" vz[5]="t,Pe30bU)<]%^po`2\"n'tPhAsa1I`6:W0K'P+p'0>M'$LmDYe\"_OuE_Jg5<;*[B.rNieo3MrdF)<U$Q_lWe:WW`J==omEqoUF/*<\"Q?1_<'%e6YHX4l:$1]PjQeH[e)?'9FfY6(VdTC7%BhdnJ98Jsp%Y'Cr>OdOD%s@Q<k\"_d8QeD!9.]9X_>k33QG=MlkI:F3\\AUHKo-21&q#:1p;X_'/+#)s5t$t++gGg&!2&cH.P0b:OPi*It`Y8EQI.;GP_8]H]8TBA35$KnB&!=N.M!HYUT/R(%K815$+40(n#5V\"KO0bPrjbO?Ym_/_'9mB!IYp0X3(VG4>2-\\as;E(7qLkf\\?\\Q2G*-e!B#\"5[kF*ilpa?W/@pCF@Dl46UB3CM;(F+fN9%NB9d0/T*/k;Tf1N@bM3htkkG\\`dGIWHR:\"^Y!_`uKUf1ihXRAH/QE5Q<Nc+9cpkTj-/R%A^J\\1K7D6<ig`kF#nTHJ58\\/rc;1pY*(<Qmb*,)/tT;>gaOe\"d/H`[Y-gJ;$o@?#>e(dR[mJlS[\"WOeFFa:>)Y&,FS-V\"d$DXC^X[eU,)Gp]Z8kkPbi[n&`4.+!K'pI@X)nOF>pWnQTZh\";gg/p3*Y#GMDR/#$/[AmJ%@a%'sEkr%#:?I\\GSa^cfJNmntYsds#pW1'GLbkeH:P4#fP;]Y6XAYLALc.Y^\"po=A\\<b7#XLG>gJU&0%cT`LROCS=*>$VQ,G;*1k\\U/DP@QK?4qH+1(K?hirS6QGu0lO%GPSH[diAh(UZZ=*4,ealpNYILup2&ZqrE<<ZrfO2n4gdX>]>c.bbmN(]36>jl,bBdKqKORQ)UojXdU2S!>h,a`i@]di!I*4*`=&DD&Tk/8p@m?oWmCQX%b].h9\\R_;;#/mI/s/eeLKW]pI>X\\E@q@_P@SA0J3UjOW0+an]k>\\OO')JfKlACeXr_JA8M3SY[X-FCfe;p$I!Y/FPHFIS/A7>a.QCn.qS'M^8B;Dfa$1#69VNK^I=rj=%m,aG#\\s<oSBhT?%EoYa-!3%XB<lBGJ-ll,\\tA;D(mi$5W2$`A9^ZfP?L1Um5ps<1qNFIFq6nQSnb]E]`n*YYuQ->rr\\NN/7)hCGgkf'$LWe2rV!AJIVD![1!egDh$&WOi+I#%ZXOHcrsJdl`)45T=Dn_@-TG_/P8/lKlnD.%VW9+P.-b?(-/q/fQ>o#3EQl/lgra+de+tK0A9<AH8P\"kj0\\H1'LK]0&3\".D&Pe]Rfn#'4lf<2fS<F\\$:.lCPic>19c'tnPA[[Dsq>CuX_Z<pUoN8j)n]=HeJ1Jp'/bA6'R:pYrg-X\"Q\"FhjS@\"Z/gVr,$=CVM9`[<@'e'GO9H3H3t8?M'Oi1?(;k3q<e?u2._-e^&)E5+9REGXu_h$rC-0QW=Zq$4G./e0f8j7.A,1(p1@$5VM:r/)BOAi$SmeR0+D`Xm8J6XIRnFu)'C\"U6H`0^$RsHbnW1XF[\"KQga!g_c323Zr0sQ`tJO@lEF>A&:A[f;KT7#lLi.MF76A,;3/Irs:,o:7/`DM?&*\\pjq#;J\\SKHgUgrF;6](H_9`m!,JP^L,U+r:'r94=%`-q*p$H,r@br^'8Rk&lt,Zd>LDgVi>D?4`;WS\\U<Gt>80l7A/@2VR0_@q'is_4U1G=I_Z7j>JM&qi7nKj#:B:Y6]4]I=Tt<;?67IXje>Wek*CYbE4#/DXN5l-WCa-,lQK2Qj46Z@9AdZYe-R/T2C_W'8pniAeMTA>]8Z\\%4<[[bQZ1JKt)88sAC@W_M8]*IT.`=ru,\\XaF$?=UC0V\"2Rn,sk<bt^!4l2h&/43>Y9WXUd79uA++@/.^?3sY^O10)D1a&#ah3?Pkf\"<-kJP%i!p!6B4cTtr2ilerjjLsu`@[k[XEg9#hu.jDlGI5PA6\\b0]4Tr/ub34s_!(hIS&4pfu9,OX65k)q.oijorp&G5@?A$=Q,:aYBE[QtBKpNQV@l*E!l;C7'OcBrn4>T,hSl&OpeZ_'-(MISpq.?b?q\\SfSUH'HS$7miUr<\"pEkQ&@Aoe\\LkN%Jg!Fs/h!'mW_fuC.3,R0cK64V!(YoOcDoHF<X6j=gb9V0RW'Y;Mc..'XJ@-!Ga:30.tjLP\\7`X\\@<kR[Q1#GSe&V2BAlJ\\QGj.o%_bl6/kLGF+h,PH4eHd@h]?_$k9&fLQCN93r@b0kc\\5OkMS1>]hS(<l<cn@:20M3t3@%FNP.\"2S'*U3DW_SeM80OLZS63GY>,mibC5TuiI\\'nV(sUi8O2.20S!I(.\\W1hX,g=0Mh%(@./ap4C0or7sfB&P-d/HPUcjSSQE'ATF^htJ,:+_,kmYpU5c\"!9i.J:Q%*0o+mJ<JTrK]74d\\3tr+(9=f2,eiZR\\dFDtQ?nP2q*3@'_,irj`(WD27u+JQGCsZYq0E!5VU0D!nQs,>]K+.[bp=aq^@W3tho3loNn(74A2Bat9uBsOW\"<b%*9bk.YM%V4+V/DCWgD.g7E=#F/D>tgk)DRcA(&7*><u2H'D)FC]fZm;a^H:5S4r2taN2N2l7JA^LoVeDA:uL9g4p0J+/u,f%7Jb@6t@?^8c'APmXlJ?qN7BFKel4o5MZf/pZh/$,W+_H3_<&83%UX`+d%8&+9(mMC8%og1Qe$j9hSBnG9Ygkmk\"s7^8f%1!g-u&@!m)Ei3])oTc4Wb`[3-k5.:8ULVR!@=n4ZIk:cgF^MLA9WU/(>O*kZe$YIks<A?##@.7`<Elc-n!mhbTRfaLB.sEdJ?fa))h]To\"+dISm9h7enVP'S;,.5DHFPY3!Xh0ff=g=^j-F>.V?:+,m,B$%g'_AO)9<)H/bA4;SN_K.=4+skSCerZ%R:I[KW?Qk6gpGX526\\RT=GXJ0;!F8fNgnX6r*Irh8hmA9q4QjkG/h%Q%>c<Tra*_2&ZuZ)Q'tZeWg0LnW2ia]Y:J1VMhqO7BHm*1gl/?kB`nB+WdNSp:^)l]B?>n[AU8a.NZV\"+VHp;`A.Vd0O@(:+O#nJOdG+)r&(\\*)fuP<]9pnD.871E1Bfa-:XQY^_iL\\8--_2r>WrgLLW=//^ZNR!5N2&NpUcS0b\\\\$sUFWJE=f?I[dJp?\\_V+0[H#f+/;a,.Q3ZP>`-K,R6e1tM^NcZ'&K%4?Xne7>R%IJ:kM?Sh!S2.u##]#5h5_Meb`:Mf,MG:&B;)_aulR,D,.BEn?%Tjo:O!$^%t-mf\\SE9*qtRU@[-gt`Z1.n+>`[^)&aBTOd?^@A)P@agoig,8^MVPis`9Itnh)TrkEKVWDLi`'8Mk]i\\Pk7Q`'5p+UZ6j#+RjTd9Ck?l#&n/YH]mQ0>)Q=<ZU\\P=>[_0I=q6%\\;\"GfsEq,^TUa\"uf#mKBXo(`:2$<d4H<s4+pH1Pf5Dm:[#\"##n&_%'koaA(lh'SpD#nl%/MCRIoIcB0'gU[n1=8I2RN@b]B&R4H_p!)4<s?oN.od*@T,OpXl;q$NnCMrRn.Pnb1]u`e=]/c-fXD6[fV1;T?/.DNlEFfUlCFj*$,DAXN1t%<&_JuD6^SiEuC7mo4X*26[RLSk'r2QY0,Og8AOd*7VLd0BNYHbX:65_U#O5_;_*u]QS0Ysf8-<>WB?n,UN2;2rc/@O,XsNS$TL\"FoKj!mh&>[co+$1$EU(u9:b5/,%==mefG^(hRa%135M=8q76J\\a27=!VgC>\"-%O<^9,Riq_,Y9O_45GNNE-33-a9[Nbdc,HpCL:B^G*Z\"TD#\"'=QjLYFB$2T1g6[?1qcXth=HBC\"#\"P@u`WN=\\F?NWLoQqg6HM666UMIp<jZE#hh>6?Y*8qhDd;kA(%C\\D93ci:s(],F8BVFN[NPWemQpj%i`l<ZY*)J/g`QgAuE[jLCLQE&XT>o#?WV)nuG@Md>P_Ua0ol:Sq<Th]!\"K16s]KG:F%Wi[d:^ZD#V5Uh6YWV&Q?\"4Z228q`UpbHmU64<ZYpLG0+fMmH4L.Slf#ieOE#jlDPA.#s&/B]bEUsHfC_W^Ga;qO*\\`#oV1N0p@3&%Sr1j'A`u_lUEN%m,6JFOFT7_Odd'7Ta,-nPn?=!?+s4?IS=/DONj7e%%=k3GjGcW9CMRq74S\"3#<s5Ogs4U0W%,?Q$FEBqA/\\>WB\"[g`3J1H'o4>.N0h*+0dBr<N0Y\\[;LVD0#[$JZ0QG`P/+taa" vz[6]="Qut2_M*dRBclWW=C/ieZ.]e^&*1BSjZ%'0$`\\(^l;g%ZG\"43E#58s)r(#laSS;P*#$''B75X\\3<,`>'HA)@oe746Hi%jBSCBe#5p(;8a672X]XXsXmHD;;/.V4!rD'49a2.l'hhS!bc7(q>B3F%[S.d:Omdf/:`ZUnrj8L#+A:A7Mu$U7FV468prRojk\"=Fsm?ehs\"aU:t%NM7c+LsDHZq<bs#1S#7#5Qe%p0bL7+F/OEnUNgdY7%[%T@6*F,s:a[J6/?:g%<eg]_IFtfF<mG\\N<G.bDLd7R\"['R?%_qK'>jZmL]\"^s\\BYaS7uZA`PYbOM]p1jQN:S11bb>m_Ms:<4,+f90E(CaT$rm?De^!M<`;X9YG?#nI#qVi.\\?\"l^sXl\\o=sLPb$cdQaej0X+)R.YUr?]cMkmn;RuJb:*d/m7_X%^@\\$8\\;JcPdG:uiEk'-#j2CpIj;O.D*s!8EFBOZk2=9`2a:nWq?e;I?7]C3O+2CQVDFsr*TWDL$n3=[W3#bEB9\\c3P*+F1nOU*D:@6>eP/3\"=T=p&F3%PaqK&f*.*gRQhfpeSYR/P2&id3r99S67ucr#!(Npn]g\\/.u*WTlrhM@6'u#11NPD\\\"ZMrgQLSJ_RuCKGU\\'`nY\"#Eo2a<>22)no45VarAB3=geM$bpiLE(Ap$CR@jc)ATP'Z3qX's&p_dlo@uc%p.LS7D=*Vt\\0e+_T]JUa'8/>R4mUoC&c(jAh5gZ.QfO.E#$P>L;&A_Hb%=);rNgj!-t^'2cP.mHXE7*ir%t8$8)>i)#]D?`=$5UBK!uNu\\0@C6KRO$uBtslU/.$#nUt%\"H33!m:9u&^)oa?ik)hD[![$O'U(.1`^i,NK=i$Z.kPk5#X2BlG:\"d#Zii]&V>_FG9A\"r879,-[Am>IP2N3^:+K!)5$l.:6%(7A?LTGSfp#!1!`Bup(F:OcgS4,lT&)7S:\\S/\".;mF:iQtr:]=\"u4dpZMqGdA1^i-PcmEM'\"sZ[jgI2!ED@i`J)=W=q%d-3Q3U3oDt%BBq#.U;:7-.9?RuM$JA^G4g+O7#VC+b(3g%uDR9;gi60Po9g?XXP0'\"AB8--TPq/o9\"O$P/!p#tdpc_TR</hi<7@JesgEKOa\\2<^kcS.$n84:?p:d@rGrmfF:b`fU/)G#Z'^=9>ic7sU357hjlIGl=VM22*q]CI?1M?naC-b)9[@JMf&D\"7iIYo:W*K<-kD$siN.D=VZtK7Km^aZ$D&99)J0_t1s+fY,gP/u$fR]tp/2>mQ*t2TRIk%,AgV7`(d=WnC*GR`+#ThKNs%6QEBg$5MB`DrH3dfMb'ML)eS%/5\"Y'j6'$a59u)tBfsj\\'83`pNbX:PbdSoZ^_AArT\\iULOmAV;]>e&5b4T?6A=:A'Tj-H0A9nOYMfY7mikn310BYsB<Ga#jGA9_dd2)2T!46DF,,J=QCTkW=e2tT+P<!M[-IVk5aYi,Gpua86?)nAs6JNI%A(!rbks!\"+)Rbb@,gON?@ekL$=!0iM-1c:Fm?V<XMAXK+R1[LI%0N`mnsial,\\(V]7SuG2Y66=AGfp`:JM^;s+>geDe]11.M*.bd2A().$Q]tEM7BDb6h#(d:hm*,P,RUH4A,:bDcs>m6Drlu]0K.l4gUlkk,0JfT^RoGV#eV+_a-!+eotULqIbJ>/4`OZJ#Cb,LJW#_?StCHAm$erQbRQPXgee7+!`C0j@\"g&VZacZ#6*k5X[k>8/3\"N3jJ6#.<4rF4k2\\]#pR=Kf7Wqkc\\-G*6:l+gLpr!/^`P_4_bTEo-jM5`jqh[-?+fl8g2:dg//(1EZU>68i/IrR%gI7_3?7'\"2k#%C+*f2(ibsZ=RQ`V+Y%>l'?L0S;99k>_^')_d5\"d5u@&cjE1:[L2a\"TFPc!1Qcr+tYfBa*K$6W+i8`Og\";lcQ9!UYg!'r:$8B9nJJUk&_Ar_Za._bK2aI\\m:ikqjd`?SoeeMO.]*8hptqi\"6$>Yo2;h[45aVX-c<5@-p4,TBpl+-d`W;WLU;Y3s'#F'7.[-r+Wp()mOW*MT&tkc5'K%41hm@`s>Z&3RMfEh[n\\7P&lQIarVO.R6o3YCK4?T?'.iHtc)A8CqKm^c-^&8GX2)Ut33YQ>\\=GU4#gV1P/N<nfrH1LW4:(.`s@:Mu9.tErrAu*sL$Nt2hGi?@eO7hX7\"AR<%r(f4F2&+1YG$M2\\?qrt\\dCmKm3'T\"</H+D50=iW]jYTapNdP@sgmb-EQ\\]og6u]llD2TX@\\Z$Bum/pnfAkU`3IQ!k9AqB$,XCN+GifN<rgZ\\%?:sl#7q:N`QII(GY$toLVn/Un7)%:j[8,GiVSrBdsX7liFW<3$8Ca[dsiKcX&'e2)5;n-^a#UUL#f[\"j6X0#P\".-'8O*5pZ?SC<V!9.@.&+dgmH!KX=C7WpEE:Z>ME>;@.>6=M5\\<Rp*Q^msu-9oZ:@\\S?eW(H?%;khK(]cVcmBNUs@#q_fitl:j&s-,OOp*]oN8ouunPc<bq#^`3U)Z\\(eaWet#7iu(9_`\">I7DpWr0H0R:+NIrAnXB+(L,\"3.\"KK.a6DJD/qqDY2lHeaOrd'l-W>M'bVhIgRl^VRE')kBD4Ppsl:PO\\e*R\"3s$h4\\n!9DYqJD`eeJ2\"22bX8r-qW)hquE$5/1LL'9kF1Dp,A!G:Y=1C&U=*a688l+($j6Hb+kF.XEc@_nJq=,EJ^X'g#d@dV)65<#H_P[jt?mdPKng/k8**4?0\\=eHT:8rlGV'IeYfiR?r>gHCTUSr7-_34or`OHnu[#k+].:*I==doUJAt2BL'm;,'k_p/bEY:6iLQWW97nba/<F_QT%#E<,,!2b)^0kgUbKr&aiX2FC!@\"5VD)q20Cbo:H0,VClZdGo\\]e#:_K'>,C1\"Sh&3q)t?#.dUr^;p_EmYgS]@ue:g&!V4Ml2-ZUofWiq8Ak_$:q85^:IogkYR[&LnWs]?\\P!*b1IGX?E'N$te6X\"O*\\&]uK8CSP;/FBO8%LP]VZ<(<aAdSX9,EgL7o6k<06O@sR7bpk3q]M0nN@5V-6Q>bR?sNYe[=SZj?%&c5655QiUpl%eXDdG8,k9'rRU6U['>6fs%@7s_0m''!2te.(L)_SW>dh5/]<IDr'I`[X0TEe628Q9#P,4AM3r=4b,hoGpZASiFeFkd)7OWa#gZaIGn<n+-RVXi95&9:f1Q7EkguHZ5*_rg\\3Mhs?GL%JBs3fa+;WLp54bI:m9DHp/Iq^^O\\96Em]u!MG/4?G!a<8);^pIY^#j<R04jUH_=G_l4cn(\\n#.5]k?p#d%(f>dA\"9dsTI!u1:2)rk`U<fc)fc`@NKPel&A>Y<rD:smcZ151!m>YT8Cq@J,Wr]p!SWn!@2K@<Gk6%0$Ir$2p+,\"c\"`b`Ul4_aRaO\"BdBtdABS2#&R51eY&D\"4cAA6^8uQsNt-g/SU,U%!/GIGub9Y=Y!(mgn5PD#>*7Qq\\<8LA`=a\\a[jM3]E3nGrYPZ>-R]!+]'B_*Cr3&467pHEp[&&?D?f]VFN()^m5coR-PGHFZ%FsAkn(kie&Xq3)Z(@k/m7\\Hrnd)%<PfH%'.:L6=T;0&;8Es4F>ofRWHk'[_VJ_Yb1;:Ee\"=HHW/mi,=CC[(I\"\"N4@N0P5#HVR@&!o.$+P$E\"0iAE+;*W5@p,?]S_=MI^#]n!p5iO$9;u(W9H*[%I$h#1h`6jh#oa0+(3jAZrU`kJ:_n):ZjOo[/Bd'sKmEanbQ#o`CI.&Re`=7N8<-_$J_\"?'c.BM+Q-=jt+gZ(B%iLn6DP9S9!s;ZCOn$JtJ!p>l6CRe#C06=]W1&DgZ\\os\\b\\J]\\(Vmr5;$5OP#.Ju;Yj4=VKr'7S51?p=RIX1>:qNpgcA\"%1_%+sH5rrE^A:Y=RpgVDqn(\\\\i7<]a'XH)C`jrZSe\\,_j%!#1#aRA`,6(//Z*1W,nI7T995?@sP*1Fk\\qBnImN4:G?;)oX^R]>#]?ZJ_!]OYV/dq)b/Fk]gZ?C]*Wc[5?4hKR+Ai&)P;*>*i]4<!ap$?;R8j_?m7_M+doN\\I13'^:*JEkfK*3J+^[GBXUj;1d0fHFm`\\?f9PW],u:^:`jZ@Zp'FBYZc2Eu%,Zp,ZZ4Z[*9RN1)&>6agpc2O[p]ktEPNOIJl6c.%&1?i<71cLf" vz[7]="_^%5j-\"l->8KpCe*)Y%-7fUcVrd'&i(^^>AA/`N^A;<hrM+S$&\\rUtPt`llJbaiWo<]A^,MOT=`jJM,8aoZt$F:Z\"K>3cTUfQRS8T95.<3,$15t]+*N_h^[%p+87P@0mC6/;qhQN<cgZkg!m9H,Fl)qtmlL\\0cQGAN^:l#Ia`Q?I_ng&`fboABnXbuHL8>sT7(+'J\\O>INpCA4iRPD!O4E%e\"m-lLC24+<JWf%pW$J\\7]&oloug$Ul7gbnPuk:lM^>WA6pYY\"Tj0j9C/^'7'4fik@==Vjg$o%[q@H85)/C@&#Wl?`c[$-<feH+@P<e!Dp(u+a;Q/5mp6ijmF%-#;A!dj3ft$r*N1Vg%KAhqPbZfXm_Bhe3N_B=/i_CBjkkChIN*gAb\\p*s\"IRS_/Omk?bKfNS^1M%=0-/8g+sVoH%b#Q54cp*KOht=januAaGbP<%hFgMe-;f(5<\"Jtm_O`4VM[:dGikqgRrs`[%S'[H!00SWn,n*NUeNq*W)uBhK235KpnsLSQUM?g2<CIa2Z*L<X)eN*MH!D3e`Ma%<.mV0j_1hk!+mn$s^PGiBo6uC#$#SDHi<q)I=UJ6HSD@;7XA\\DTJgk$LCBXfOmIdJu>)V01QqW4u'`$[W:5d>Rf1]V^#gu705Tr\\i#e'DtDt/We&GdJ+i;dA=B7VNp'8hE]&.jW;<A7Z+a.B(MThbEbFOXuI=`O0K:pq?W\\ssHS)\\Tqna;:,^_0LQ(ci(2(66]JO1X_$aqCTl^N0>#s>&RGis%-@1h@3il/H\"\")Y8I_RR6[L,G#t.SqN'T)e;MQS<6#fk96KHK=^LIe,-c)9_fh0kC\\d,M6q5?LZR8Zg[\"2dBU%3WBM**4\\V:J8'i`#Eegl#$1Or:UA;`#:@)_D6n/&@Hk,GbiWHVW(c146hPGpbOqLFE!1)sgNE`m;aR:N!Rr\\PahG2kNm><(:GKBC<G>o%5Fik#t]W3AdZ$\\(S_Rc?kkOp&:o(]J$,`(NSkmp)KkG;\\8gBQ?$6UqW[dOU9;b\\l/^G#+P',Yjk/c.OmKJpC/JLp?r]!TaL<3N.bQalBU>?/7*3&WjHbCEk/hlC#ml=%@?k$5^)X=e\"V*9_(3=2gT:4,JmRO@<Lg\\jUC<uQ!d48-DF,4=+3gR\"\\V*A_V-7Y41KKcbVH,Rjnm!*n*X^tW0%rbXd-7\\4,.mBZ@VB0IMA_?T,N=TQ[;Ye(h`6,Q<$O,)0_EBFj9?NItqh0W8oqj)VLW3A\\6e6;\"s1B\\H78)+\"K8';!=?;@]Vo^^?I^T9\"M(!Fn*j<JTcg\"8n,'r:e<G9@_Q'hI&QaaC6<ce\"S+hYjB28?\"p[2-L#r_KOOSDtW&92Sa!S4&$5kE'tQC2\\2Q-d$Et)-\"QFbppTmlI/jlZ!^N]`<>8m.X@.7h^,KYb91W:T$VO^4j<+Db)4JET=QmVf&@^YNC@If#Ps\"GeR2%gY.+`qfeG.'M7XKi<@81JL#WL'[YU1->j%lPDoU+2dQO^hg6jb`L\\@tM9%&t0P\"hOWK!seu23VLFC<PYGk05H,_UF1==).kGIkE[dKOHT%7aZe0BC3GN\"*?sHOi/O5PIGkDp\"ppNT'g`#,5h.f(\\p\\i%2s.Il9[B5Za>Mm5o6jilD\\@e<=[m]'YJ\\^f28Ju\\1TfN<3g+1B-d-*c7E^i)P2d8rLH/AqSOICMpt<&MU/C.aa1)0M-H6:+'\"!op%:ZHR/&;>ftU8\"XW')V/6o2#Y:3B]<0d`P<XG56C`<Zn.YQ;(>hQEab\\=nf5a-<BN3OI)h]-62BU_^07jQ+G>)aMRlH-d:8H1QCs7WF!M.G.D-osb)L^`:cfO9-;,H#P)hUa#4;:*fXg:K_gZ\"/9n+6$I1SYV<jOs1a*Dc.`E5d4=XpRu_qN9*2<WqWgC(o&s$:f=FOGIR0D.]Ro6Wr_\\kMl\"Ri0d)YY`H<11AA3`sh%&_\\]A>`6B(uF497MUCO*UKr7ZSJV4YXK/h-Ed@M+)kcF](\"`Zf*E,I&BDPE@p]m\\UI[-[F(Bp!V8/:40k@r#uVbbM>Cub+&Q/^=kJOjKn4sp:T[/\\LM^_V9:BG%<nZ>'4'[`j:X0&;-bCMtGYb^C_L<$,+U5p5n0W^Y`98[KXp7[O7mP!=:&<u-_*9Z0NLR%Prr].Q5TfV1COE>Zf@QYA-ADdWQ6p4RiQKRDV\"Nag'-Wm!R@dau7d>SOm3`q]ctF?0\\%nrmX*L<e,WjV7Ddsp8'9lfa8Y9aR[cg@Z6m=okZ&R%)9Dc##Oq)LUoiD6Wi5&I&bZKQ`k@@@Mfh=4OrNo@94&o+?b-1JrHF83tJ9,^8q!e:\"i'a[4abbdqlSR^]\"CbPae77,V[P)$+W:8uW'MA=p5A1_8Uf1Ad`/d#G\"\"*Gt_C%&Mf`]%Td&I?GY91W+s)RC/pU*$+X?_Kin9LC$L%4os3r4I7dZ=Zo3h\\A\\Z[WKa0\\E*ik.G(#,5^a4;PhPh1&U'Mm%>&&bKL-_lj@e_W$?%B+moi5Ced\"t-GJ2b>CZB&]B\\EN&1;BuDqL_V:[K.PYQ5kZ.b79H=GA=dK8=*'ea%*G0HIgH2IQ=Bq\"@s).#cq.X(e9#H2t&`j#5.Nh19(cs&;>9?/Db<_0+0Ri=Fiu%$>Q$%omAF(JC6<(!g*H/R\\9pacA>'$&1U/e&'b62T\"]+\\7stk#.K;7%4q>X+ED^V_^TlSc`X23BmCRq,eQ+c%PW(DIaCqdd026u)lakU]lee@qhpC('.PeEBngdCoI+;Sqm0>5gatLk@d:$n9nouY->WFiHNuj=)'jPcPC3\\r,8):7?GNcgnAUjQnJc+?E\\kG14GKa;_FMC7`%<5:M(#D[Y9VuGs'A=T3E&`TA:L$U2e@X#BDf=m%]]baTZQNIlT:9#79W]tBI%>$T1:QN?+Xs>9mMX!2tfp!,H?0]maPT._^4UX1MXb_<Ka-b;AiEpWr@-Kk]'tS6B$eK0In[?7<P)fCQ=)g,-'QsUWV(qPrg&JG9=eM<Mh>3P%3[T#JA80Gc8a`_*WX,^Jccl1PbLjMPAjZ+;@&5/J2@h5\"X&0+^5/*;TZhjl0&_cr7Sd88k8.]-,2DoRK!jIEjDL6aQJCY4\\$es-9%pJH]bD+A8A-NPMcge,7\"@)Mk5]e/[]B5dQ#/e=k+)Zee@jhiYh`;-U`5<E;u=c9^0,Qr#9>!mFCce+@R>a8K=S,h9b;ujakE,(5Xq$=+r'*<8^^3LchB4d^`MI5#.?eK0CMk2-h!M(p,6rF&Z/cBFA'N`,7;a88S^%82G`/-I?O/1)FU5H`3-?\\[s'j`H=ta:pYoQ$UEEre:Z1!TAVN^/BWLO\\#MaaKpJ'<WT2[B\\Rg\\$;*rF.Zod7?j-KXJ^*6l/d3rRpg)>KW3S&$ARVF9=3[>B!P3Kte=1_lt:F:Idbs9?<g`n6bWh\\-R-:TWSI1-#gAG_]70;!/b<GqHobRALsEXZMY)V&>Vs)R:U:LUqOG\\cf+3uGke-;jN8\"U2$DK=tdC%0!M$T6t`WX.ffn&tbNg@(_$*(#CP5FI6g6:hdqr?;A:?P33fM^^iV[Q%\"H^%RG>WfK48K):b)0Fr+Xj3Ls<p3m%`7a0i6qUb!86i@GSt[J1F'pj5D6*2T/*.!P<^b+Y=qdKr3CNT+p_dCp9rY`scSAM2]Nb'8Mh\"_N8qW`A]F(6'dDp'D;\"((c6mYXqK3J0)u,rc,YMom/\"n?5=EtmF,:``iHW1d0[Or6_uVuIeeY>VHS]iF`pBG_0Z!Z$@)1NSR00Iei6C)=Wl\\=5t:I4X1%32\\t3gN0?k2LoDPfu$3g.i0ahPRF=TiCn:IcR>i8\"13PQ%CP3*q`+);\"rgs6<mN..!FO*Mq6-ATkSrmh6Ba`uDqE+bDdI,#^Kfnp\\G?!5cbAO0Z][=I(f3p'[rC^=DBn9C0?a0\"9ZW/RUpR%Y)@\\dsteL:/DUe'\"9P]U?C<R:m\"r@#N''3g'mV_j*_0DnYN-N]$V*/4>2q>[7'^G>ciJfOUn79(*5kdo,]Jf-K=WCL<JaZ5Kg6%:'*'`[-uq^QkJt78$5=iL]>Fr+is9TCID,8^+o3@3!7e2&hSpn/M/b^Xa_GG-_em2\\CW;=L3<?&.5-\\(J1hJ#L:.=D\"/)iN9Kb!2i9,i@,J1RF@$m68d" vz[8]="Hp2a<#Tr,UZ2LZeE;EctU$'>:-@A:C\"&UJ6Tks!/f@e3^\\Z$0D6=r70uYc49qtW]O>rV_u[<WNQ1_B_C$DT4>Zs&$WI#1lKR4V9Y^53+JGoM`Yu>95,@P^d@`93GH<*!8Y9DWJb(Aa:IS)[Cu](2P@e$%H31Pem:.9>*NIhD02i'*=$Z9>)gnFS,,P[ca`0;\"K`bhkE4,_Xj0rp-Nnj-=^1gs?Q,*'m#4?YdG]+\"5IC]=:_q!'VFZ\\([e0O)AY:oS3`YHA$mAf9J6+J3bl<6-UNu[Nfq[<;2*XL4'k^<^%T2:,^-q'oM;ArhP<9c/+2lDt#mtH\\e2'P(2+\"(V6)#%K\">o#OR^1H^R]s`9/8P?+JZI[e@#EW3BF^rJ)9J\\N$%JDI5.tGT<<9ff$d?0k>k@XiB;VqE#_ZVni]N?UNW$IYC'=:u]]fZCSY[5Sj19nQ?S]3<2-U.%BGWmu)/nkJZO;cZ*jJ*6#U\\rX)N3iL0a9,9o^%h+%p_rij^$:8Lr&-`2S4:0FM,KdSHeRn/\"Ao9:T&`3$HYAq!l#ZGIMooTOJROFs$GVDlJEkbP2<>>4+B>h=^N@)-ErKk,!1[b#=@\\K)rQQ!!,b;CS1!4SFaHQAs!bf;t@tBL3G2hQMnqhDTPk1<SfXbZ`9gJ.]H^I@s`aTjs?TE?N(5sDiYT(OjRK#&(;rX^3V_FjiY:O>/U3>iI9ntd]H\\%':Bd7,['CPu<^aM'@9YEq(C\"rgeg7k$^$k(uj)4eb<]7ntLE:LTHBLF512h.5C9\"eQYUI]aTRQ)P2>AX0mQZug#&-&LKGSe'c8#,PAG@1nf9jam9>usX\\@R(;#=Wo2j6W([Obj!:A5<7oHSk5k\"s)^RCN.9LP,o67Fa.YM5eD)NGWZ;(S$lW%CrL'Jj$fIkm8IG2A&dYo1[pE,?Ul(H0a,,WuWlGh3ko1od+HbeUme:fYOQVq?AVnE/(0l@@m[]p[UF<TTeIR^H?24#B*QpL;I0c&Z;utgf`Dl/42jgaC`ZYu8IrAO>DDs\"DpXb$U-HJ5m*s`/9Q.Doc5(%JF11E9i1&`dk/\"rdLZ'63n_dBo9:Q/I\"D>kud9*]Qg51>F<\")PRpD.fL^s1u3/.52+\"5SdkrUgVE9EYj?Ih#po%*Pkek.q^JS`K_g<Y:.<=o6;0L$d0m^S#`%_(^[%)/RR!#Z9fYH3J\\^)&NJ^/P^H-0Ca1FTb^h#R?ha>JEC3nTgp!u\\,\"c'[^[77<?/L\"bFY>/V=&)6OHC[c\"M[-qf)5(P!+L]MD\"p.jY)(r,1#MlP+!^M8957/ppFSWM;ZDpWSmGFchFCjAG@aMGTkQ$)jSKK1qI[cU3pakW;,LQ@o!<8+u.\"55j4.\".mddpQi@7-lp?!qSe`u)40)f?g'q#-9B!o^1%hF>0=WX8Mo!8<sUW2sPR/f.VYF>;dWLKA_#YNf_J$SQf0rj)BcgN]>V^oUZ/'B$,7$h23sFne&,5ZRoVI>&\"M/kI[nih>V7L+\\i[)NEaRK_uAPV4`Xj-ufD][pHB\\?0pD(@F)A`>LQfl`qqdOMiTqlB03t!iq!>KB^Iq6NNsQ\"=t4'#Q[AO1fL/P9`4L-^nGX#`n#pUJoXP0N+C6^m?2cPA]\"^:3=Q]M1%)c9lbV*C@7H$9d6>nEVh)Z[=^c0\"[$@K!(b_Gl.D+fM;GuV^'iuu7]JGMbN\\G9f6U7X*_1E\"T)THpK=2g0l+1/n<3nn*lo.L#$L/r+&iA./\"n%?mk'm$?H;0GIf[R7f*G9M`$+E3#@B58\",u^tsGP;EZ-1lqUJAHa=2=b^p\"X^VE4A$/4CWa/N%6Mn,-l8=VDb[[\"LUmOp,_F[nQ,lqUPN,3.'\"<B0>+R(;'q4WGolndm<;PH+n1A4`mc<fk1_RAA;B@cu0da?>7*OgVLI\"eJ<E[D)==Brd/8.j4BW<]i4Yl?1C%^V`>V\\N'9(^.ch7?N'duou]HkM(Zo`_*_lGrFRhAf2!\\dR\"D*AGNEgU'fN/iNHIZ@h3V79=$b\"PYj9s?n$TFi]H\"6X+[k2_*2LEP-g^(hc]D4!4_5R.6;j3nX$&`ZS3PA?+iUlTOsdqD`d\"#V3rPHi@fORhc3(naVJ/;GfCM#+)!ZK,:NJ/+j\"6n&\"pdQNGSG(:'!rp,^^(@<PR@mpm9?JNIhh3<=jVAh0#u!KI/kg73tgX]N0deee2;S:n/U1iO?WbmI.s+Zln.+PE-toa9JKV*.?`PllURX\\F.ZTFrmtN;Ae%2)ZNaLArWlu\"DIt0$BK,;3FTpgU`0ENhGAaRl+IT#?PZ.N))=;&7$[0!:%u1O[_=*l5JH%).+MAT:B2\\RHJ6VdV[8jCmJj^65]\\r&,dR9-.l,mJ1LsqQj^78DRWJJ=cY)tbfE!p8XVn(d=^nUY#eL7A,CC6*RY=DqN#V3]Gbr:0Xo^qh>L(qa[(q[PE/brKNL'74(GAmX^![_dZmMe-\"39@mWFg8Z'#VZ9C-5iL?jp:!4K9@U%MFCn.hgZ3GiaZp<n_!/.$)(bK,a2uGr41h&ohK-'IY:nl;*<Lqg3=Ft/`R$D/mPf&0:L&*oBb/aThYsa^aeenQ0G$fY=]dp&a>[6\\2/j``PW[bagW]DTnmDrk0Z;T:eh0T6abdSrV@q.H\",$,Bt`J_Z8<fSmjJm!g!bQs2l(\\SbudrROUJ1J+hU.M;T>Xo3%BW6YMpVijfM/K[FEl)J$]80OF+$d_C5u)iTJk&H*RWW['7S*&=]V/)C5*55_?:;F<ji$V+))Ag1UmQ=AH][a+mrbk9aZ(3XLZNitQk'I*$XiV7X&,!O7Oc;.lc0d#BR$nCdU<;O2AMbkfFXcjLe1nML[(M%lXHdhfF])?IV$!!kh@8?5iZMJkOME#X9aM^j8RH0ZXIDQ*C>]g*8MWHo#`dEMcbT-)4H5b]t4#A[tl?)(3/?6b?'FM0=38rg:FC`eqb+5F?@[BS,]aUVDdH`.#sF;M@&f`F<%Wbm_o8VN!1@+J0tO6P6YcJueb=\"T-1OA%2tc&t_b\\!j=YG.J:$c8k78EZ:GSp+X4@o'6Ge^h\"@-QpK`S*m/(M]eiNXekpUMC8\\I3J[6Ia6LePKl3WS\\_E12*P)`R5VS#nncO2`h[rJc8#Tt!34bAiLdPdeSV#PgkCkWS';M<]ZdnWY%:XR)r=`8@2Q&oC\\i#%(1;O&n9)dR<k<W$F)^-ggUOOUu*&L8W1jPd8j,rpDC46)6=k6@(R<dC-,9V\"s0$@irB&H+\\.mA:d:O,;QD.A3<*+\"n>0))orL9R90`dmmf@QCCt+7u/#C]U$(^.Ts@qiIhFB?DkUL@RM%]'Y%TIZ0u]E\"<\\HcaKq7\\9g46Y9m`mD:Fd3SiA_[Am<k8CEm:9>lBFKGF%4r+gmIgL6U#4lHdnIp2.X.A'FUUWJ@f`1=Z+9bE.`ib#[mutIkso_?n*4bHhRQ:b*4M-%N>e),\"%nhG,,\"l-qlRn^]gWpY^MRbl4otP\\`UifY?Y\"gLRt5(3WGVG/k)^WY>>&&T<lt:bl,\\;eN+c//:;j:XZNpB+@1YHaaY7\"PKd()ObA:(9tDhmUO),d1cN5D8m@$&[NB&\"q%L8#(#*'2Y[/_U.ssVnWB(Oqj!$9#$&(mo.T8.kq86M:!T*>KqtJ5aQ;re&(XC+l3r<Z!isUerEYWLXTdQo#?>2rqa#kKi\"NC4Nm=1H&ZgMh;(hhErdZ=m\\gqd>^gm53\\o,%N,@>GCC8:&C?F['fGG'?31odLZ;Zs\\H&>`a,ZZY[dN+V75$;5U6Jl,d=/U!0QLT+$0c0m%SM`2&qj@gWjB#7T2<3O-P\\Y:\\EPh_Mu>kukE;^cLqtoG(6!OmpRe*4td*P=tAYp\"_2l''Tin)Uau'SY4K>hA.1Q5Ppbg%WlAL@d`JgUkelVb3]8T\\jq/P/DTP@4LJ/mNgag)HYLsK=o[Bl.4]<;#;S2lLdh92=ZD!2Zu:fMl#P:P7JE6CKTfH:>nr65qf\\`0b3RUY*K],5]o%YjdAHUc_.g2Y[4fE<^MZhQbj75:]('qd55);Q%W3[*N.1Rl*;kFiPdr;dQ1l\\T'$dh+7`X\"Y]iEDpc\\e5EoYB[O1D]@'dnqeKVD!<-oY=QD`3[b2f4cOsk6S,#*$Jg%#&hLX)&!C@7RHo4Q@=" vz[9]="7h!'H;B@--SU=LYYn2cVWZdTSFVprR;M88::W/F3Zpe/N4.76onZIgk0(Pc\"%2r@h*++IVhQq:u`oEK(GLpg^2#D$4)jQE3&1(AOI)lPl:hG&PcX:3F+m.=Na.`Oj+pgn6_&]9`)q=2ZVqpdTJ=pXsG]8K(F3^hLe=D_PJH@WK\\Fm_SXh2oG3cFnkn/HmM2i`>mLuhDUTb(-.+6Vr(_*U;-4T0'u-omle)Li>0p&rUO)\"o#M]BhF@8\\5Z2siO^IC\\cr^TTAo-hYJ/OF;k;=&9$58a[RC,hL6Br\\!.fB:2j?'JRp5;4gD\"=e5[6grCCf\"\")n]-Ob03nXc0XT&fQ-No$4o<Cu?X&OnBsH>OGY41bHA.00MVKNfl]*\"r!\"nba,Hbaohl-@.A^gq,1n\\U*+>e\\VD7,eVD&aC172cC'l,o#`B#kee?=<>@Go8%ZL#S%99.55nmQZtQ/?iPAEn!i/L0&D>\"Qpis\\L*R8=(I)'EWkTs*@>'RiosTX[2JmE$2(Ra:tm`I:4lcP1RZKuK_4>Wfk]eAUKVD;!j]Xi*jN@Ok+D1SAP:O(rn(R9/W97'ki6c&&[4'88*Y^6Es28u4H7;BB'nOPKP=)2l3DUji1*<Zr>X=u4s*?#jIJZ,XWb)K'bR\\EMc.17$MR4udtI/\\>d.hUFT32O3E=aI$0WJkQP32K:<WcaL,\"d\"(\\biu;XZPY;p8HD&KWEa+a;ffC/QU=>7R#Pl9%`m\"%M#KU=FXE\\+((kHb$Y)Y_R3&9V%fB/qbV=OWXKEh%XbR2Zn0XB9hkHFK]eU3=HueKOf\\a#Q3N5Q7QRi[b-S%&hobW%ShTgYoX8)=%CX!IiE7bUBEt*mXEGnUH=A91&:(C\"Li(S9KLb]hQUBfgWV#K[n@%'Vkh>mj?0q-#ru#$<7HLG?551_-S7G$s.&/b%u\\>*<BRGOIM95KP.,F4-Dfr^gQ+-8\\W)/B+qoRKG`V@sh*j*Q\\W^ao_TC6LdK/.;Pe?J;=ddRB,Xb%\"T*Rbm0oUb$YB+Wo1K;Fdj8)\"\\&V3JNk.&$Y\"i;\"h)VNiAH5WXWrS=U$*a?L8VZPLFSs1*VhA[A[81pJ*IYKcNY8E%dflG3>H0dtU3LUF?l;n>#XM\\%>InoLjGEc'CN'&G0\"5,),P?o2.\"_K;1TPC2E0Uffp>^sfnb0;p^UNa$U8(m,a!K\\%&YkiGIdGQ**D_%>C%bM]HAi4OoF5nBaEjsXT2^kkI-2qL*>64Wt^iU(L]W'W,iV(?uo28`!*;tt\\(G4pk$\\@q'#ciMoetk[uIb]\\qQ+-*W`Cu`Y#:mfDM63&JjR_k-qDC=bB*uYOW+BZ3m<ROG9V+RLk&fSp3pK\\l&-MScN^U9Qp?41eCouYC8guH\"7eBS\\E(ZW+mEdi,9/#M:=U5'%ppnO\"U,[TNR(9-15smf$+1iK[2X$upkW[(_4LA'LUtAl0)%k0RiOm#ZWhT]?b%T]7.4,ps3\\;FX6*7h:d&Dl`X3(qG3l!rp-`:!CH^Kc1I>1l`$Rm>VV0/dl<(JQNTo)>7f>tEu@t,.>c^[E$2pO\\`$B&QT7P\"q^eXh%2in4se[TQLoeh%>'b')AFa3%o0Jt/rT@?JgTIs!!MD;\\j.Mge.+N5;sC8];e4&0T\\,o[g*HO9BJRX)Ha:LDc2PbgL4:%p%8m:(tRV>T:8d)4Tj`VkhC.89Ra.hcP0Y;Q&dDeL%NcD;@&T)(0Cia8W.b?2qN_Jb@\\98E`:R8`Z=CP8DtE`VV=U&s;;kX&^6OL#`SGO4<BL5sd%NaWsu0)*VfZDp<jug0gib?=U>9\"F'o4n-`d5F@?q.9hprXH'HTh(3EeUfj'EAb/p[QCS\\5t_XS+VcGpelbP77Cr-P)g^dj<dXAS<R`(nd;67;V*cV:0Y8OFR`#fU5c?]>^Lp6c$b,\"m!>%=Uu,>==R^Ye_O\"?*$ea*D@R,\"=dMNXT$RWn?ZCIN=?i?YH\"\"8OTh/gBlE?WPHb2LBm4*je9!u`UrE[<fr4%i:@#/j,uX\"qaAoM7m[M)&h;&$9eD*s[#.KjCP'NRmLD(9FpXDDsE\">/+c)k74\\guVACCt5]EM'70-J.KU!VIK7(rW,.^BH6h6VQZuABIoETYmV64mQjZatn2</B^]NVhFZSUWVfuI'T:GPtT;\"6SYI\\:fpBgbhn@)artLs7j#d*Wn-\\&g)0SBo%;caC)9HeOdVB0&&Y$,,[)N+m=]/%CA<\"J]($DOiJ$GDEcgRp7&P0#\"$RkW-(5k,N,\\FaS.DI=TE@__^B,8F1dJRg',&!!fT#WPa,hGjr0T%g%+?Cta2L!\\:%_\"P`j/R9/WsO/cd?X7M\".Mi#;jeGN\\:r<fq-;K3^&2N#dTr8H;TP76?BQiU?Y_BqtA7?Sjgori`@GMf!b:)E\\NZN@aN1N!i#`R3X7#\\hJLEel:H0Ef[Ges.jk2K!)]Lhs1E>lN.eod5U\\TFESo<c4I)6:VPX=sCC+[LI8J0]\\__6>pSLseA.O_f=Jb=nb),!?WYQQS*g+]i#(ZFCr[>pefBYq)UPR9Dj;.'Ve'1@hY3a=!Q\"5$o%\"e>'c$gYZ;97T19/fCWI]H^T,/nui>sT,FJS3gE5ouh'`ZsS^^%OWEijoCRC6tr%A)Cq9Z!C:c,-NXf,QfB]Lu(OC(5L=XY[QPlK'72kMV^Hu')ONeWU`.oiG'9J0gX2YM^A\"bWY0\\u^3DEJd*D$L6Gq<qQ:n\"Td#.bde[iZZ@o#)`cKQi;eJc-4ka*A[JL\"X&C'\";oI31+pT.%:04uB]6a9GEa(/3+V+/m_b>Rcs9(ZLUs<u:EVcsn!Q'Q:6cGjDmk$kf0Bf:BFh7(ZOCYA*NmY9Jc!cqfi[9J$=tEV#FFS3<ELJKH*<_BLU[T<QiJPm\"m#i97Ks^pd3f(qGm<@^jg(j:N\"WHilTHMA`tb<K@sK1Kl*K5AIKJ,:HpZWXJ$TAVO_%i=s>40e305*g5;I*f'hBHF;?K&dYaeo0Y+%db)7VcM=i#>ASn*[GF@PiWF_e_ro'sVXc=BjLd?:512$\">/tPPJg^rA+A8QDop0LJ9\\o)u.Z!gB\\.D.#?R,QH8kL:pU6,qgmRi;X8\"/ag+KY:U^SDc\"B8^oZLMYJ4Sa.N9kF)kQrHZC8.2iX?WB<Nea\\BL_lileJrL-0n`is'\"Z3\\bLFp$7?SC94_IV2[e*EMuEe]-F]M0&>s9J&,^WcSZ\\*TP(@bM,<mldm-]ahRGUB;>J?N]LX;&rNtI/ItmLNLj$4@MuS\"LOG^sKunthL<gnM$.upPAd^m;,^iUjVr!5P8[tmAC2kH3bM'tj]kLaH^R.r6Fl6>I%$,Qll1S^:c)K+Do4F^l3)>'SE^P%dUeA=]WGHN::I?`;)U23B8W)GV0pVg\"PARba5kmf/OF.DUQr!PDLNUYnZkKAn)ORR36r$,0I7M;lC*k1hOD78T8-]1`nImJVq+JkTFsp=KUBY#KgB5_-9f$WZ!C,Um4t&94b1'N`p.>8qW2J$\\N@EF<@/*8@HR:3;]-g\"@\\/&DW@7Hk?mG<;ejo'7%A/k]181an]f;19tDht4p.=G:<($Td;m+#@U!nc#o5GtHO\\U[f`H%5BX[lBB8k<0J^T2Ym#%6)&(;qT#b:AlK(A'm\\\\EVS,5(94b=*3Mm,CCXgHYpk.?:>3:0N<OD%T3[*4-<2PV8R#e\"0:Ohoi=cYK9RP[qk8GK/Udp.3.,&OmjRc3u\\BSrgQ-?gI\"%H_$!AB/a\"k2H.5F:;-OtFnk9&0ar1PK\\rMS<74I!?R4]_.oQLh#`)^WU28eH:N;h-W18Ip]>djR^&:.#N^Sq=oMr=k'0lb!I#2!tL/*Fa&aUm(.'i(0i\"n%2'u0_k'_kb6R/tj#cWh-[?D\\8+Ig9K-!P<WNq04d+-r(.;3OJ=n*gG%D:&/N(>B.7ApE<J>6ROTr.)KBt:DN)F&(D*DS:49'M2=$kJhYY6^'5cVBQY9U9+K7;!QNrGQm:*/(p\\)!cjbqGHB<:(:7;,=;:-0eA7FHELB^c.6XJYQ>\\5&]]9i#\\l,fM0RLlEPX%3?K(mWL,VWia'a*B*u5&UCk-S=ab\"bQ6,V0Q6qkoD(UgDoIq/ZX%UJMULiEIZPKq)/3?C3W!AIF*-C@<?P>-Md<;REMcG%E" vz[10]=";rW-WJR.D/abXLGP`W7X\"P4=3L+id1UX%N7R0G$K->phK!ApT6H6Z(fT9Cd(;-&t<W2mH3miUF=kn#tf2;b/PV-_AS:7sC?$DHk0;GBg/@'p$5J/V'e[R;&PZq%>/^nfgO086l5=4\"rbsmB!20qPlK`C\":H.rqH.D/,Sj)e$0&O4A0n^:Rr;tQb6_Tbii)HCuOL;LZ_#-<\\;7C.*PM@dQD4a-^]=23V?_G4p!AWXV_3KiQ;\\;/^.P7,^\\(a(#(-ta\\6FIcU9_e9^iY9LuFHeDL^2)9O78$&X(p=I*Z_BcKM9HU^!0^6)-o1M>/,r`oZ0X!X,4EoP)D`,oLXA:Pas@It3i,P-l)jcpM:Lqo>FO2U)j[#[Li,<h_,K:>F=XNF.AMq`BY,p$,N\"]*>`jpZsFh3\"[-[[^CHZeJkJD%dT;8F__Z<a]f)e'c\\=%j\\'=tm6^uU,?\"K5Geca^;&BLh(#s=!n1$qcS+<d_,9I+0\"GS\\H8BCmVK%)tTn^s$CbP</X<!=*.i?G%T!:Yg[[k(.]a.M>_s**ILW:St6HsRCDGZ[\"rIok3*Pp-=U_\\u6XrTd<BQ_lnW,tK*9.j@CLRk?O:1d:C<F].71I<Q=%2j*o/Dph;X" return table.concat(vz)end)() if math.floor(math.pi)~=3 then error(0,0) end do Nk=string.gsub(Nk,"z","!!!!!")local uy=WS(Nk)local TK=1 local hf={} local xs=0 local Gh=Ms(uy*4/5)+64 while TK<=uy do local Hx=uy-TK+1 if Hx>5 then Hx=5 end local WU=0 for xp=0,Hx-1 do WU=WU*85+(gA(Nk,TK+xp)-33) end for xp=Hx,4 do WU=WU*85+84 end local ur=WU%256;WU=Ms(WU/256)local wk=WU%256;WU=Ms(WU/256)local fM=WU%256;WU=Ms(WU/256)local Cb=WU%256 if Hx>1 then xs=xs+1;if xs>Gh then error(0,0) end hf[xs]=zE(Cb) end if Hx>2 then xs=xs+1;hf[xs]=zE(fM) end if Hx>3 then xs=xs+1;hf[xs]=zE(wk) end if Hx>4 then xs=xs+1;hf[xs]=zE(ur) end TK=TK+Hx end Nk=mM(hf) end local Em=155 local RF={} for xf=1,WS(Nk) do local eE=gA(Nk,xf)local fA=(eE-Em-(xf*141))%256 RF[xf]=zE(fA) Em=(Em+eE+68+((xf-1)%256))%256 end Nk=mM(RF) RF=nil do local gN=18 local PY={} local mA=0 local th=1 local lB=WS(Nk) while th+gN-1<=lB do for nA=th+gN-1,th,-1 do mA=mA+1 PY[mA]=zE(gA(Nk,nA)) end th=th+gN end while th<=lB do mA=mA+1 PY[mA]=zE(gA(Nk,th)) th=th+1 end Nk=mM(PY) end local aP=236 local eq={} for eJ=1,WS(Nk) do local zf=gA(Nk,eJ)local AS=FZ(zf,FZ(aP,FZ(((eJ-1)*57)%256,120))) eq[eJ]=zE(AS) aP=FZ(aP+AS+57,((eJ-1)+120)%256)%256 end Nk=mM(eq) eq=nil local kZ=148 local AG={} for za=1,WS(Nk) do local ta=gA(Nk,za)local Hn=FZ(kZ,FZ(((za-1)*143+16)%256,(kZ+((za-1)%256))%256))local hh=FZ(ta,Hn) AG[za]=zE(hh) kZ=(kZ*33+ta+16+((za-1)%256))%256 end local FJ=mM(AG) Nk=nil AG=nil local NR=240 local Cs={} for pT=1,WS(FJ) do local jq=gA(FJ,pT)local PJ=FZ(jq,NR) Cs[pT]=zE(PJ) NR=((NR+PJ)*91+221)%256 end local dG=mM(Cs) FJ=nil Cs=nil local JF local UL local Na={} local Tj=0 do local JN=15 local ep=0 for tk=1,WS(dG) do if JN==0 then ep=0;JN=15 end if ep>0 then ep=ep-1 else Tj=Tj+1;Na[Tj]=zE(gA(dG,tk));JN=JN-1 end end end dG=mM(Na) Na=nil local xR=(gA(zE(82),1)*153+231+Ms(math.pi)*7)%256 if xR~=254 then error(0,0) end do local eu=1 local yX={} local Ye=FZ(250,xR)local Af=FZ(133,xR)local zr=FZ(197,xR) while eu<WS(dG) do local yd=gA(dG,eu)local DK=gA(dG,eu+1) DK=(DK-(FZ(yd,zr)))%256 yd=FZ(yd,((DK*Af)+Ye)%256) DK=FZ(DK,(yd+zr)%256) yd=(yd-((DK+Ye)*Af)%256)%256 yX[eu]=zE(yd) yX[eu+1]=zE(DK) eu=eu+2 end if WS(dG)%2==1 then yX[WS(dG)]=zE(FZ(gA(dG,WS(dG)),FZ(Ye,zr))) end dG=mM(yX) end local cg=FZ(192,xR)local sK={} local wu=FZ(173,xR) for uZ=1,WS(dG) do local Tr=gA(dG,uZ)local fU=FZ(Tr,cg) sK[uZ]=zE((Ms(fU/16)+(fU%16)*16)%256) cg=(cg+wu+Tr+((uZ-1)%256))%256 end dG=mM(sK) sK=nil do local eu=1 local yX={} local Ye=FZ(215,xR)local Af=FZ(17,xR)local zr=FZ(117,xR) while eu<WS(dG) do local yd=gA(dG,eu)local DK=gA(dG,eu+1) DK=(DK-(FZ(yd,zr)))%256 yd=FZ(yd,((DK*Af)+Ye)%256) DK=FZ(DK,(yd+zr)%256) yd=(yd-((DK+Ye)*Af)%256)%256 yX[eu]=zE(yd) yX[eu+1]=zE(DK) eu=eu+2 end if WS(dG)%2==1 then yX[WS(dG)]=zE(FZ(gA(dG,WS(dG)),FZ(Ye,zr))) end dG=mM(yX) end local FN=dG dG=nil do local tS=1 UL=function()local ae=gA(FN,tS) tS=tS+1 return ae or 0 end JF=function()local ae=UL()local Qn=UL()local FL=UL()local bj=UL()return ae+Qn*256+FL*65536+bj*16777216 end end VT[1]=FN VT[2]=zE VT[3]=FZ VT[4]=gA VT[5]=Kd VT[6]=WS VT[7]=mM VT[8]=Ms VT[9]=UL VT[10]=JF VT[15]=ZH VT[16]=sa VT[17]=qz end RY(VT,...)local ZX=function(VT)local FN=VT[1] local zE=VT[2] local FZ=VT[3] local gA=VT[4] local Kd=VT[5] local WS=VT[6] local mM=VT[7] local Ms=VT[8] local UL=VT[9] local JF=VT[10] local GH=UL()local fk=UL() if GH~=188 then error(0,0) end local UF=fk==21 local vg=fk==21 and true local eb=JF()local tK=39 local cF=245 local DY=111 local LE=109 local xg=205 local cJ=105 local tf=143 local cL=222 local Np=29 local Kq=103 local Xg=57 local Yb=41184 local nc=15 local Wr=51170 local ws=541077 local py=554658 local RK=764340 local PL=823967 local hg=463946 local RG=45454 local Kz=314485 local tZ=396767 local aH=520435 local BL=193108 local QW=530657 local sq=819478 local VE=843858 local Kh=268601 local zT=863957 local mE=775943 local TW=JF() if TW>262144 then error(0,0) end local YN={} local MU=0 local Ns=function()local CY=UL()local GU=UL()local nt=UL()local Ks=UL()local FC=UL()local qR=UL()local bW=UL()local XX=UL()local gs=XX>=128 and -1 or 1 local XB=(XX%128)*16+math.floor(bW/16)local wD=(bW%16)*2^48+qR*2^40+FC*2^32+Ks*2^24+nt*2^16+GU*2^8+CY if XB==0 then if wD==0 then return gs*0.0 end return gs*wD*2^-1074 elseif XB==2047 then if wD==0 then return gs*math.huge end return 0/0 end return gs*(wD+2^52)*2^(XB-1075) end local ck=function(b)local CY,GU,nt,Ks,FC,qR,bW,XX=b[1],b[2],b[3],b[4],b[5],b[6],b[7],b[8] local gs=XX>=128 and -1 or 1 local XB=(XX%128)*16+math.floor(bW/16)local wD=(bW%16)*2^48+qR*2^40+FC*2^32+Ks*2^24+nt*2^16+GU*2^8+CY if XB==0 then if wD==0 then return gs*0.0 end return gs*wD*2^-1074 elseif XB==2047 then if wD==0 then return gs*math.huge end return 0/0 end return gs*(wD+2^52)*2^(XB-1075) end local Zr={} do local _sk=51 local _se={227,106,34,47,101,88,129,181,102,10,145,234,77,16,22,106,114,145,99,130,140,61,248,230,165,253,122,237,246,218,184,16} for _i=1,#_se do Zr[_i]=FZ(_se[_i],FZ(_sk,((_i-1)*13)%256)) end end local Nr do local Nt=function() error(0,0) end Nr={__tostring=Nt,__metatable="x"} if newproxy then pcall(function() Nr.__index=Nt end) end end local Vm=function(eY,Ct,Pf,vB,RD,DW)local ER if DW==1 then ER={[aH]=eY,[BL]=Ct,[QW]=Pf,[sq]=vB,[VE]=RD} else ER={[ws]=eY,[py]=Ct,[RK]=Pf,[PL]=vB,[hg]=RD} end for _=1,3 do ER[392731]=70 end pcall(setmetatable,ER,Nr)return ER end local Tg=function(eY,Ct,YX,RD,DW)local ER if DW==1 then ER={[Kh]=eY,[zT]=Ct,[mE]=YX,[VE]=RD} else ER={[RG]=eY,[Kz]=Ct,[tZ]=YX,[hg]=RD} end for _=1,2 do ER[731555]=57 end pcall(setmetatable,ER,Nr)return ER end local AA=function(eY,RD,Pf,DW)local out={} local _st=DW==1 and nc or Xg local _bi=DW==1 and Wr or Yb for _i=1,Pf do local pos=(((_i-1)*_st+_bi)%RD)+1 out[_i]=eY[pos] or 0 end return out end local xq xq=function(v) if type(FZ)~="function" then error(0,0) end if type(v)~="table" then return v end local jY=0 local _store=rawget(v,ws)local wQ,Mz,DH,_cap if _store~=nil then wQ=rawget(v,py) Mz=rawget(v,RK) DH=rawget(v,PL) _cap=rawget(v,hg) or Mz else _store=rawget(v,aH) if _store~=nil then jY=1 wQ=rawget(v,BL) Mz=rawget(v,QW) DH=rawget(v,sq) _cap=rawget(v,VE) or Mz end end if _store~=nil then local _raw=AA(_store,_cap,Mz,jY)local _sm=eb local br={} for _i=1,Mz do local _j=_i-1 local rT=_raw[_i] local _s24=math.floor(_sm/16777216)%256 if _s24%2==0 then _s24=_s24+1 end rT=FZ(rT,(math.floor(_sm/65536)+_j*_s24)%256) rT=FZ(rT,((_j+1)*(_sm%256)+math.floor(_sm/256)%256+DH)%256) rT=FZ(rT,Zr[(_j%32)+1]) rT=FZ(rT,((_i+2)*99+FZ(wQ,DH)*31)%256) rT=FZ(rT,((_i-1)*149+wQ*17+DH)%256) rT=FZ(rT,((_i-1)*tK+wQ+DH*cF)%256) br[_i]=zE(rT) end return mM(br) end jY=0 local _nstore=rawget(v,RG)local _nk,_ni if _nstore~=nil then _nk=rawget(v,Kz) _ni=rawget(v,tZ) _cap=rawget(v,hg) or 8 else _nstore=rawget(v,Kh) if _nstore~=nil then jY=1 _nk=rawget(v,zT) _ni=rawget(v,mE) _cap=rawget(v,VE) or 8 end end if _nstore~=nil then local _raw=AA(_nstore,_cap,8,jY)local _sm=eb local _b={} for _i=1,8 do local _j=_i-1 local rT=_raw[_i] local _s24=math.floor(_sm/16777216)%256 if _s24%2==0 then _s24=_s24+1 end rT=FZ(rT,(math.floor(_sm/65536)+_j*_s24)%256) rT=FZ(rT,((_j+1)*(_sm%256)+math.floor(_sm/256)%256+_ni)%256) rT=FZ(rT,Zr[(_j%32)+1]) rT=FZ(rT,((_i+2)*99+FZ(_nk,_ni)*31)%256) rT=FZ(rT,((_i-1)*149+_nk*17+_ni)%256) rT=FZ(rT,((_i-1)*tK+_nk+_ni*cF)%256) _b[_i]=rT end return ck(_b) end return v end if UF then local bN={} local Bt={} for ae=1,TW do bN[ae]=UL() Bt[ae]=JF()+1 end local EV=UL()local XU={} local YC={} local Sb={} local ar=function()local mw=JF() if mw>262144 then error(0,0) end for ae=1,mw do local Pf=JF()local RD=JF()local Ct=UL()local DW=UL()local Vv={} for Qn=1,RD do Vv[Qn]=UL() end XU[ae]=Vm(Vv,Ct,Pf,MU,RD,DW) MU=MU+1 end end local Dv=function()local mw=JF() if mw>262144 then error(0,0) end for ae=1,mw do local RD=JF()local Ct=UL()local DW=UL()local Vv={} for Qn=1,RD do Vv[Qn]=UL() end YC[ae]=Tg(Vv,Ct,ae-1,RD,DW) end end local YJ=function()local mw=JF() for ae=1,mw do Sb[ae]=UL()==1 end end local lF=EV%6 if lF==0 then ar();Dv();YJ() elseif lF==1 then Dv();ar();YJ() elseif lF==2 then ar();YJ();Dv() elseif lF==3 then Dv();YJ();ar() elseif lF==4 then YJ();ar();Dv() else YJ();Dv();ar() end for ae=1,TW do local ER=bN[ae] local pi=Bt[ae] if ER==0 then YN[ae]=XU[pi] elseif ER==1 then YN[ae]=YC[pi] elseif ER==2 then YN[ae]=nil elseif ER==3 then YN[ae]=Sb[pi] end end else for ae=1,TW do local ER=UL() if ER==0 then local Pf=JF()local RD=JF()local Ct=UL()local DW=UL()local Vv={} for Qn=1,RD do Vv[Qn]=UL() end YN[ae]=Vm(Vv,Ct,Pf,MU,RD,DW) MU=MU+1 elseif ER==1 then local RD=JF()local Ct=UL()local DW=UL()local Vv={} for Qn=1,RD do Vv[Qn]=UL() end YN[ae]=Tg(Vv,Ct,MU,RD,DW) MU=MU+1 elseif ER==2 then YN[ae]=nil elseif ER==3 then YN[ae]=UL()==1 end end end local gU=function()local Pf=JF()local RD=JF()local Ct=UL()local DW=UL()local vB=MU MU=MU+1 local Vv={} for Qn=1,RD do Vv[Qn]=UL() end return Vm(Vv,Ct,Pf,vB,RD,DW) end local yE=function(EY)local _s=0 for _i=1,#EY do local _b=(EY[_i] or 0)%256 local Tp=_i%65536 if bit32 then _s=bit32.band(_s+_b*Tp,0xFFFFFFFF) else _s=(_s+_b*Tp)%4294967296 end end return _s end local Hb=JF() if Hb>262144 then error(0,0) end local hA={} for ae=1,Hb do hA[ae]=gU() end local uQ=JF() if uQ>262144 then error(0,0) end local Fs={} for ae=1,uQ do local LG=JF()local kP={} for Qn=1,LG do kP[Qn]=xq(gU()) end local jy=JF()local qk={} for Qn=1,jy do qk[Qn]=xq(gU()) end local mp=xq(gU())local rJ=JF()local wY={} for Qn=1,rJ do wY[Qn]=FZ(UL(),((Qn-1)*DY+LE)%256) end local Jx=nil if vg then Jx=JF() end if Jx~=nil and yE(wY)~=Jx then error(0,0) end Fs[ae]={p=kP,l=qk,v=mp,c=wY} end local xC=JF() if xC>1048576 then error(0,0) end local SY={} for ae=1,xC do SY[ae]=FZ(UL(),((ae-1)*DY+LE)%256) end if vg then local GA=JF() if yE(SY)~=GA then error(0,0) end end local qM={} local lM={} local hT={} local GW=zE(103,101,116,102,101,110,118)local jV=zE(115,101,116,102,101,110,118)local hE=getfenv local Pb=setfenv local ax=getgenv local HB=getrenv local dU=nil local uH=nil local qp=nil local aM=nil if type(hE)=="function" then local KA,eX=pcall(hE,0) if KA and type(eX)=="table" then dU=eX end if type(dU)~="table" then local KA,eX=pcall(hE) if KA and type(eX)=="table" then dU=eX end end if type(dU)~="table" then local KA,eX=pcall(hE,1) if KA and type(eX)=="table" then dU=eX end end end if type(ax)=="function" then local KA,eX=pcall(ax) if KA and type(eX)=="table" then uH=eX end end if type(HB)=="function" then local KA,eX=pcall(HB) if KA and type(eX)=="table" then qp=eX end end pcall(function() if type(_G)=="table" then aM=_G end end)local ET=nil pcall(function() if type(shared)=="table" then ET=shared end end) if type(dU)~="table" then dU=uH end if type(dU)~="table" then dU=qp end if type(dU)~="table" then dU=aM end if type(dU)~="table" then dU=ET end if type(dU)~="table" then dU={} end local jA=function(SD) if SD==nil or SD==0 then return dU end if type(hE)=="function" then local KA,eX=pcall(hE,SD) if KA then return eX end end return dU end local tl=setmetatable({},{__index=function(PW,SD) if SD==GW then rawset(PW,SD,jA);return jA end if SD==jV and type(Pb)=="function" then rawset(PW,SD,Pb);return Pb end local MB=dU[SD] if MB==nil and type(uH)=="table" then MB=uH[SD] end if MB==nil and type(qp)=="table" then MB=qp[SD] end if MB==nil and type(aM)=="table" then MB=aM[SD] end if MB==nil and type(ET)=="table" then MB=ET[SD] end if MB~=nil then rawset(PW,SD,MB);return MB end return nil end,__newindex=function(PW,SD,MB) rawset(PW,SD,MB) if type(dU)=="table" then pcall(function() dU[SD]=MB end) end if type(uH)=="table" then pcall(function() uH[SD]=MB end) end if type(qp)=="table" then pcall(function() qp[SD]=MB end) end if type(aM)=="table" then pcall(function() aM[SD]=MB end) end if type(ET)=="table" then pcall(function() ET[SD]=MB end) end end}) VT[1]=YN VT[2]=hA VT[3]=Fs VT[4]=SY do local sP={[893250]=function(x)return x end,[510837]=function(x) if type(x)=="table" then return "" end return x end,[232802]=function() error(0,0) end,[17018]=zE,[29789]=FZ,} for _=1,4 do sP[385875]=6 end pcall(setmetatable,sP,Nr) VT[5]=sP VT[796458]=function(x)return x end end VT[6]=zE VT[7]=tl VT[8]=FZ VT[9]=xg VT[10]=cJ VT[11]=tf VT[12]=cL VT[13]=Np VT[14]=Kq return xq end local xq=ZX(VT) VT[796458]=nil if type(xq)~="function" then error(0,0) end local YN=VT[1] local hA=VT[2] local Fs=VT[3] local SY=VT[4] local zE=VT[6] local tl=VT[7] local FZ=VT[8] local xg=VT[9] local cJ=VT[10] local tf=VT[11] local cL=VT[12] local Np=VT[13] local Kq=VT[14] local ZH=VT[15] local sa=VT[16] local qz=VT[17] VT=nil local Bf do local ae=76 local Qn=43 local FL=9 Bf=(string.byte(zE(ae),1)*Qn+FL+math.floor(math.pi)*7)%256 if Bf~=226 then error(0,0) end end local WZ=function(ae)local Qn={} for FL=1,#ae do Qn[FL]=zE(FZ(string.byte(ae,FL),Bf)) end return table.concat(Qn) end local BZ=WZ(zE(182,164))local gD=WZ(zE(128,176))local mX=WZ(zE(135,161))local WG={[BZ]=tl,[mX]=true} do local rn={} rn[zE(90)]=true rn[zE(76)]=true rn[zE(70)]=true rn[zE(81)]=true rn[zE(74)]=true rn[zE(103)]=true rn[zE(69)]=true rn[zE(104)]=true rn[zE(67)]=true rn[zE(98)]=true rn[zE(68)]=true rn[zE(119)]=true rn[zE(75)]=true rn[zE(71)]=true rn[zE(100)]=true rn[zE(86)]=true rn[zE(78)]=true rn[zE(101)]=true rn[zE(109)]=true rn[zE(84)]=true rn[zE(122)]=true rn[zE(82)]=true rn[zE(66)]=true rn[zE(113)]=true rn[zE(85)]=true rn[zE(88)]=true rn[zE(72)]=true rn[zE(121)]=true rn[zE(80)]=true rn[zE(83)]=true rn[zE(117)]=true rn[zE(106)]=true rn[zE(65)]=true rn[zE(87)]=true rn[zE(119,86)]=true rn[zE(122,110)]=true rn[zE(112,78)]=true rn[zE(107,78)]=true rn[zE(102,101)]=true rn[zE(121,112)]=true rn[zE(117,80)]=true rn[zE(89,87)]=true rn[zE(74,81)]=true rn[zE(113,87)]=true rn[zE(80,116)]=true rn[zE(89,85)]=true rn[zE(74,71)]=true rn[zE(101,81)]=true rn[zE(83,82)]=true rn[zE(70,103)]=true rn[zE(76,70)]=true rn[zE(116,84)]=true rn[zE(80,70)]=true rn[zE(86,102)]=true rn[zE(71,106)]=true rn[zE(109,86)]=true rn[zE(106,109)]=true rn[zE(69,98)]=true rn[zE(85,112)]=true rn[zE(72,109)]=true rn[zE(120,66)]=true rn[zE(69,122)]=true rn[zE(120,118)]=true rn[zE(117,117)]=true rn[zE(88,81)]=true rn[zE(114,112)]=true rn[zE(67,78)]=true rn[zE(69,81)]=true rn[zE(86,67)]=true rn[zE(83,120)]=true rn[zE(89,76)]=true rn[zE(75,114)]=true rn[zE(110,74)]=true rn[zE(108,84)]=true rn[zE(77,68)]=true rn[zE(90,99)]=true rn[zE(71,75)]=true rn[zE(110,112)]=true rn[zE(70,118)]=true rn[zE(98,122)]=true rn[zE(102,74)]=true rn[zE(98,102)]=true rn[zE(112,114)]=true rn[zE(68,110)]=true rn[zE(90,102)]=true rn[zE(78,117)]=true rn[zE(67,100)]=true rn[zE(99,121)]=true rn[zE(88,117)]=true rn[zE(121,104)]=true rn[zE(66,107)]=true rn[zE(80,120)]=true rn[zE(80,97)]=true rn[zE(115,101)]=true rn[zE(99,78)]=true rn[zE(98,118)]=true rn[zE(119,114)]=true rn[zE(72,100)]=true rn[zE(69,75)]=true rn[zE(97,71)]=true rn[zE(122,86)]=true rn[zE(113,81)]=true rn[zE(114,115)]=true rn[zE(113,67)]=true rn[zE(81,76)]=true rn[zE(77,74)]=true rn[zE(83,97)]=true rn[zE(98,76)]=true rn[zE(99,120)]=true rn[zE(90,108)]=true rn[zE(90,115)]=true rn[zE(81,109)]=true rn[zE(112,71)]=true rn[zE(117,68)]=true rn[zE(109,85)]=true rn[zE(101,72)]=true rn[zE(67,118)]=true rn[zE(81,120)]=true rn[zE(119,110)]=true rn[zE(113,78)]=true rn[zE(72,78)]=true rn[zE(102,120)]=true rn[zE(88,68)]=true rn[zE(113,102)]=true rn[zE(78,90)]=true rn[zE(74,118)]=true rn[zE(65,115)]=true rn[zE(117,82)]=true rn[zE(108,117)]=true rn[zE(70,86)]=true rn[zE(88,113)]=true rn[zE(66,77)]=true rn[zE(99,118)]=true rn[zE(72,68)]=true rn[zE(101,108)]=true rn[zE(107,99)]=true rn[zE(100,77)]=true rn[zE(89,115)]=true rn[zE(83,109)]=true rn[zE(108,121)]=true rn[zE(78,100)]=true rn[zE(85,108)]=true rn[zE(80,118)]=true rn[zE(87,116)]=true rn[zE(87,80)]=true rn[zE(114,97)]=true rn[zE(110,66)]=true rn[zE(78,75)]=true rn[zE(72,122)]=true rn[zE(114,88)]=true rn[zE(76,87)]=true WG[gD]=rn end local lJ lJ=function(LY,MM,er) if MM>er then return end local cu=table.unpack or unpack if type(cu)=="function" then return cu(LY,MM,er) end local _n=er-MM+1 if _n>=8 then return LY[MM],LY[MM+1],LY[MM+2],LY[MM+3],LY[MM+4],LY[MM+5],LY[MM+6],LY[MM+7],lJ(LY,MM+8,er) elseif _n==7 then return LY[MM],LY[MM+1],LY[MM+2],LY[MM+3],LY[MM+4],LY[MM+5],LY[MM+6] elseif _n==6 then return LY[MM],LY[MM+1],LY[MM+2],LY[MM+3],LY[MM+4],LY[MM+5] elseif _n==5 then return LY[MM],LY[MM+1],LY[MM+2],LY[MM+3],LY[MM+4] elseif _n==4 then return LY[MM],LY[MM+1],LY[MM+2],LY[MM+3] elseif _n==3 then return LY[MM],LY[MM+1],LY[MM+2] elseif _n==2 then return LY[MM],LY[MM+1] else return LY[MM] end end local Rk=table.pack or function(...)local pS={...} pS.n=#pS return pS end local hc=function(wf) if not true then if type(wf)=="table" and type(wf.n)=="number" and wf.n>=0 then return wf.n end return 0 end if type(wf)~="table" then return 0 end local _n=tonumber(wf.n) if _n==nil then return 0 end _n=math.floor(_n) if _n<0 then return 0 end if _n>65535 then _n=65535 end return _n end WG[zE(95,118,97,114,97,114,103)]=Rk(...)local He He=function(LY,QD)local Ee=LY[QD] if Ee~=nil then return Ee end local Bp=LY[gD] if Bp and Bp[QD] then return nil end local rF=LY[BZ] if rF then if rF[mX] then return He(rF,QD) end return rF[QD] end return nil end local bZ bZ=function(LY,QD,Ee)local Bp=LY[gD] if Bp and Bp[QD] then LY[QD]=Ee return end local rF=LY[BZ] if rF and rF[mX] then bZ(rF,QD,Ee) elseif rF then rF[QD]=Ee LY[QD]=Ee else LY[QD]=Ee end end local Uk Uk=function(SY,WG)local aU={} local SQ=0 local wq=1 local Pc={} local sH=0 local rx=0 local Yj=function(ae) SQ=SQ+1 if SQ>65534 then error(0,0) end aU[SQ]=ae return ae end local gw=function(Qn) SQ=SQ-(Qn or 1) end local ZS=function(FL) aU[SQ-1]=FL(aU[SQ-1],aU[SQ]) SQ=SQ-1 end local rZ=function(bj,ae)return bj(ae) end local yz=function() rx=rx+1 local wf=wq local _b=SY[wf] or 0 wq=wf+1 return FZ(_b,((wf-1)*xg+sH*cJ+rx*tf+cL)%256) end local Vs=function()local wf=wq local xL=sH local jn=SY[wf] or 0 local BS=FZ(jn,((wf-1)*xg+xL*cJ+1*tf+cL)%256)local bQ=SY[wf+1] or 0 local _b=FZ(bQ,((wf)*xg+xL*cJ+2*tf+cL)%256)local HP=SY[wf+2] or 0 local gT=FZ(HP,((wf+1)*xg+xL*cJ+3*tf+cL)%256)local Nf=SY[wf+3] or 0 local gE=FZ(Nf,((wf+2)*xg+xL*cJ+4*tf+cL)%256) wq=wf+4 return BS+_b*256+gT*65536+gE*16777216 end local DT=function(rT) if rT>=2147483648 then return rT-4294967296 end return rT end local xC=#SY while wq<=xC do local Yu=wq sa=sa+1 if sa%64==0 then if type(ZH)~="function" then error(qz,0) end if #SY==0 then error(qz,0) end ZH() if type(FZ)~="function" or FZ(7,7)~=0 then error(0,0) end if type(xq)~="function" then error(0,0) end if math.floor(math.pi)~=3 then error(0,0) end do local Ym=typeof if type(Ym)=="function" and Ym(game)==zE(73,110,115,116,97,110,99,101) and type(game)~=type({}) then local Za,my=pcall(function()return game:GetService(zE(87,111,114,107,115,112,97,99,101)) end) if Za and my~=nil and Ym(my)==zE(73,110,115,116,97,110,99,101) then if workspace~=nil and not rawequal(my,workspace) then error(0,0) end end end end end local xY=SY[Yu] wq=wq+1 local vq=FZ(xY,((Yu-1)*Np+Kq)%256) sH=vq rx=0 if vq==60 then ZS(function(a,b)return a<b end) elseif vq==120 then local rT=Vs() aU[SQ-1]=aU[SQ-1]+aU[SQ]*rT SQ=SQ-1 elseif vq==157 then ZS(function(a,b)return a==b end) elseif vq==40 then local HE=DT(Vs()) if not aU[SQ] then wq=wq+HE end SQ=SQ-1 elseif vq==13 then local MM=Vs() aU[SQ]=aU[SQ]+(xq(YN[MM+1]) or 0) elseif vq==158 then ZS(function(a,b)return math.floor(a/b) end) elseif vq==169 then local MM=Vs() Yj(Pc[MM+1]) elseif vq==64 then aU[SQ]=not aU[SQ] elseif vq==129 then local MM=Vs() aU[SQ]=aU[SQ]*(xq(YN[MM+1]) or 1) elseif vq==231 then aU[SQ]=#aU[SQ] elseif vq==193 then local MM=Vs() Yj(xq(YN[MM+1])) elseif vq==102 then local bq=Vs()local Sh=aU[SQ] SQ=SQ-1 local fr=hc(Sh)local js={} for ae=bq,1,-1 do js[ae]=aU[SQ];SQ=SQ-1 end local fR=aU[SQ] SQ=SQ-1 for ae=1,fr do js[bq+ae]=Sh[ae] end local yq=bq+fr local ue=fR(lJ(js,1,yq)) SQ=SQ+1 aU[SQ]=ue elseif vq==248 then local YS=Vs()local GX=aU[SQ-YS] local Kn={} for ae=1,YS do Kn[ae]=aU[SQ-YS+ae] end SQ=SQ-YS-1 local AF=GX(lJ(Kn,1,YS)) SQ=SQ+1 aU[SQ]=AF elseif vq==96 then aU[SQ-1]=aU[SQ-1][aU[SQ]] SQ=SQ-1 elseif vq==125 then local Zt=Vs() if Zt==255 then local GZ=aU[SQ] SQ=SQ-1 if type(GZ)=="table" and hc(GZ)>0 then return GZ else return {n=1,GZ} end else local GZ={n=Zt} for ae=Zt,1,-1 do GZ[ae]=aU[SQ] SQ=SQ-1 end return GZ end elseif vq==2 then local Pm=Vs()local NS=Vs()local Xn=Vs()local UU=xq(hA[Pm+1])local CS=xq(hA[NS+1])local je=xq(hA[Xn+1])local nb=He(WG,UU)local Dg=He(WG,CS)local uz=He(WG,je)local ZA=type(nb) if ZA=="table" or ZA=="userdata" then local SL=getmetatable and getmetatable(nb)local zX=SL and SL.__iter if type(zX)=="function" then local VN,ll,Sn=zX(nb) if type(VN)=="function" or type(VN)=="table" or type(VN)=="userdata" then bZ(WG,UU,VN) bZ(WG,CS,ll) bZ(WG,je,Sn) end elseif ZA=="table" and not (SL and SL.__call) and type(next)=="function" then bZ(WG,UU,next) bZ(WG,CS,nb) bZ(WG,je,nil) end end elseif vq==142 then local nH=Vs()local GZ=aU[SQ] SQ=SQ-1 local mS=aU[SQ] if type(GZ)=="table" and hc(GZ)>0 then for ae=1,GZ.n do mS[nH+ae-1]=GZ[ae] end else mS[nH]=GZ end elseif vq==251 then local MM=Vs() aU[SQ]=aU[SQ]-(xq(YN[MM+1]) or 0) elseif vq==177 then local ZT=Vs()local Bv=Fs[ZT+1] SQ=SQ+1 local rF=WG aU[SQ]=function(...)local xM=Rk(...)local er=xM.n or 0 local Bp={} for hH=1,#Bv.l do Bp[Bv.l[hH]]=true end local Rn={[BZ]=rF,[gD]=Bp,[mX]=true} for hH=1,#Bv.p do local dt=Bv.p[hH] if dt==Bv.v then local fq={n=math.max(er-hH+1,0)} for kR=hH,er do fq[kR-hH+1]=xM[kR] end Rn[dt]=fq else Rn[dt]=xM[hH] end end local Ab=Uk(Bv.c,Rn)return lJ(Ab,1,Ab.n or 0) end elseif vq==90 then local HE=DT(Vs()) wq=wq+HE elseif vq==50 then local MM=Vs()local GX=He(WG,xq(hA[MM+1]))local ae=aU[SQ] gw() Yj(rZ(GX,ae)) elseif vq==154 then ZS(function(a,b)return a..b end) elseif vq==35 then SQ=SQ+1 aU[SQ]={} elseif vq==112 then local pS=aU[SQ] aU[SQ]=aU[SQ-1] aU[SQ-1]=pS elseif vq==44 then local MM=Vs() bZ(WG,xq(hA[MM+1]),aU[SQ]) SQ=SQ-1 elseif vq==195 then local MM=Vs() Yj(He(WG,xq(hA[MM+1]))) elseif vq==76 then ZS(function(a,b)return a/b end) elseif vq==56 then local _n=Vs() for Zj=1,_n do aU[SQ-Zj+1]=aU[SQ-Zj+1] end elseif vq==147 then local MM=Vs()local GX=He(WG,xq(hA[MM+1])) Yj(GX()) elseif vq==51 then ZS(function(a,b)return a-b end) elseif vq==180 then local MM=Vs() Pc[MM+1]=aU[SQ] gw() elseif vq==58 then SQ=SQ+1 aU[SQ]=aU[SQ-1] elseif vq==214 then local Rz=Vs()local GZ=aU[SQ] SQ=SQ-1 for ae=1,Rz do SQ=SQ+1 aU[SQ]=GZ[ae] end elseif vq==160 then ZS(function(a,b)return a^b end) elseif vq==104 then aU[SQ]=-aU[SQ] elseif vq==122 then ZS(function(a,b)return a+b end) elseif vq==199 then SQ=SQ-1 elseif vq==17 then local YS=Vs()local GX=aU[SQ-YS] local Kn={} for ae=1,YS do Kn[ae]=aU[SQ-YS+ae] end SQ=SQ-YS-1 local aF=Rk(GX(lJ(Kn,1,YS)))local _n=aF.n local GZ={} GZ.n=_n for ae=1,_n do GZ[ae]=aF[ae] end SQ=SQ+1 aU[SQ]=GZ elseif vq==168 then local Ax=aU[SQ] SQ=SQ-1 local bD=aU[SQ] SQ=SQ-1 aU[SQ][bD]=Ax elseif vq==28 then local Fx=Vs()local Cy=Vs() SQ=SQ+1 aU[SQ]=xq(YN[Fx+1]) SQ=SQ+1 aU[SQ]=xq(YN[Cy+1]) elseif vq==91 then local MM=Vs()local GX=He(WG,xq(hA[MM+1]))local ae=aU[SQ] gw()local aF=Rk(rZ(GX,ae))local _n=aF.n local GZ={n=_n} for ae=1,_n do GZ[ae]=aF[ae] end Yj(GZ) elseif vq==224 then ZS(function(a,b)return a*b end) elseif vq==139 then local xj=Vs()local RS=aU[SQ] SQ=SQ-1 local hw=1 local Gn=type(RS)=="table" and hc(RS)>0 if Gn then hw=hc(RS) end local GZ={n=xj+hw} for ae=xj,1,-1 do GZ[ae]=aU[SQ] SQ=SQ-1 end if Gn then for ae=1,hw do GZ[xj+ae]=RS[ae] end else GZ[xj+1]=RS end return GZ elseif vq==141 then local MM=Vs()local GX=He(WG,xq(hA[MM+1]))local aF=Rk(GX())local _n=aF.n local GZ={n=_n} for ae=1,_n do GZ[ae]=aF[ae] end Yj(GZ) elseif vq==85 then ZS(function(a,b)return a<=b end) elseif vq==63 then local bq=Vs()local Sh=aU[SQ] SQ=SQ-1 local fr=hc(Sh)local js={} for ae=bq,1,-1 do js[ae]=aU[SQ];SQ=SQ-1 end local fR=aU[SQ] SQ=SQ-1 for ae=1,fr do js[bq+ae]=Sh[ae] end local yq=bq+fr local Tl=Rk(fR(lJ(js,1,yq)))local hl=Tl.n local xc={n=hl} for ae=1,hl do xc[ae]=Tl[ae] end SQ=SQ+1 aU[SQ]=xc elseif vq==164 then local MM=Vs()local Qn=Vs()local GX=He(WG,xq(hA[MM+1]))[xq(YN[Qn+1])] Yj(GX()) elseif vq==249 then local MM=Vs()local Qn=Vs()local GX=He(WG,xq(hA[MM+1]))[xq(YN[Qn+1])] local aF=Rk(GX())local _n=aF.n local GZ={n=_n} for ae=1,_n do GZ[ae]=aF[ae] end Yj(GZ) elseif vq==203 then local MM=Vs()local Qn=Vs() Yj(He(WG,xq(hA[MM+1]))[xq(YN[Qn+1])]) elseif vq==93 then ZS(function(a,b)return a%b end) else return {n=0} end end return {n=0} end ZH()local vX=Uk(SY,WG)return lJ(vX,1,vX.n or 0) end return{kH};end,M=table.unpack or unpack,EG=function(Ep,RJ,kT)if type(RJ)~="table" then return{RJ};end (Ep):ns(RJ,kT);(Ep):qn(RJ,kT);return{RJ};end,Cr=function(Ep,RJ)local kT={};(kT)[1]={};(kT[1])[53]=1;return{kT};end,qS=function(Ep,RJ)local kT=Ep.v;if type(kT)~="table" then return RJ;end return kT;end,ud=string,dn=function(Ep,RJ,kT,kH)local UD=(Ep):CC(RJ,kT,kH);if type(UD)~=type(RJ) then return RJ;end return UD;end,ph=getfenv,eT=table,wR=tostring,ul=function(Ep)local MQ=3596317;return function()local gF=MQ;local kS=161251;kS=kS*gF;gF=5444606;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=838093;kS=kS*gF;gF=307335;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=798167;kS=kS*gF;gF=14238308;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=964825;kS=kS*gF;gF=4172773;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=818763;kS=kS*gF;gF=10914786;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=817983;kS=kS*gF;gF=4497873;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=836025;kS=kS*gF;gF=8648819;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=160353;kS=kS*gF;gF=8266823;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=680565;kS=kS*gF;gF=13629761;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=111341;kS=kS*gF;gF=13881525;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=427611;kS=kS*gF;gF=13148664;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=192701;kS=kS*gF;gF=11646524;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=983599;kS=kS*gF;gF=7363188;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=910217;kS=kS*gF;gF=7760835;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=794183;kS=kS*gF;gF=10701080;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=628575;kS=kS*gF;gF=16434042;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=747483;kS=kS*gF;gF=1959208;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=329875;kS=kS*gF;gF=16634970;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=127061;kS=kS*gF;gF=5137745;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=693377;kS=kS*gF;gF=12819868;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=353001;kS=kS*gF;gF=1193049;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=680523;kS=kS*gF;gF=15849931;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=451343;kS=kS*gF;gF=4964438;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=883061;kS=kS*gF;gF=14968227;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=165275;kS=kS*gF;gF=5557580;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=948083;kS=kS*gF;gF=9569182;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=781187;kS=kS*gF;gF=9887202;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=434439;kS=kS*gF;gF=13599845;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=673597;kS=kS*gF;gF=2918637;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=579225;kS=kS*gF;gF=4990913;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=850709;kS=kS*gF;gF=16129770;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=541669;kS=kS*gF;gF=481377;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=147675;kS=kS*gF;gF=10088068;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;local kS=912121;kS=kS*gF;gF=7933286;kS=kS+gF;gF=16777216;kS=kS%gF;MQ=kS;gF=MQ;return MQ;end end,CA=function(Ep,RJ,kT)local kH=0;if kH~=0 then return{RJ};end return RJ;end,ns=function(Ep,RJ,kT)local kH=(Ep):YG(RJ,kT);if kH~=kH then return kT;end return RJ;end,jj=string.sub,RZ=error,sc=function(Ep,RJ,...)local Cw=(Ep.M or table.unpack or unpack)(RJ);if type(Cw)~="function" then Cw=type(RJ)=="table" and (RJ)[1] or Cw;end return Cw(...);end,rR=function(Ep,RJ,kT)(Ep):qn(RJ,kT);local kH=9;if kH<0 then return kT;end return RJ,kT;end,v={278773969,1585909594.0,625342360.0,616861582,1844553188.0,1719978707.0,1507768916.0,638995792.0,1549340082.0,312398003.0,1873978839,627240858.0,793829234,1871735959.0,1041838037.0,1897950357,2026827396.0,2025288200,522248227,2025566403,1602804812,1360667414,1425884315,717265506.0,330981333,651996726,1731642126,1046279873.0,1862289098,509329060.0,2065532214.0,1728151529,761442770,1947107499.0,563836847.0,954381642.0,900358451.0,289899128.0,300544508.0,1456055776.0,380850144,1310503737,2069518061.0,1391672654,1710417352.0,1120107706,339185732.0,1813847789.0,1538191009,1553868467,1807367469,573012061.0,1772306777,1088085920,1846480263,1451638495.0,1136295725.0,504633297,957010446,2105103921,1909722315,1748898583,1497334404,1263407048.0,712319917.0,501334029,1117055042.0,2070622629,423923167.0,2021378926.0,1861357919,793168174.0,523878727.0,1781422423.0,972771082.0,1197858254,1162920147,949356134,1715906624,2146163645,1279094880.0,1488383510,1293138349.0,1590549885.0,386763754.0},bH=bit32.rshift,qn=function(Ep,RJ,kT)if RJ~=RJ then return kT;end return RJ;end,lA=string.byte}):sr()(...);
+	local UILibrary = { Version = "V1 Made by Qwen67 Israel" }
+
+	local player = Players.LocalPlayer
+	local playerGui = player and player:FindFirstChildOfClass("PlayerGui")
+
+	local DefaultTheme = {
+		PanelBg    = Color3.fromRGB(5, 5, 6),
+		SidebarBg  = Color3.fromRGB(10, 10, 11),
+		SubBarBg   = Color3.fromRGB(11, 11, 13),
+		SearchBg   = Color3.fromRGB(11, 11, 13),
+		InputBg    = Color3.fromRGB(12, 12, 14),
+		ActiveBg   = Color3.fromRGB(24, 24, 27),
+		HoverBg    = Color3.fromRGB(18, 18, 21),
+		TrackOff   = Color3.fromRGB(38, 38, 43),
+		KnobOff    = Color3.fromRGB(205, 205, 210),
+		Border     = Color3.fromRGB(30, 30, 34),
+		Active     = Color3.fromRGB(245, 245, 247),
+		Text       = Color3.fromRGB(225, 225, 228),
+		TextDim    = Color3.fromRGB(157, 157, 164),
+		TextMuted  = Color3.fromRGB(104, 104, 112),
+		Gold       = Color3.fromRGB(205, 169, 51),
+		Green      = Color3.fromRGB(70, 220, 126),
+		Red        = Color3.fromRGB(230, 67, 83),
+	}
+
+	UILibrary.Theme = table.clone(DefaultTheme)
+	UILibrary.DefaultTheme = DefaultTheme
+	local function C(key) return UILibrary.Theme[key] end
+
+	local screenGui, Stage
+	local CANVAS_W, CANVAS_H = 720, 740
+	local PANEL_X, PANEL_Y, PANEL_W, PANEL_H = 92, 20, 624, 482
+	local SIDEBAR_X, SIDEBAR_W, TAB_STEP = 24, 54, 44
+	local SUBBAR_H, SUBBAR_HALF_IN = 38, 18
+	local COL_L_X, COL_W_L, COL_Y, COL_H = 14, 288, 76, 378
+	local DEFAULT_CHARACTER_ASSET = "rbxassetid://911435489"
+	local CHARACTER_SIZE = Vector2.new(290, 410)
+
+	local tabs, currentTab, sidebar, sideIndicator, subBar, mainPanel, sectionChip, searchBox, contentL
+	local charImage, footerRefs = nil, {}
+	local pickerState, thumbCache, uiVisible = { open = false, frame = nil }, {}, true
+	local watermarkVisible, toggleKey = true, Enum.KeyCode.RightShift
+	local hbConn, dragConns, themeBinds, themeRefreshers = nil, {}, {}, {}
+
+	local function addRefresher(fn) themeRefreshers[#themeRefreshers+1] = fn end
+	local function clearRefreshers() table.clear(themeRefreshers) end
+	local function bindTheme(obj, prop, key) themeBinds[#themeBinds+1] = { Obj = obj, Prop = prop, Key = key } end
+
+	function UILibrary:ApplyTheme()
+		for i = #themeBinds, 1, -1 do
+			local b = themeBinds[i]
+			if not b.Obj or not b.Obj.Parent then table.remove(themeBinds, i)
+			else pcall(function() b.Obj[b.Prop] = C(b.Key) end) end
+		end
+		for _, fn in ipairs(themeRefreshers) do pcall(fn) end
+		if currentTab then
+			self:_RefreshTabVisuals()
+			self:_RefreshSubTabVisuals(currentTab)
+		end
+	end
+
+	local function I(class, props)
+		local obj = Instance.new(class)
+		local parent = props.Parent
+		props.Parent = nil
+		for k, v in pairs(props) do obj[k] = v end
+		obj.Parent = parent
+		return obj
+	end
+
+	local function tween(obj, time, props, style, dir)
+		TweenService:Create(obj, TweenInfo.new(time, style or Enum.EasingStyle.Quad, dir or Enum.EasingDirection.Out), props):Play()
+	end
+
+	local function strokeOn(obj, colorOrKey, thickness, transparency)
+		local col = colorOrKey; if typeof(colorOrKey) == "string" then col = C(colorOrKey) end
+		local st = I("UIStroke", { Parent = obj, Color = col, Thickness = thickness or 1, Transparency = transparency or 0, ApplyStrokeMode = Enum.ApplyStrokeMode.Border, LineJoinMode = Enum.LineJoinMode.Round })
+		if typeof(colorOrKey) == "string" then bindTheme(st, "Color", colorOrKey) end
+		return st
+	end
+
+	local function rectTL(parent, x, y, w, h, colorOrKey, radius, transparency)
+		local col = colorOrKey; if typeof(colorOrKey) == "string" then col = C(colorOrKey) end
+		local f = I("Frame", { Parent = parent, BackgroundColor3 = col, BackgroundTransparency = transparency or 0, Position = UDim2.fromOffset(x, y), Size = UDim2.fromOffset(w, h), BorderSizePixel = 0 })
+		if radius then I("UICorner", { Parent = f, CornerRadius = UDim.new(0, radius) }) end
+		if typeof(colorOrKey) == "string" then bindTheme(f, "BackgroundColor3", colorOrKey) end
+		return f
+	end
+
+	local function circFrame(parent, cx, cy, d, colorOrKey, transparency, z)
+		local col = colorOrKey; if typeof(colorOrKey) == "string" then col = C(colorOrKey) end
+		local f = I("Frame", { Parent = parent, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(cx, cy), Size = UDim2.fromOffset(d, d), BackgroundColor3 = col, BackgroundTransparency = transparency or 0, BorderSizePixel = 0, ZIndex = z })
+		I("UICorner", { Parent = f, CornerRadius = UDim.new(1, 0) })
+		if typeof(colorOrKey) == "string" then bindTheme(f, "BackgroundColor3", colorOrKey) end
+		return f
+	end
+
+	local function applyFont(obj, weight)
+		local list = weight == "bold" and { Enum.Font.GothamBold, Enum.Font.GothamBlack, Enum.Font.SourceSansBold } or weight == "medium" and { Enum.Font.GothamMedium, Enum.Font.GothamSemibold, Enum.Font.Gotham, Enum.Font.SourceSans } or { Enum.Font.Gotham, Enum.Font.SourceSans, Enum.Font.Arial }
+		for _, f in ipairs(list) do if pcall(function() obj.Font = f end) then break end end
+	end
+
+	local function txt(parent, x, y, w, h, text, size, colorOrKey, weight, align)
+		local col = colorOrKey; if typeof(colorOrKey) == "string" then col = C(colorOrKey) end
+		local l = I("TextLabel", { Parent = parent, BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(x, y), Size = UDim2.fromOffset(w, h), Text = text, TextSize = size, TextColor3 = col, TextXAlignment = align or Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Center })
+		applyFont(l, weight); if typeof(colorOrKey) == "string" then bindTheme(l, "TextColor3", colorOrKey) end
+		return l
+	end
+
+	local function textWidth(text, size, weight)
+		local ok, r = pcall(function() return TextService:GetTextSize(text, size, weight == "medium" and Enum.Font.GothamMedium or Enum.Font.Gotham, Vector2.new(1000, 20)) end)
+		if ok then return r.X end
+		return #text * size * 0.55
+	end
+
+	local function tweenIconColor(holder, color, duration)
+		for _, d in ipairs(holder:GetDescendants()) do
+			if d:IsA("Frame") then tween(d, duration, { BackgroundColor3 = color })
+			elseif d:IsA("UIStroke") then tween(d, duration, { Color = color })
+			elseif d:IsA("TextLabel") then tween(d, duration, { TextColor3 = color })
+			elseif d:IsA("ImageLabel") then tween(d, duration, { ImageColor3 = color }) end
+		end
+	end
+
+	local function hexOf(c) return string.format("#%02x%02x%02x", math.floor(c.R * 255 + 0.5), math.floor(c.G * 255 + 0.5), math.floor(c.B * 255 + 0.5)) end
+	local function rbxThumb(userId, kind, w, h) return "rbxthumb://type=" .. (kind or "AvatarHeadShot") .. "&id=" .. tostring(userId) .. "&w=" .. tostring(w or 100) .. "&h=" .. tostring(h or 100) end
+
+	local ICON_ASSETS = {
+		bars = "rbxassetid://7733674319", bell = "rbxassetid://7733911828", cube = "rbxassetid://7733917120", eye = "rbxassetid://7733774602", gamepad = "rbxassetid://7733799901", gear = "rbxassetid://7734053495", globe = "rbxassetid://7733954760", grid = "rbxassetid://7733970390", hamburger = "rbxassetid://7733993211", key = "rbxassetid://7733965118", layers = "rbxassetid://7743868936", medal = "rbxassetid://7733673987", palette = "rbxassetid://7734021595", search = "rbxassetid://7734052925", shield = "rbxassetid://7734056608", sliders = "rbxassetid://7734058803", target = "rbxassetid://7733765307", user = "rbxassetid://7743875962", wave = "rbxassetid://7733655755", wrench = "rbxassetid://7743878358",
+	}
+
+	local Icon = {}
+	for icon_name, icon_id in pairs(ICON_ASSETS) do
+		Icon[icon_name] = function(parent, cx, cy, size, color)
+			return I("ImageLabel", { Parent = parent, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(cx, cy), Size = UDim2.fromOffset(size, size), BackgroundTransparency = 1, BorderSizePixel = 0, Image = icon_id, ImageColor3 = color or C("TextDim") })
+		end
+	end
+	UILibrary.Icon = Icon
+
+	local function chevronVector(parent, cx, cy, size, color)
+		local holder = I("Frame", { Parent = parent, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(cx, cy), Size = UDim2.fromOffset(size, size), BackgroundTransparency = 1, BorderSizePixel = 0 })
+		local w, h = size * 0.52, math.max(2, size * 0.14)
+		local function bar(px, py, rw, rh, rot)
+			local f = I("Frame", { Parent = holder, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromOffset(px, py), Size = UDim2.fromOffset(rw, rh), Rotation = rot, BackgroundColor3 = color, BorderSizePixel = 0 })
+			I("UICorner", { Parent = f, CornerRadius = UDim.new(1, 0) })
+		end
+		bar(size * 0.5 - size * 0.13, size * 0.46, w, h, 45); bar(size * 0.5 + size * 0.13, size * 0.46, w, h, -45)
+		return holder
+	end
+
+	local function closePicker()
+		if pickerState.open and pickerState.frame then
+			local f = pickerState.frame; pickerState.open = false; pickerState.frame = nil
+			tween(f, 0.14, { Size = UDim2.fromOffset(168, 0), BackgroundTransparency = 1 })
+			task.delay(0.16, function() if f then f:Destroy() end end)
+		end
+	end
+
+	local function closeAllDropdowns()
+		if not Stage then return end
+		local ok, children = pcall(function() return Stage:GetChildren() end)
+		if not ok or not children then return end
+		for _, ch in ipairs(children) do if ch.Name == "DropdownList" then pcall(function() ch:Destroy() end) end end
+	end
+
+	UILibrary.CloseAllDropdowns = closeAllDropdowns
+
+	local function openPicker(anchorSwatch, current, onPick)
+		closePicker()
+		local h, s, v = Color3.toHSV(current)
+		local ap = anchorSwatch.AbsolutePosition; local sp = Stage.AbsolutePosition
+		local px = math.clamp(ap.X - sp.X + 18, 4, CANVAS_W - 172); local py = math.clamp(ap.Y - sp.Y + 12, 4, CANVAS_H - 140)
+		local root = I("Frame", { Name = "ColorPicker", Parent = Stage, BackgroundColor3 = C("SubBarBg"), Position = UDim2.fromOffset(px, py), Size = UDim2.fromOffset(168, 0), BorderSizePixel = 0, ZIndex = 200 })
+		I("UICorner", { Parent = root, CornerRadius = UDim.new(0, 10) }); strokeOn(root, "Border", 1, 0.55).ZIndex = 201; bindTheme(root, "BackgroundColor3", "SubBarBg")
+		pickerState.open = true; pickerState.frame = root
+		local SV_W, SV_H = 118, 84
+		local sv = I("TextButton", { Parent = root, Text = "", AutoButtonColor = false, BackgroundColor3 = Color3.fromHSV(h, 1, 1), Position = UDim2.fromOffset(10, 10), Size = UDim2.fromOffset(SV_W, SV_H), BorderSizePixel = 0, ZIndex = 201 })
+		I("UICorner", { Parent = sv, CornerRadius = UDim.new(0, 8) })
+		local gw = I("Frame", { Parent = sv, Size = UDim2.new(1,0,1,0), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0, ZIndex = 202 })
+		I("UIGradient", { Parent = gw, Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0,0), NumberSequenceKeypoint.new(1,1) }) }); I("UICorner", { Parent = gw, CornerRadius = UDim.new(0, 8) })
+		local gb = I("Frame", { Parent = sv, Size = UDim2.new(1,0,1,0), BackgroundColor3 = Color3.new(0,0,0), BorderSizePixel = 0, ZIndex = 203 })
+		I("UIGradient", { Parent = gb, Rotation = 90, Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0,1), NumberSequenceKeypoint.new(1,0) }) }); I("UICorner", { Parent = gb, CornerRadius = UDim.new(0, 8) })
+		local knob = I("Frame", { Parent = sv, BackgroundTransparency = 1, Position = UDim2.fromOffset(s * SV_W - 6, (1 - v) * SV_H - 6), Size = UDim2.fromOffset(12, 12), ZIndex = 204 })
+		local ring = circFrame(knob, 6, 6, 10, Color3.new(1,1,1), 1, 205); strokeOn(ring, Color3.new(1,1,1), 2, 0).ZIndex = 206
+		local hue = I("TextButton", { Parent = root, Text = "", AutoButtonColor = false, BackgroundColor3 = Color3.new(1,1,1), Position = UDim2.fromOffset(138, 10), Size = UDim2.fromOffset(12, SV_H), BorderSizePixel = 0, ZIndex = 201 })
+		I("UICorner", { Parent = hue, CornerRadius = UDim.new(0, 8) })
+		I("UIGradient", { Parent = hue, Rotation = 90, Color = ColorSequence.new({ ColorSequenceKeypoint.new(0, Color3.fromHSV(0, 1, 1)), ColorSequenceKeypoint.new(0.17, Color3.fromHSV(0.83, 1, 1)), ColorSequenceKeypoint.new(0.33, Color3.fromHSV(0.66, 1, 1)), ColorSequenceKeypoint.new(0.5, Color3.fromHSV(0.5, 1, 1)), ColorSequenceKeypoint.new(0.67, Color3.fromHSV(0.33, 1, 1)), ColorSequenceKeypoint.new(0.83, Color3.fromHSV(0.16, 1, 1)), ColorSequenceKeypoint.new(1, Color3.fromHSV(0, 1, 1)) }) })
+		local hueKnob = rectTL(hue, -2, (1 - h) * SV_H - 2, 16, 4, Color3.new(1,1,1), 2, 0); hueKnob.ZIndex = 202
+		local preview = circFrame(root, 20, 112, 18, current, 0, 201); strokeOn(preview, "Border", 1, 0.55).ZIndex = 202
+		local hexLabel = txt(root, 36, 104, 96, 16, hexOf(current), 11, "TextDim"); hexLabel.ZIndex = 201
+		local function apply() local c = Color3.fromHSV(h, s, v); sv.BackgroundColor3 = Color3.fromHSV(h, 1, 1); preview.BackgroundColor3 = c; hexLabel.Text = hexOf(c); anchorSwatch.BackgroundColor3 = c; if onPick then onPick(c) end end
+		local dragSV, dragHue = false, false
+		sv.InputBegan:Connect(function(inp) if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then dragSV = true end end)
+		hue.InputBegan:Connect(function(inp) if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then dragHue = true end end)
+		local endedConn, changedConn, beganConn
+		endedConn = UserInputService.InputEnded:Connect(function(inp) if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then dragSV, dragHue = false, false end end)
+		changedConn = UserInputService.InputChanged:Connect(function(inp)
+			if not pickerState.open or pickerState.frame ~= root then return end
+			if inp.UserInputType ~= Enum.UserInputType.MouseMovement and inp.UserInputType ~= Enum.UserInputType.Touch then return end
+			if dragSV then s = math.clamp((inp.Position.X - sv.AbsolutePosition.X) / sv.AbsoluteSize.X, 0, 1); v = 1 - math.clamp((inp.Position.Y - sv.AbsolutePosition.Y) / sv.AbsoluteSize.Y, 0, 1); knob.Position = UDim2.fromOffset(s * SV_W - 6, (1 - v) * SV_H - 6); apply()
+			elseif dragHue then h = 1 - math.clamp((inp.Position.Y - hue.AbsolutePosition.Y) / hue.AbsoluteSize.Y, 0, 1); hueKnob.Position = UDim2.fromOffset(-2, (1 - h) * SV_H - 2); apply() end
+		end)
+		beganConn = UserInputService.InputBegan:Connect(function(inp)
+			if not pickerState.open or pickerState.frame ~= root then return end
+			if inp.UserInputType ~= Enum.UserInputType.MouseButton1 and inp.UserInputType ~= Enum.UserInputType.Touch then return end
+			local rp, rs = root.AbsolutePosition, root.AbsoluteSize; local p = inp.Position
+			local inside = p.X >= rp.X - 4 and p.X <= rp.X + rs.X + 4 and p.Y >= rp.Y - 4 and p.Y <= rp.Y + rs.Y + 4
+			local ap2 = anchorSwatch.AbsolutePosition
+			local insideSw = p.X >= ap2.X - 12 and p.X <= ap2.X + 12 and p.Y >= ap2.Y - 12 and p.Y <= ap2.Y + 12
+			if not inside and not insideSw then if endedConn then endedConn:Disconnect() end; if changedConn then changedConn:Disconnect() end; if beganConn then beganConn:Disconnect() end; closePicker() end
+		end)
+		task.defer(function() tween(root, 0.18, { Size = UDim2.fromOffset(168, 132) }, Enum.EasingStyle.Back) end)
+		return root
+	end
+
+	local function panelPos() return mainPanel.Position.X.Offset, mainPanel.Position.Y.Offset end
+	local function panelCenterX() local x, _ = panelPos(); return x + PANEL_W/2 end
+	local function subbarY() local _, y = panelPos(); return y + PANEL_H - SUBBAR_HALF_IN end
+	local function sidebarDX() return SIDEBAR_X - PANEL_X end
+
+	local function buildSidebar()
+		sidebar = rectTL(Stage, SIDEBAR_X, PANEL_Y, SIDEBAR_W, 120, "SidebarBg", 12); sidebar.ZIndex = 10; sidebar.Active = true; strokeOn(sidebar, "Border", 1, 0.55).ZIndex = 11
+		sideIndicator = I("Frame", { Parent = sidebar, BackgroundColor3 = C("Active"), BorderSizePixel = 0, Position = UDim2.fromOffset(0, 21), Size = UDim2.fromOffset(2, 18), BackgroundTransparency = 1, ZIndex = 13 })
+		I("UICorner", { Parent = sideIndicator, CornerRadius = UDim.new(1,0) }); bindTheme(sideIndicator, "BackgroundColor3", "Active")
+	end
+
+	local function fitSidebar()
+		if not (sidebar and mainPanel) then return end
+		local n = math.max(1, #tabs); local h = math.min(PANEL_H, n * TAB_STEP + 18)
+		local px, py = panelPos(); sidebar.Size = UDim2.fromOffset(SIDEBAR_W, h); sidebar.Position = UDim2.fromOffset(px + sidebarDX(), py + (PANEL_H - h) / 2)
+	end
+
+	function UILibrary:_RefreshTabVisuals()
+		if not sidebar then return end
+		for _, t in ipairs(tabs) do
+			local active = (t == currentTab); tween(t.hl, 0.0, { BackgroundColor3 = C("ActiveBg") }); tween(t.hl, 0.0, { BackgroundTransparency = active and 0.18 or 1 })
+			tweenIconColor(t.iconHolder, active and C("Active") or C("TextMuted"), 0.0)
+		end
+		if currentTab and currentTab.cy then sideIndicator.BackgroundTransparency = 0; sideIndicator.BackgroundColor3 = C("Active"); sideIndicator.Position = UDim2.fromOffset(0, currentTab.cy - 9) end
+	end
+
+	function UILibrary:AddTab(cfg)
+		cfg = cfg or {}; assert(sidebar, "UILibrary:Build() must be called before AddTab().")
+		local index = #tabs + 1; local cy = 10 + (index - 1) * TAB_STEP + TAB_STEP / 2
+		local tab = { index = index, name = cfg.Name or ("Tab" .. index), icon = cfg.Icon or "grid", subs = {}, currentSub = nil }
+		local hl = rectTL(sidebar, 6, cy - 18, SIDEBAR_W - 12, 36, "ActiveBg", 10, 1); hl.ZIndex = 11
+		local iconHolder = I("Frame", { Parent = sidebar, BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(6, cy - 18), Size = UDim2.fromOffset(SIDEBAR_W - 12, 36), ZIndex = 12 })
+		if Icon[tab.icon] then Icon[tab.icon](iconHolder, (SIDEBAR_W - 12) / 2, 18, 18, C("TextMuted")).ZIndex = 12 end
+		local btn = I("TextButton", { Parent = sidebar, BackgroundTransparency = 1, Text = "", Position = UDim2.fromOffset(6, cy - 18), Size = UDim2.fromOffset(SIDEBAR_W - 12, 36), ZIndex = 14 })
+		btn.MouseEnter:Connect(function() if currentTab ~= tab then tween(hl, 0.16, { BackgroundTransparency = 0.65 }) end end)
+		btn.MouseLeave:Connect(function() if currentTab ~= tab then tween(hl, 0.20, { BackgroundTransparency = 1 }) end end)
+		btn.MouseButton1Click:Connect(function() self:SelectTab(tab) end)
+		tab.hl, tab.iconHolder, tab.btn, tab.cy = hl, iconHolder, btn, cy; tabs[index] = tab; fitSidebar()
+		if not currentTab then self:SelectTab(tab) end; return tab
+	end
+
+	function UILibrary:SelectTab(tab)
+		if currentTab == tab then return end; currentTab = tab
+		for _, t in ipairs(tabs) do local active = (t == tab); tween(t.hl, 0.2, { BackgroundTransparency = active and 0.18 or 1 }); tweenIconColor(t.iconHolder, active and C("Active") or C("TextMuted"), 0.2) end
+		sideIndicator.BackgroundTransparency = 0; sideIndicator.BackgroundColor3 = C("Active")
+		tween(sideIndicator, 0.26, { Position = UDim2.fromOffset(0, tab.cy - 9) }, Enum.EasingStyle.Quart)
+		self:RebuildSubBars(tab); closePicker(); closeAllDropdowns()
+	end
+
+	local COLLAPSED_W, PILL_H = 34, 28
+	local function buildSubBar()
+		subBar = rectTL(Stage, panelCenterX() - 230, subbarY(), 460, SUBBAR_H, "SubBarBg", 10); subBar.ZIndex = 30; subBar.Active = true; strokeOn(subBar, "Border", 1, 0.55).ZIndex = 31
+	end
+
+	local function layoutSubBar(tab)
+		if not subBar then return end
+		local cursor = 8
+		for _, sub in ipairs(tab.subs) do
+			local w = (tab.currentSub == sub) and sub.expandedW or COLLAPSED_W
+			tween(sub.pill, 0.25, { Position = UDim2.fromOffset(cursor, (SUBBAR_H - PILL_H) / 2), Size = UDim2.fromOffset(w, PILL_H) }, Enum.EasingStyle.Quart)
+			cursor = cursor + w + 6
+		end
+		local total = math.max(260, cursor + 2); local cx = panelCenterX()
+		tween(subBar, 0.25, { Size = UDim2.fromOffset(total, SUBBAR_H), Position = UDim2.fromOffset(cx - total / 2, subbarY()) }, Enum.EasingStyle.Quart)
+	end
+
+	function UILibrary:_RefreshSubTabVisuals(tab)
+		if not tab then return end
+		for _, sub in ipairs(tab.subs) do
+			local active = (tab.currentSub == sub)
+			if sub.pill and sub.label and sub.iconHolder then
+				sub.pill.BackgroundColor3 = active and C("ActiveBg") or C("InputBg"); sub.pill.BackgroundTransparency = active and 0 or 0.45
+				sub.label.TextColor3 = C("Text"); sub.label.TextTransparency = active and 0 or 1; tweenIconColor(sub.iconHolder, active and C("Active") or C("TextMuted"), 0.0)
+			end
+		end
+	end
+
+	function UILibrary:AddSubTab(tab, cfg)
+		cfg = cfg or {}; assert(subBar, "UILibrary:Build() must be called before AddSubTab().")
+		local sub = { name = cfg.Name or ("Sub" .. (#tab.subs + 1)), icon = cfg.Icon or "cube", tab = tab, rows = {}, build = cfg.Build }
+		tab.subs[#tab.subs + 1] = sub
+		if currentTab == tab then self:RebuildSubBars(tab); if not tab.currentSub then self:SelectSubTab(tab, sub) end end
+		return sub
+	end
+
+	function UILibrary:RebuildSubBars(tab)
+		for _, ch in ipairs(subBar:GetChildren()) do if ch:IsA("Frame") or ch:IsA("TextButton") then ch:Destroy() end end
+		tab.currentSub = nil
+		for i, sub in ipairs(tab.subs) do
+			local labelW = textWidth(sub.name, 12, "medium"); sub.expandedW = COLLAPSED_W + labelW + 14
+			local pill = I("Frame", { Parent = subBar, LayoutOrder = i, BackgroundColor3 = C("InputBg"), BackgroundTransparency = 0.45, Position = UDim2.fromOffset(8, (SUBBAR_H - PILL_H) / 2), Size = UDim2.fromOffset(COLLAPSED_W, PILL_H), ClipsDescendants = true, BorderSizePixel = 0, ZIndex = 31 })
+			I("UICorner", { Parent = pill, CornerRadius = UDim.new(0, 8) })
+			local iconHolder = I("Frame", { Parent = pill, BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(COLLAPSED_W, PILL_H), ZIndex = 32 })
+			if Icon[sub.icon] then Icon[sub.icon](iconHolder, COLLAPSED_W / 2, PILL_H / 2, 16, C("TextMuted")).ZIndex = 32 end
+			local label = txt(pill, COLLAPSED_W - 2, 0, labelW + 12, PILL_H, sub.name, 12, "Text", "medium"); label.TextTransparency = 1; label.ZIndex = 32
+			sub.pill, sub.label, sub.iconHolder = pill, label, iconHolder
+			local btn = I("TextButton", { Parent = pill, BackgroundTransparency = 1, Text = "", Size = UDim2.new(1, 0, 1, 0), ZIndex = 33 })
+			btn.MouseEnter:Connect(function() if tab.currentSub ~= sub then tween(pill, 0.14, { BackgroundTransparency = 0.15 }) end end)
+			btn.MouseLeave:Connect(function() if tab.currentSub ~= sub then tween(pill, 0.18, { BackgroundTransparency = 0.45 }) end end)
+			btn.MouseButton1Click:Connect(function() self:SelectSubTab(tab, sub) end)
+		end
+		if tab.subs[1] then self:SelectSubTab(tab, tab.subs[1]) end
+		addRefresher(function() if currentTab == tab then self:_RefreshSubTabVisuals(tab) end end)
+	end
+
+	function UILibrary:SelectSubTab(tab, sub)
+		if tab.currentSub == sub then return end; local oldSub = tab.currentSub; tab.currentSub = sub; closePicker(); closeAllDropdowns()
+		if oldSub and oldSub.pill then tween(oldSub.pill, 0.18, { BackgroundTransparency = 0.45, BackgroundColor3 = C("InputBg") }); tween(oldSub.label, 0.14, { TextTransparency = 1 }); tweenIconColor(oldSub.iconHolder, C("TextMuted"), 0.2) end
+		tweenIconColor(sub.iconHolder, C("Active"), 0.2); tween(sub.pill, 0.2, { BackgroundTransparency = 0, BackgroundColor3 = C("ActiveBg") })
+		task.delay(0.06, function() if tab.currentSub == sub then tween(sub.label, 0.18, { TextTransparency = 0 }) end end)
+		layoutSubBar(tab); sectionChip.Text = sub.name; self:BuildPage(sub)
+	end
+
+	local function buildMainPanel()
+		mainPanel = rectTL(Stage, PANEL_X, PANEL_Y, PANEL_W, PANEL_H, "PanelBg", 8); mainPanel.ZIndex = 20; mainPanel.Active = true; mainPanel.ClipsDescendants = true; strokeOn(mainPanel, "Border", 1, 0.65).ZIndex = 21
+		local keyHint = rectTL(mainPanel, 10, 10, 68, 22, "SearchBg", 7); keyHint.ZIndex = 22; strokeOn(keyHint, "Border", 1, 0.65).ZIndex = 23
+		txt(keyHint, 0, 0, 68, 22, "Lucent v2", 12, "TextDim", "medium", Enum.TextXAlignment.Center).ZIndex = 24
+		local searchBar = rectTL(mainPanel, 84, 10, 204, 28, "SearchBg", 7); searchBar.ZIndex = 22; strokeOn(searchBar, "Border", 1, 0.75).ZIndex = 23
+		Icon.search(searchBar, 16, 14, 13, C("TextMuted")).ZIndex = 24
+		searchBox = I("TextBox", { Parent = searchBar, BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(30, 0), Size = UDim2.new(1, -36, 1, 0), PlaceholderText = "search", PlaceholderColor3 = C("TextMuted"), Text = "", TextColor3 = C("Text"), TextSize = 12, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 24 })
+		applyFont(searchBox, nil); bindTheme(searchBox, "TextColor3", "Text"); bindTheme(searchBox, "PlaceholderColor3", "TextMuted")
+		txt(mainPanel, PANEL_W - 260, 8, 210, 15, player and player.Name or "Player", 13, "Text", "medium", Enum.TextXAlignment.Right).ZIndex = 22
+		txt(mainPanel, PANEL_W - 260, 24, 210, 11, "FREE", 11, "Gold", "medium", Enum.TextXAlignment.Right).ZIndex = 22
+		local avatar = I("ImageLabel", { Parent = mainPanel, Name = "Avatar", BackgroundColor3 = C("InputBg"), BackgroundTransparency = 0, Position = UDim2.fromOffset(PANEL_W - 40, 9), Size = UDim2.fromOffset(28, 28), Image = player and rbxThumb(player.UserId) or "", ZIndex = 22 })
+		I("UICorner", { Parent = avatar, CornerRadius = UDim.new(1, 0) }); strokeOn(avatar, "Border", 1, 0.65).ZIndex = 23; bindTheme(avatar, "BackgroundColor3", "InputBg")
+		sectionChip = txt(mainPanel, COL_L_X, 44, 320, 22, "", 14, "Text", "medium"); sectionChip.ZIndex = 22
+		charImage = I("ImageLabel", { Parent = mainPanel, Name = "CharacterImage", BackgroundTransparency = 1, BorderSizePixel = 0, AnchorPoint = Vector2.new(1, 1), Position = UDim2.fromOffset(PANEL_W - 16, PANEL_H), Size = UDim2.fromOffset(CHARACTER_SIZE.X, CHARACTER_SIZE.Y), Image = DEFAULT_CHARACTER_ASSET, ScaleType = Enum.ScaleType.Fit, ZIndex = 21 })
+		local optCard = rectTL(mainPanel, 10, 72, COL_W_L + 10, 304, "PanelBg", 7, 0.82); optCard.ZIndex = 21; strokeOn(optCard, "Border", 1, 0.85).ZIndex = 22
+		contentL = I("ScrollingFrame", { Parent = mainPanel, Name = "ContentL", BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(COL_L_X, COL_Y), Size = UDim2.fromOffset(COL_W_L + 8, COL_H), ClipsDescendants = true, ZIndex = 22, ScrollBarThickness = 3, ScrollBarImageColor3 = C("TextMuted"), ScrollBarImageTransparency = 0.4, CanvasSize = UDim2.new(0, 0, 0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y, ScrollingDirection = Enum.ScrollingDirection.Y, ElasticBehavior = Enum.ElasticBehavior.Never })
+		bindTheme(contentL, "ScrollBarImageColor3", "TextMuted"); I("UIListLayout", { Parent = contentL, Padding = UDim.new(0, 5), SortOrder = Enum.SortOrder.LayoutOrder })
+		searchBox:GetPropertyChangedSignal("Text"):Connect(function() UILibrary:ApplySearch(searchBox.Text) end)
+	end
+
+	local function tryLoadChar(img)
+		if not (charImage and charImage.Parent) then return false end
+		charImage.Image = img; local t0 = os.clock()
+		while not charImage.IsLoaded and os.clock() - t0 < 2.0 do task.wait(0.05) end
+		return charImage.IsLoaded
+	end
+
+	local function loadCharacterImage()
+		task.spawn(function()
+			task.wait(0.1); if not (charImage and charImage.Parent) then return end; if charImage:GetAttribute("custom") then return end
+			if DEFAULT_CHARACTER_ASSET and DEFAULT_CHARACTER_ASSET ~= "" then
+				if tryLoadChar(DEFAULT_CHARACTER_ASSET) then return end
+				local raw = tostring(DEFAULT_CHARACTER_ASSET):gsub("%D",""); if raw ~= "" then tryLoadChar("rbxthumb://type=Asset&id=" .. raw .. "&w=512&h=512") end
+			end
+		end)
+	end
+
+	function UILibrary:RefreshVisibility() self:ApplySearch(searchBox and searchBox.Text or "") end
+	function UILibrary:ApplySearch(query)
+		if not contentL then return end; local q = (query or ""):lower()
+		for _, row in ipairs(contentL:GetChildren()) do
+			if row:IsA("Frame") and row:GetAttribute("key") then
+				local depHidden = row:GetAttribute("depHidden") == true
+				if q == "" then row.Visible = not depHidden else row.Visible = (not depHidden) and row:GetAttribute("key"):find(q, 1, true) ~= nil end
+			end
+		end
+	end
+
+	local function newRow(sub, height)
+		local row = I("Frame", { Parent = contentL, BackgroundColor3 = C("HoverBg"), BackgroundTransparency = 1, Size = UDim2.fromOffset(COL_W_L, height), LayoutOrder = #sub.rows + 1, ZIndex = 22, BorderSizePixel = 0 })
+		I("UICorner", { Parent = row, CornerRadius = UDim.new(0, 7) }); row:SetAttribute("w", COL_W_L); sub.rows[#sub.rows + 1] = row; return row
+	end
+
+	function UILibrary:BuildPage(sub)
+		clearRefreshers(); for _, ch in ipairs(contentL:GetChildren()) do if ch:IsA("Frame") then ch:Destroy() end end; sub.rows = {}
+		if sub.build then local ok, err = pcall(sub.build, sub); if not ok then warn("[UILibrary] Build error '" .. tostring(sub.name) .. "': " .. tostring(err)) end end
+		self:ApplySearch(searchBox.Text)
+	end
+
+	function UILibrary:AddToggle(sub, cfg)
+		cfg = cfg or {}; local row = newRow(sub, 24); local W = row:GetAttribute("w")
+		local label = txt(row, 10, 0, W - 96, 24, cfg.Name or "toggle", 12, C("TextDim")); label.ZIndex = 23
+		local obj = { Name = cfg.Name, value = cfg.Default == true, Row = row }
+		local track = rectTL(row, W - 42, 4, 31, 16, C("TrackOff"), 8, 0); track.ZIndex = 23
+		local knob = circFrame(track, 8, 8, 12, C("KnobOff"), 0, 24)
+		local function render(on)
+			if on then
+				tween(knob, 0.16, { Position = UDim2.fromOffset(23, 8), BackgroundColor3 = C("Active") }, Enum.EasingStyle.Quart); tween(track, 0.16, { BackgroundColor3 = C("ActiveBg") }, Enum.EasingStyle.Quart)
+				tween(label, 0.16, { TextColor3 = C("Text") }, Enum.EasingStyle.Quart)
+			else
+				tween(knob, 0.16, { Position = UDim2.fromOffset(8, 8), BackgroundColor3 = C("KnobOff") }, Enum.EasingStyle.Quart); tween(track, 0.16, { BackgroundColor3 = C("TrackOff") }, Enum.EasingStyle.Quart)
+				tween(label, 0.16, { TextColor3 = C("TextDim") }, Enum.EasingStyle.Quart)
+			end
+		end
+		local function set(on, silent) obj.value = on and true or false; render(obj.value); if not silent and cfg.Callback then task.spawn(cfg.Callback, obj.value) end end
+		obj.Set = set
+		local btn = I("TextButton", { Parent = row, BackgroundTransparency = 1, Text = "", Size = UDim2.new(1, 0, 1, 0), ZIndex = 23 })
+		btn.MouseButton1Click:Connect(function() set(not obj.value) end)
+		set(obj.value, true); return obj
+	end
+
+	function UILibrary:AddColorPicker(sub, cfg)
+		cfg = cfg or {}; local row = newRow(sub, 24); local W = row:GetAttribute("w")
+		local current = cfg.Color or Color3.new(1,1,1)
+		txt(row, 10, 0, W - 50, 24, cfg.Name or "color", 12, "TextDim").ZIndex = 23
+		local sw = I("TextButton", { Parent = row, Text = "", AutoButtonColor = false, AnchorPoint = Vector2.new(1, 0.5), Position = UDim2.fromOffset(W - 10, 12), Size = UDim2.fromOffset(16, 16), BackgroundColor3 = current, BorderSizePixel = 0, ZIndex = 24 })
+		I("UICorner", { Parent = sw, CornerRadius = UDim.new(1, 0) }); strokeOn(sw, "Border", 1, 0.55).ZIndex = 25
+		sw.MouseButton1Click:Connect(function() openPicker(sw, sw.BackgroundColor3, function(c) if cfg.Callback then task.spawn(cfg.Callback, c) end end) end)
+		return { Set = function(c) sw.BackgroundColor3 = c end, Row = row }
+	end
+
+	function UILibrary:AddDropdown(sub, cfg)
+		cfg = cfg or {}; local row = newRow(sub, 43); local W = row:GetAttribute("w"); local bw = W - 20
+		txt(row, 10, 0, bw, 14, cfg.Name or "dropdown", 10, "TextMuted").ZIndex = 23
+		local box = I("TextButton", { Parent = row, Text = "", AutoButtonColor = false, Position = UDim2.fromOffset(10, 16), Size = UDim2.fromOffset(bw, 27), BackgroundColor3 = C("InputBg"), BorderSizePixel = 0, ZIndex = 23 })
+		I("UICorner", { Parent = box, CornerRadius = UDim.new(0, 6) }); strokeOn(box, "Border", 1, 0.7).ZIndex = 24
+		local value = txt(box, 10, 0, bw - 40, 27, "", 12, "Text"); value.ZIndex = 25
+		local chev = chevronVector(box, bw - 16, 14, 12, C("TextDim")); chev.ZIndex = 25
+		local obj = { value = cfg.Default or (cfg.Options and cfg.Options[1]), Row = row }; value.Text = tostring(obj.value)
+		box.MouseButton1Click:Connect(function()
+			local idx = 1; for i, v in ipairs(cfg.Options or {}) do if v == obj.value then idx = i break end end
+			obj.value = (cfg.Options or {})[(idx % #(cfg.Options or {1})) + 1]; value.Text = tostring(obj.value)
+			if cfg.Callback then task.spawn(cfg.Callback, obj.value) end
+		end)
+		return obj
+	end
+
+	function UILibrary:AddSlider(sub, cfg)
+		cfg = cfg or {}; local min, max = cfg.Min or 0, cfg.Max or 100; local row = newRow(sub, 37); local W = row:GetAttribute("w"); local tw = W - 20
+		txt(row, 10, 0, 170, 15, cfg.Name or "slider", 12, "TextDim").ZIndex = 23
+		local valueL = txt(row, 10, 0, tw, 15, "", 12, "Text", "medium", Enum.TextXAlignment.Right); valueL.ZIndex = 23
+		local track = I("TextButton", { Parent = row, Text = "", AutoButtonColor = false, Position = UDim2.fromOffset(10, 22), Size = UDim2.fromOffset(tw, 4), BackgroundColor3 = C("TrackOff"), BorderSizePixel = 0, ZIndex = 23 })
+		I("UICorner", { Parent = track, CornerRadius = UDim.new(0, 2) })
+		local fill = rectTL(track, 0, 0, 100, 4, C("Active"), 2, 0); fill.ZIndex = 24
+		local knobS = circFrame(track, 6, 2, 11, C("Active"), 0, 25)
+		local obj = { value = cfg.Default or min, Row = row }
+		local function set(v, silent) v = math.clamp(v, min, max); obj.value = v; local fw = math.max(5, tw * (v - min) / (max - min)); tween(fill, 0.10, { Size = UDim2.fromOffset(fw, 4) }); tween(knobS, 0.10, { Position = UDim2.fromOffset(fw, 2) }); valueL.Text = tostring(math.floor(v * 10 + 0.5) / 10) .. (cfg.Suffix or ""); if not silent and cfg.Callback then task.spawn(cfg.Callback, v) end end
+		local sliding = false
+		track.InputBegan:Connect(function(inp) if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then sliding = true end end)
+		UserInputService.InputEnded:Connect(function(inp) if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then sliding = false end end)
+		UserInputService.InputChanged:Connect(function(inp) if sliding and (inp.UserInputType == Enum.UserInputType.MouseMovement or inp.UserInputType == Enum.UserInputType.Touch) then local t = math.clamp((inp.Position.X - track.AbsolutePosition.X) / track.AbsoluteSize.X, 0, 1); set(min + (max - min) * t) end end)
+		set(obj.value, true); return obj
+	end
+
+	function UILibrary:AddButton(sub, cfg)
+		cfg = cfg or {}; local row = newRow(sub, 28)
+		local box = I("TextButton", { Parent = row, Text = cfg.Name or "button", BackgroundColor3 = C("InputBg"), BorderSizePixel = 0, Size = UDim2.new(1, 0, 1, 0), TextColor3 = C("Text"), TextSize = 12, ZIndex = 23 })
+		applyFont(box, "medium"); I("UICorner", { Parent = box, CornerRadius = UDim.new(0, 8) }); strokeOn(box, "Border", 1, 0.7).ZIndex = 24
+		box.MouseButton1Click:Connect(function() if cfg.Callback then task.spawn(cfg.Callback) end end)
+		return { Row = row }
+	end
+
+	function UILibrary:AddLabel(sub, cfg)
+		cfg = cfg or {}; local row = newRow(sub, 24); local W = row:GetAttribute("w")
+		txt(row, 10, 0, W - 20, 24, cfg.Text or "", 10, "TextMuted").ZIndex = 23; return { Row = row }
+	end
+
+	local notifHolder
+	function UILibrary:Notify(text, duration)
+		if not screenGui then return end; duration = tonumber(duration) or 3
+		if not notifHolder or not notifHolder.Parent then notifHolder = I("Frame", { Parent = screenGui, Name = "Notifications", BackgroundTransparency = 1, AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -16, 1, -16), Size = UDim2.fromOffset(280, 400), ZIndex = 500 }); I("UIListLayout", { Parent = notifHolder, Padding = UDim.new(0, 6), SortOrder = Enum.SortOrder.LayoutOrder, VerticalAlignment = Enum.VerticalAlignment.Bottom, HorizontalAlignment = Enum.HorizontalAlignment.Right }) end
+		local card = I("Frame", { Parent = notifHolder, BackgroundColor3 = C("SubBarBg"), BackgroundTransparency = 1, Size = UDim2.fromOffset(280, 36), BorderSizePixel = 0, ZIndex = 501, LayoutOrder = os.clock() * 1000 })
+		I("UICorner", { Parent = card, CornerRadius = UDim.new(0, 8) }); strokeOn(card, "Border", 1, 0.5).ZIndex = 502
+		local bar = rectTL(card, 0, 0, 3, 36, "Active", 2, 0); bar.ZIndex = 503
+		local l = txt(card, 12, 0, 260, 36, tostring(text), 12, "Text"); l.ZIndex = 503; l.TextWrapped = true; l.TextTransparency = 1
+		tween(card, 0.2, { BackgroundTransparency = 0 }); tween(l, 0.2, { TextTransparency = 0 })
+		task.delay(duration, function() if card and card.Parent then tween(card, 0.25, { BackgroundTransparency = 1 }); tween(l, 0.25, { TextTransparency = 1 }); task.delay(0.3, function() if card then card:Destroy() end end) end end)
+	end
+
+	function UILibrary:ToggleUI()
+		uiVisible = not uiVisible
+		local targetTrans = uiVisible and 0 or 1
+		local tw = TweenService:Create(Stage, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { GroupTransparency = targetTrans })
+		if uiVisible then Stage.Visible = true; tw:Play() else tw:Play(); tw.Completed:Connect(function() if not uiVisible then Stage.Visible = false end end) end
+	end
+
+	local function buildFooter()
+		local footer = rectTL(Stage, (PANEL_X + PANEL_W/2) - 155, CANVAS_H - 34, 310, 24, "SubBarBg", 8); footer.ZIndex = 12; strokeOn(footer, "Border", 1, 0.55).ZIndex = 13
+		local med = Icon.medal(footer, 46, 12, 13, C("Gold")); med.ZIndex = 14; txt(footer, 58, 0, 62, 24, "RIVALES", 10, "Text", "medium").ZIndex = 14
+		local clock = txt(footer, 260, 0, 48, 24, os.date("%I:%M %p"), 10, "TextDim"); clock.ZIndex = 14
+		footerRefs = { footer = footer }
+	end
+
+	function UILibrary:Build(opts)
+		opts = opts or {}; if not playerGui then player = Players.LocalPlayer; playerGui = player:WaitForChild("PlayerGui") end
+		self:Destroy()
+		screenGui = I("ScreenGui", { Name = "GameUI_Real", Parent = playerGui, ResetOnSpawn = false, IgnoreGuiInset = true, DisplayOrder = 100, ZIndexBehavior = Enum.ZIndexBehavior.Sibling })
+		Stage = I("CanvasGroup", { Name = "Stage", Parent = screenGui, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.fromOffset(CANVAS_W, CANVAS_H), BackgroundTransparency = 1, GroupTransparency = 0 })
+		buildMainPanel(); buildSidebar(); fitSidebar(); buildSubBar(); buildFooter(); loadCharacterImage()
+		local scale = opts.Scale or 1
+		if scale ~= 1 then local sc = Instance.new("UIScale"); sc.Scale = scale; sc.Parent = Stage end
+		local toggleBtn = I("TextButton", { Parent = screenGui, Name = "ToggleUIButton", AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -24, 1, -24), Size = UDim2.fromOffset(120, 34), BackgroundColor3 = C("SubBarBg"), BorderSizePixel = 0, Text = "", ZIndex = 1000, AutoButtonColor = false })
+		I("UICorner", { Parent = toggleBtn, CornerRadius = UDim.new(0, 8) }); strokeOn(toggleBtn, "Border", 1, 0.4).ZIndex = 1001
+		local btnIcon = Icon.hamburger(toggleBtn, 20, 17, 14, C("TextDim")); btnIcon.ZIndex = 1002
+		local btnText = txt(toggleBtn, 36, 0, 74, 34, "Toggle UI", 12, "TextDim", "medium"); btnText.ZIndex = 1002
+		toggleBtn.MouseButton1Click:Connect(function() UILibrary:ToggleUI() end)
+		self:ApplyTheme()
+	end
+
+	function UILibrary:Destroy()
+		if screenGui then screenGui:Destroy() end
+		screenGui, Stage = nil, nil; tabs = {}; currentTab = nil
+	end
+
+	return UILibrary
+end)()
+
+
+-- ============================================================================
+-- 2. COMBAT LOGIC (From combat.lua)
+-- ============================================================================
+local players = game:GetService("Players")
+local run_service = cloneref(game:GetService("RunService"))
+local user_input_service = cloneref(game:GetService("UserInputService"))
+local replicated_storage = cloneref(game:GetService("ReplicatedStorage"))
+local sound_service = cloneref(game:GetService("SoundService"))
+local player_scripts = players.LocalPlayer:WaitForChild("PlayerScripts")
+local local_player = players.LocalPlayer
+local mechanics_controller = require(player_scripts.Controllers.MechanicsController)
+
+local PREDICT_MAX_LEAD = 0.18
+local AIM_OVERSHOOT_DURATION = 0.12
+local DEFAULT_ESP_DISTANCE_CAP = 800
+local TRIGGER_MISS_OFFSET = 8
+local HIT_SOUND_DIR = "daydreamer/rivals/assets"
+
+local los_params = RaycastParams.new(); los_params.FilterType = Enum.RaycastFilterType.Exclude
+local los_filter = {nil}
+local trigger_ray_params = RaycastParams.new(); trigger_ray_params.FilterType = Enum.RaycastFilterType.Exclude
+local trigger_filter = {nil}
+
+local env = (getgenv and getgenv()) or _G
+local dreamer = env.dreamer or {}; env.dreamer = dreamer
+
+local function is_katana_deflecting(target_model)
+    local target_player = target_model and players:GetPlayerFromCharacter(target_model)
+    local users = env.dreamerkatana
+    return target_player ~= nil and type(users) == "table" and users[target_player] == true
+end
+
+local function is_valid_enemy(target_model)
+    local target_player = players:GetPlayerFromCharacter(target_model)
+    if not target_player or (target_player.Team ~= nil and target_player.Team == local_player.Team) or (target_player:GetAttribute("TeamID") ~= nil and target_player:GetAttribute("TeamID") == local_player:GetAttribute("TeamID")) then return false end
+    local target_humanoid = target_model:FindFirstChildOfClass("Humanoid")
+    return target_humanoid and target_humanoid.Health > 0
+end
+
+local function has_line_of_sight(part)
+    local cam = workspace.CurrentCamera; local character = local_player.Character
+    if not cam or not part then return false end
+    los_filter[1] = character or workspace; los_params.FilterDescendantsInstances = los_filter
+    local result = workspace:Raycast(cam.CFrame.Position, part.Position - cam.CFrame.Position, los_params)
+    return not result or result.Instance:IsDescendantOf(part.Parent)
+end
+
+local function world_to_screen(world_pos, cam)
+    cam = cam or workspace.CurrentCamera
+    if not cam or not world_pos then return nil, false end
+    local screen_vec, on_screen = cam:WorldToViewportPoint(world_pos)
+    return screen_vec, on_screen and screen_vec.Z > 0
+end
+
+local function screen_center(cam) cam = cam or workspace.CurrentCamera; return Vector2.new(cam.ViewportSize.X * 0.5, cam.ViewportSize.Y * 0.5) end
+
+local function make_drawing_circle()
+    if type(Drawing) ~= "table" then return nil end
+    local ok, circle = pcall(function() return Drawing.new("Circle") end)
+    if not ok or not circle then return nil end
+    circle.Visible = false; circle.Filled = false; circle.NumSides = 96; circle.Thickness = 1.5; circle.Transparency = 1; circle.Color = Color3.fromRGB(255, 255, 255); circle.Radius = 100
+    return circle
+end
+
+local function remove_drawing(obj) if not obj then return end; pcall(function() obj.Visible = false; obj:Remove() end) end
+
+local function muzzle_pos()
+    local view_models = workspace:FindFirstChild("ViewModels"); if not view_models then return nil end
+    local first_person = view_models:FindFirstChild("FirstPerson"); if not first_person then return nil end
+    for _, model in pairs(first_person:GetChildren()) do
+        if model:IsA("Model") and model.Name:find("^" .. local_player.Name) then
+            local muzzle = model:FindFirstChild("ItemVisual") and model.ItemVisual:FindFirstChild("Body") and model.ItemVisual.Body:FindFirstChild("BodyPrimary") and model.ItemVisual.Body.BodyPrimary:FindFirstChild("_muzzle")
+            if muzzle and muzzle:IsA("Attachment") then return muzzle.WorldPosition end
+        end
+    end
+    return nil
+end
+
+local function hit_part_from_name(character, part_name, head_hit_chance)
+    if not character then return nil end
+    local fc = function(n) return character:FindFirstChild(n) end
+    if (part_name == "Closest" or part_name == "Random") and math.random(1, 100) <= math.clamp(tonumber(head_hit_chance) or 0, 0, 100) then return fc("Head") or fc("HumanoidRootPart") end
+    if part_name == "Head" then return fc("Head") elseif part_name == "HumanoidRootPart" then return fc("HumanoidRootPart") elseif part_name == "Torso" then return fc("Torso") or fc("UpperTorso") elseif part_name == "UpperTorso" then return fc("UpperTorso") elseif part_name == "LowerTorso" then return fc("LowerTorso") end
+    return fc("HumanoidRootPart")
+end
+
+local function get_aim_lerp_alpha(smoothness, curve, dt)
+    smoothness = math.clamp(tonumber(smoothness) or 2, 0.1, 10); local speed = 6 / smoothness
+    if curve == "Instant" or curve == "Snap" then return 1
+    elseif curve == "Expo" then return 1 - math.exp(-(4 / smoothness) * dt)
+    elseif curve == "EaseIn" then local t = math.clamp(speed * dt, 0, 1); return t * t
+    elseif curve == "EaseOut" then local t = math.clamp(speed * dt, 0, 1); return 1 - (1 - t) * (1 - t)
+    elseif curve == "Cubic" then local t = math.clamp(speed * dt, 0, 1); return t * t * t end
+    return math.clamp(speed * dt, 0, 1)
+end
+
+local function sample_delayed_position(history, target_time, fallback_pos)
+    local n = #history; if n == 0 then return fallback_pos end
+    if target_time <= history[1].t then return history[1].pos end
+    if target_time >= history[n].t then return history[n].pos end
+    for i = n - 1, 1, -1 do
+        local a, b = history[i], history[i + 1]
+        if target_time >= a.t and target_time <= b.t then return a.pos:Lerp(b.pos, (target_time - a.t) / (b.t - a.t)) end
+    end
+    return fallback_pos
+end
+
+local silent_ray_params = RaycastParams.new()
+local silent_offsets = { Vector3.new(0, 12, 0), Vector3.new(0, 16, 0), Vector3.new(0, 20, 0), Vector3.new(0, 24, 0), Vector3.new(0, 28, 0), Vector3.new(0, 32, 0) }
+
+local function calculate_silent_point(origin, target_pos, target_char)
+    silent_ray_params.FilterDescendantsInstances = { local_player.Character or workspace, target_char }
+    silent_ray_params.FilterType = Enum.RaycastFilterType.Exclude
+    if not workspace:Raycast(origin, target_pos - origin, silent_ray_params) then return origin end
+    for _, offset in ipairs(silent_offsets) do
+        local scan_pos = origin + offset
+        if not workspace:Raycast(scan_pos, target_pos - scan_pos, silent_ray_params) then return scan_pos end
+    end
+    return nil
+end
+
+local function get_silent_target_part(st)
+    local cam = workspace.CurrentCamera; if not cam then return nil, nil end
+    local center = screen_center(cam); local radius = st.fov or 100; local part_name = st.hit_part or "Head"
+    local best_part, best_char, best_dist = nil, nil, math.huge
+    for _, plr in ipairs(players:GetPlayers()) do
+        if plr ~= local_player and plr.Character and is_valid_enemy(plr.Character) and (st.katana_check ~= true or not is_katana_deflecting(plr.Character)) then
+            local part = hit_part_from_name(plr.Character, part_name, st.head_hit_chance)
+            if part and part:IsDescendantOf(workspace) and ((not st.visible_check) or has_line_of_sight(part)) then
+                local scr, on = world_to_screen(part.Position, cam)
+                if on then
+                    local dist = (Vector2.new(scr.X, scr.Y) - center).Magnitude
+                    if dist <= radius and dist < best_dist then best_dist = dist; best_part = part; best_char = plr.Character end
+                end
+            end
+        end
+    end
+    return best_part, best_char
+end
+
+local function build_silent_raycast_result(from, range, st)
+    local target_part, target_char = get_silent_target_part(st)
+    if not target_part or not target_char then return end
+    local origin = from
+    if st.manipulation ~= false then origin = calculate_silent_point(from, target_part.Position, target_char); if not origin then return end end
+    local delta = target_part.Position - origin; local dist = delta.Magnitude
+    if dist <= 0 then return end
+    local hit_pos = target_part.Position
+    if type(range) == "number" and dist > range then dist = range; hit_pos = origin + delta.Unit * range end
+    return { Position = hit_pos, Distance = dist, Instance = target_part, Material = target_part.Material, Normal = -delta.Unit }
+end
+
+local silent_item_denylist = { Flamethrower = true, Grenade = true, Medkit = true, Molotov = true, SmokeGrenade = true, Flashbang = true, Warper = true, Warpstone = true, Grappler = true, Satchel = true }
+local function get_equipped_item() local lf = mechanics_controller.LocalFighter; return lf and lf.EquippedItem or nil end
+local function get_item_field(item, key) if not item then return nil end; if item[key] ~= nil then return item[key] end; local ok, v = pcall(function() return item:Get(key) end); return ok and v or nil end
+local function silent_item_allowed(item)
+    local name = tostring(get_item_field(item, "Name") or item.Name or ""); if silent_item_denylist[name] then return false end
+    local info = get_item_field(item, "Info"); if type(info) == "table" then local t = tostring(info.ItemType or info.Type or info.Class or ""); if t == "Melee" or t == "Throwable" or t == "Consumable" then return false end end
+    return true
+end
+local function should_silent_raycast(range) local item = get_equipped_item(); if not item or not silent_item_allowed(item) then return false end; if type(range) ~= "number" then return false end; return range >= 50 end
+
+-- Combat State Table
+local CombatState = {
+    silent_aim = { enabled = false, fov = 100, draw_fov = false, fov_color = Color3.new(1,1,1), hit_chance = 100, katana_check = false, visible_check = false, manipulation = true, hit_part = "Head", head_hit_chance = 0 },
+    aim_assist = { enabled = false, fov = 500, draw_fov = false, fov_color = Color3.new(1,1,1), smoothness = 20, reaction_time = 0, target_switch_delay = 0, sticky_target = false, katana_check = false, overshoot_chance = 0, overshoot_pixels = 15, aim_method = "Linear", aim_part = "Head", head_hit_chance = 0, visible_check = false, prediction = false, prediction_strength_x = 50, prediction_strength_y = 50, jitter = false, jitter_strength_x = 0, jitter_strength_y = 0, bind_mode = "always", keybind = nil },
+    triggerbot = { enabled = false, reaction_time = 0, miss_chance = 0, katana_check = false, flashbang_check = true, scope_check = true },
+    bullet_tracers = { enabled = false, line_type = "Solid", duration = 250, max_distance = 2000, thickness = 2, transparency = 10, local_only = true, lightning_jaggedness = 14, color = Color3.new(1,1,1) },
+    hit_sounds = { enabled = false, volume = 70, pitch = 100, hit_file = "", shot_file = "", reload_file = "", equip_file = "" },
+    esp = { distance_cap = DEFAULT_ESP_DISTANCE_CAP }
+}
+UILibrary.state = CombatState
+
+local Combat = {}
+Combat.__index = Combat
+
+function Combat.new(ui)
+    return setmetatable({
+        ui = ui, hit_assets = {}, hit_sounds = {}, fov_circles = {}, fov_draw_conn = nil,
+        next_shoot_time = 0, trigger_miss_target = nil, trigger_miss_position = nil,
+        trigger_miss_side = 0, trigger_miss_until = 0,
+        silent_utility = nil, silent_raycast_hooked = false,
+        tracer_entries = {}, tracer_conn = nil, tracer_effect = nil,
+        original_tracer_play = nil, tracer_play_wrapper = nil,
+        aim_locked_target = nil, aim_smooth_cf = nil, aim_last_cam_cf = nil,
+        aim_overshoot_offset = nil, aim_overshoot_until = 0, cam_controller = nil,
+        aim_target_history = {}, aim_next_switch_time = 0,
+        aim_assist_using_bind = false, aim_assist_conn = nil,
+        original_raycast_fn = nil,
+        original_sound_originals = nil, original_sound_modules = nil,
+        original_toggle_autoshoot_fn = nil,
+        aim_step_conn = nil, tracer_update_conn = nil
+    }, Combat)
+end
+
+function Combat:ensure_hit_sound_dir()
+    if type(makefolder) == "function" then pcall(makefolder, "daydreamer"); pcall(makefolder, "daydreamer/rivals"); pcall(makefolder, HIT_SOUND_DIR) end
+end
+
+function Combat:list_hit_sound_files()
+    local files = {}; if type(listfiles) ~= "function" or type(isfolder) ~= "function" or not isfolder(HIT_SOUND_DIR) then return files end
+    local ok, entries = pcall(listfiles, HIT_SOUND_DIR); if ok and type(entries) == "table" then for _, path in ipairs(entries) do local filename = tostring(path):match("([^/\\]+)$"); if filename and filename:lower():match("%.(mp3|ogg|wav)$") then files[#files+1] = filename end end end
+    table.sort(files, function(a,b) return a:lower() < b:lower() end); return files
+end
+
+function Combat:get_hit_sound_asset(filename)
+    if type(filename) ~= "string" or filename == "" then return nil end
+    local path = HIT_SOUND_DIR .. "/" .. filename
+    if type(isfile) ~= "function" or not isfile(path) then return nil end
+    local loader = getcustomasset or env.getcustomasset or getsynasset or env.getsynasset or getcustomassetasync or env.getcustomassetasync
+    if type(loader) ~= "function" then return nil end
+    local ok, asset = pcall(loader, path); return (ok and type(asset) == "string") and asset or nil
+end
+
+function Combat:play_sound_event(event, force)
+    local state = self.ui.state.hit_sounds; if not state or (state.enabled ~= true and not force) then return end
+    local asset = self:get_hit_sound_asset(state[event .. "_file"]); if not asset then return false end
+    local sound = Instance.new("Sound"); sound.SoundId = asset; sound.Volume = math.clamp((tonumber(state.volume) or 70) / 100, 0, 1.5); sound.PlaybackSpeed = math.clamp((tonumber(state.pitch) or 100) / 100, 0.5, 2); sound.Parent = sound_service
+    self.hit_sounds[sound] = true; sound.Ended:Connect(function() self.hit_sounds[sound] = nil; sound:Destroy() end); sound:Play()
+    return true
+end
+
+function Combat:install_sound_hooks()
+    local ok, viewmodel = pcall(require, player_scripts.Modules.ClientReplicatedClasses.ClientFighter.ClientItem.ClientViewModel)
+    local item_ok, client_item = pcall(require, player_scripts.Modules.ClientReplicatedClasses.ClientFighter.ClientItem)
+    if not ok or not item_ok then return false end
+    local originals = { hitmarker = viewmodel.PlayHitmarkerSound, create_sound = client_item.CreateSound }
+    self.original_sound_originals = originals
+    self.original_sound_modules  = { viewmodel = viewmodel, client_item = client_item }
+    local runtime = { event = nil, reload_pending_until = 0 }
+    viewmodel.PlayHitmarkerSound = function(s, ...) if self:play_sound_event("hit") then return end; runtime.event = "hit"; local r = originals.hitmarker(s, ...); runtime.event = nil; return r end
+    client_item.CreateSound = function(s, ...)
+        local owner = s.ClientFighter and s.ClientFighter.Player; if owner ~= local_player then return originals.create_sound(s, ...) end
+        local evt = runtime.event; if evt == "reload" then runtime.reload_pending_until = 0 elseif not evt and os.clock() < runtime.reload_pending_until then evt = "reload"; runtime.reload_pending_until = 0 end
+        evt = evt or "shot"; if self:play_sound_event(evt) then return nil end
+        return originals.create_sound(s, ...)
+    end
+    return true
+end
+
+function Combat:start_fov_drawings()
+    if not self.fov_draw_conn then
+        self.fov_draw_conn = run_service.RenderStepped:Connect(function()
+            for name, entry in pairs(self.fov_circles) do
+                local st = self.ui.state[name]
+                local draw = st and st.enabled == true and st.draw_fov == true
+                if draw and not entry.circle then entry.circle = make_drawing_circle() end
+                if entry.circle then
+                    entry.circle.Visible = draw
+                    if draw then entry.circle.Position = screen_center(); entry.circle.Radius = st.fov; entry.circle.Color = st.fov_color end
+                end
+            end
+        end)
+    end
+end
+
+function Combat:install_triggerbot()
+    self.original_toggle_autoshoot_fn = mechanics_controller._ToggleAutoShoot
+    mechanics_controller._ToggleAutoShoot = function(p1)
+        p1._auto_shoot_hash = p1._auto_shoot_hash + 1; local current_hash = p1._auto_shoot_hash
+        if p1._auto_shoot_connection then p1._auto_shoot_connection:Disconnect() end
+        local is_shooting = false
+        p1._auto_shoot_connection = run_service.RenderStepped:Connect(function()
+            if p1._auto_shoot_hash ~= current_hash or not (p1.LocalFighter and p1.LocalFighter.EquippedItem and p1:IsAlive()) then return end
+            local st = self.ui.state.triggerbot; if not st or not st.enabled then if is_shooting then is_shooting = false; p1:EquippedItemInput("FinishShooting") end; self.next_shoot_time = 0; return end
+            if st.flashbang_check ~= false and local_player.PlayerGui:FindFirstChild("FlashbangGui") then self.next_shoot_time = 0; return end
+            local weapon_reach = p1.LocalFighter.EquippedItem:GetAutoShootReach()
+            if st.scope_check ~= false and (not weapon_reach or weapon_reach <= 0) then if is_shooting then is_shooting = false; p1:EquippedItemInput("FinishShooting") end; self.next_shoot_time = 0; return end
+            if not weapon_reach or weapon_reach <= 0 then weapon_reach = 100 end
+            local cam = workspace.CurrentCamera; if not cam then return end
+            trigger_filter[1] = local_player.Character or workspace; trigger_ray_params.FilterDescendantsInstances = trigger_filter
+            local active_ray = workspace:Raycast(cam.CFrame.Position, cam.CFrame.LookVector * weapon_reach, trigger_ray_params)
+            if active_ray and active_ray.Instance then
+                local hit_model = active_ray.Instance:FindFirstAncestorOfClass("Model")
+                if hit_model and hit_model:HasTag("Entity") and is_valid_enemy(hit_model) and (st.katana_check ~= true or not is_katana_deflecting(hit_model)) then
+                    local now = os.clock(); local delay = (st.reaction_time or 0) / 1000
+                    if delay > 0 then if self.next_shoot_time == 0 then self.next_shoot_time = now + delay; return elseif now < self.next_shoot_time then return end end
+                    self.next_shoot_time = 0
+                    if not is_shooting then
+                        if math.clamp(tonumber(st.miss_chance) or 0, 0, 100) > 0 and math.random(1, 100) <= st.miss_chance then self.trigger_miss_target = hit_model; self.trigger_miss_position = active_ray.Position; self.trigger_miss_side = math.random(0, 1) == 0 and -1 or 1; self.trigger_miss_until = os.clock() + 0.15 end
+                        is_shooting = true; p1:EquippedItemInput("StartShooting")
+                        if p1.LocalFighter.EquippedItem.Name ~= "Flamethrower" then task.delay(0.01, function() p1:EquippedItemInput("FinishShooting"); is_shooting = false end) end
+                    end
+                    return
+                end
+            end
+            self.next_shoot_time = 0; self.trigger_miss_target = nil; self.trigger_miss_until = 0
+            if is_shooting then is_shooting = false; p1:EquippedItemInput("FinishShooting") end
+        end)
+    end
+    pcall(function() if mechanics_controller.LocalFighter then mechanics_controller:_ToggleAutoShoot() end end)
+end
+
+function Combat:install_silent_raycast()
+    if self.silent_raycast_hooked then return end
+    local ok, utility = pcall(require, replicated_storage.Modules.Utility)
+    if not ok or type(utility) ~= "table" or type(utility.Raycast) ~= "function" then return end
+    local original_raycast = utility.Raycast; self.silent_raycast_hooked = true
+    self.silent_utility      = utility
+    self.original_raycast_fn = original_raycast
+    utility.Raycast = function(hook_self, from, to, range, ignore, mode, debug)
+        if self.trigger_miss_target and os.clock() <= self.trigger_miss_until then
+            local cam = workspace.CurrentCamera; local delta = cam.CFrame.RightVector * (TRIGGER_MISS_OFFSET * self.trigger_miss_side)
+            self.trigger_miss_target = nil; self.trigger_miss_until = 0
+            return original_raycast(hook_self, from, from + delta.Unit * range, range, ignore, mode, debug)
+        end
+        local st = self.ui.state.silent_aim
+        if st and st.enabled and should_silent_raycast(range) and math.random(1, 100) <= (st.hit_chance or 100) then
+            local result = build_silent_raycast_result(from, range, st); if result then return result end
+        end
+        return original_raycast(hook_self, from, to, range, ignore, mode, debug)
+    end
+end
+
+function Combat:step_aim_assist(dt)
+    dt = dt or (1/240); local st = self.ui.state.aim_assist
+    if not st or not st.enabled then self.aim_locked_target = nil; return end
+    local cam = workspace.CurrentCamera; if not cam then return end
+    local now = os.clock()
+    if self.aim_locked_target and (not self.aim_locked_target.Parent or not self.aim_locked_target:IsDescendantOf(workspace)) then self.aim_locked_target = nil end
+
+    if not self.aim_locked_target then
+        local best, best_dist = nil, st.fov
+        local center = screen_center(cam)
+        for _, p in ipairs(players:GetPlayers()) do
+            if p ~= local_player and p.Character and is_valid_enemy(p.Character) and (st.katana_check ~= true or not is_katana_deflecting(p.Character)) then
+                local part = hit_part_from_name(p.Character, st.aim_part, st.head_hit_chance)
+                if part and ((not st.visible_check) or has_line_of_sight(part)) then
+                    local scr, on = world_to_screen(part.Position, cam)
+                    if on then
+                        local dist = (Vector2.new(scr.X, scr.Y) - center).Magnitude
+                        if dist <= best_dist then best_dist = dist; best = part end
+                    end
+                end
+            end
+        end
+        self.aim_locked_target = best; self.aim_smooth_cf = cam.CFrame
+    end
+
+    if not self.aim_locked_target then return end
+
+    local my_char = local_player.Character; if not my_char then return end
+    if not self.cam_controller then pcall(function() self.cam_controller = require(player_scripts.Controllers.CameraController) end) end
+    if not self.cam_controller then return end
+
+    local true_pos = self.aim_locked_target.Position
+    local alpha = get_aim_lerp_alpha(st.smoothness / 10, st.aim_method, dt)
+    self.aim_smooth_cf = self.aim_smooth_cf:Lerp(CFrame.lookAt(cam.CFrame.Position, true_pos), alpha)
+    pcall(function() self.cam_controller:MimicRotation(self.aim_smooth_cf) end)
+end
+
+function Combat:add_tracer_segment(start_pos, end_pos, st)
+    local entry = { start_pos = start_pos, end_pos = end_pos, created_at = os.clock(), duration = st.duration/1000, line_type = st.line_type, color = st.color, thickness = st.thickness, transparency = st.transparency/100, lines = {} }
+    for i=1,(entry.line_type=="Solid" and 1 or 8) do local ok, line = pcall(Drawing.new, "Line"); if ok then line.Thickness=entry.thickness; line.Color=entry.color; entry.lines[i]=line end end
+    self.tracer_entries[#self.tracer_entries+1] = entry
+end
+
+function Combat:update_tracers()
+    local now = os.clock()
+    for i=#self.tracer_entries,1,-1 do
+        local e = self.tracer_entries[i]; local a = (now-e.created_at)/e.duration
+        if a>=1 then for _,l in ipairs(e.lines) do remove_drawing(l) end; table.remove(self.tracer_entries,i)
+        else local from,on1 = world_to_screen(e.start_pos); local to,on2 = world_to_screen(e.end_pos); local vis = on1 and on2
+            for _,l in ipairs(e.lines) do l.Visible = vis end
+            if vis then local s2 = Vector2.new(from.X, from.Y); local e2 = Vector2.new(to.X, to.Y); local delta = e2 - s2
+                if e.line_type == "Dashed" then
+                    for j,l in ipairs(e.lines) do local fa=(j-1)/#e.lines; local ta=math.min(1,fa+0.55/#e.lines); l.From=s2+delta*fa; l.To=s2+delta*ta; l.Transparency=(1-e.transparency)*(1-a) end
+                else e.lines[1].From=s2; e.lines[1].To=e2; e.lines[1].Transparency=(1-e.transparency)*(1-a) end
+            end
+        end
+    end
+end
+
+function Combat:install_bullet_tracers()
+    local ok, effect = pcall(require, player_scripts.Modules.TracerEffect); if not ok or not effect.Play then return end
+    local orig = effect.Play
+    self.tracer_effect        = effect
+    self.original_tracer_play = orig
+    effect.Play = function(s, data, properties, context)
+        if self.ui.state.bullet_tracers.enabled and (self.ui.state.bullet_tracers.local_only == false or data.IsLocal == true) and context and context.MuzzlePosition then
+            for _, group in pairs(data.RaycastResults or {}) do local res = group.Position and group or group[1]; if res and res.Position then self:add_tracer_segment(context.MuzzlePosition, res.Position, self.ui.state.bullet_tracers) end end
+        end
+        return orig(s, data, properties, context)
+    end
+    self.tracer_update_conn = run_service.RenderStepped:Connect(function() self:update_tracers() end)
+end
+
+function Combat:Unload()
+    if self.fov_draw_conn      then pcall(function() self.fov_draw_conn:Disconnect()      end) self.fov_draw_conn      = nil end
+    if self.aim_step_conn      then pcall(function() self.aim_step_conn:Disconnect()      end) self.aim_step_conn      = nil end
+    if self.tracer_update_conn then pcall(function() self.tracer_update_conn:Disconnect() end) self.tracer_update_conn = nil end
+
+    for _, entry in pairs(self.fov_circles) do remove_drawing(entry.circle) end
+    self.fov_circles = {}
+    for _, e in ipairs(self.tracer_entries) do for _, l in ipairs(e.lines) do remove_drawing(l) end end
+    self.tracer_entries = {}
+
+    if self.silent_utility and self.original_raycast_fn then
+        pcall(function() self.silent_utility.Raycast = self.original_raycast_fn end)
+    end
+    if self.original_sound_originals and self.original_sound_modules then
+        pcall(function()
+            self.original_sound_modules.viewmodel.PlayHitmarkerSound  = self.original_sound_originals.hitmarker
+            self.original_sound_modules.client_item.CreateSound       = self.original_sound_originals.create_sound
+        end)
+    end
+    if self.original_toggle_autoshoot_fn then
+        pcall(function() mechanics_controller._ToggleAutoShoot = self.original_toggle_autoshoot_fn end)
+    end
+    if self.tracer_effect and self.original_tracer_play then
+        pcall(function() self.tracer_effect.Play = self.original_tracer_play end)
+    end
+
+    for sound in pairs(self.hit_sounds) do pcall(function() sound:Stop(); sound:Destroy() end) end
+    self.hit_sounds = {}
+
+    local st = self.ui.state
+    for _, v in pairs(st) do
+        if type(v) == "table" and v.enabled ~= nil then v.enabled = false end
+    end
+end
+
+local combat_instance = Combat.new(UILibrary)
+UILibrary.state = CombatState
+combat_instance:ensure_hit_sound_dir()
+combat_instance:install_sound_hooks()
+combat_instance:install_triggerbot()
+task.spawn(function() for i=1,120 do combat_instance:install_silent_raycast(); if combat_instance.silent_raycast_hooked then break end task.wait(0.25) end end)
+combat_instance:install_bullet_tracers()
+combat_instance:start_fov_drawings()
+combat_instance.aim_step_conn = run_service.RenderStepped:Connect(function(dt) combat_instance:step_aim_assist(dt) end)
+
+
+-- ============================================================================
+-- 3. RAGEBOT LOGIC (integrated from ragebot.lua - no LPH macros)
+-- ============================================================================
+local Ragebot = (function()
+    local players           = cloneref(game:GetService("Players"))
+    local run_svc           = cloneref(game:GetService("RunService"))
+    local userinput         = cloneref(game:GetService("UserInputService"))
+    local workspace         = cloneref(game:GetService("Workspace"))
+    local replicated_storage= cloneref(game:GetService("ReplicatedStorage"))
+    local local_player = players.LocalPlayer
+    local camera       = workspace.CurrentCamera
+
+    local rb_conns = {}
+    local function rbtrack(c) rb_conns[#rb_conns + 1] = c; return c end
+
+    --// modules
+    local modules = {}
+    local function get_modules()
+        if modules.ready then return modules end
+        local ps     = local_player:FindFirstChild("PlayerScripts")
+        local rs_mod = replicated_storage:FindFirstChild("Modules")
+        if rs_mod then
+            local function sr(ref) local ok,r = pcall(require, ref); return ok and r or nil end
+            modules.enums   = sr(rs_mod:FindFirstChild("EnumLibrary"))
+            modules.utility = sr(rs_mod:FindFirstChild("Utility"))
+        end
+        if ps then
+            local ctrls = ps:FindFirstChild("Controllers")
+            if ctrls then
+                local function sr(ref) local ok,r = pcall(require, ref); return ok and r or nil end
+                modules.fighter = sr(ctrls:FindFirstChild("FighterController"))
+                modules.camctrl = sr(ctrls:FindFirstChild("CameraController"))
+            end
+        end
+        modules.ready = modules.enums and modules.fighter and modules.utility
+        return modules
+    end
+
+    --// cfg
+    local cfg = {
+        master         = false,
+        enabled        = false,
+        auto           = true,
+        autoshoot      = true,
+        shoot_attempts = 1,
+        hit_part       = "Head",
+        weapon_slot    = "primary",
+        atk_pos        = "default",
+        under_offset   = 4,
+        custom_atk     = false,
+        custom_height  = 2,
+        custom_front   = 0,
+        custom_side    = 0,
+        custom_vert    = 0,
+        custom_radius  = 0,
+        predict        = false,
+        predict_mul    = 1.2,
+        voidspam       = false,
+        vs_shoot_ms    = 500,
+        vs_hide_ms     = 500,
+        status_label   = false,
+    }
+
+    local target = { char=nil, player=nil, immune=false, manual=false }
+
+    local orbit = {
+        active=false, angle=0, speed=9000,
+        serverpos=nil, savedpos=nil, conn=nil,
+        height=2, radius=0,
+    }
+
+    local state = { csync=false, reloading=false, outofammo=false, reload_at=0 }
+    local vspam = { phase=nil, last=0, duration=0, shoot_ready_at=0 }
+    local vsnap = { cf=nil, lv=nil, av=nil }
+    local oldpos = nil
+    local oldpos_char = nil
+
+    local SLOTS          = { primary=1, secondary=2, melee=3 }
+    local MELEE_NAMES    = {["Battle Axe"]=true,["Chainsaw"]=true,["Fists"]=true,["Gunblade"]=true,["Katana"]=true,["Knife"]=true,["Scythe"]=true,["Trowel"]=true,["Maul"]=true}
+    local INFINITE_WPNS  = {["Energy Rifle"]=true,["Energy Pistols"]=true}
+
+    local function in_lobby() return false end
+
+    local katanausers = {}
+    local shared_env = (getgenv and getgenv()) or _G
+    shared_env.dreamerkatana = katanausers
+
+    local function detectkatana()
+        task.spawn(function()
+            local katana, attempts = nil, 0
+            while attempts < 10 do
+                pcall(function()
+                    local m = local_player.PlayerScripts.Modules.Items:FindFirstChild("Katana", true)
+                    if m then katana = require(m) end
+                end)
+                if not katana then
+                    for _, m in pairs(local_player.PlayerScripts:GetDescendants()) do
+                        if m.Name == "Katana" and m:IsA("ModuleScript") then
+                            local ok, res = pcall(require, m)
+                            if ok then katana = res; break end
+                        end
+                    end
+                end
+                if katana and type(katana) == "table" and katana.StartAiming then break end
+                attempts += 1
+                task.wait(1)
+            end
+            if katana and type(katana) == "table" and katana.StartAiming then
+                local old = katana.StartAiming
+                katana.StartAiming = function(self, force)
+                    local fighter = self.ClientFighter
+                    local player  = fighter and fighter.Player
+                    if player then
+                        katanausers[player] = true
+                        local dur = (self.Info and self.Info.DeflectDuration) or 0.6
+                        task.delay(dur, function() katanausers[player] = nil end)
+                    end
+                    return old(self, force)
+                end
+            end
+        end)
+    end
+    detectkatana()
+
+    local sling_active
+    local function target_deflecting()
+        return target.player and katanausers[target.player] and not sling_active()
+    end
+
+    local weapon_cache = { t = 0, name = nil }
+    local function parse_weapon_name(model_name)
+        local dash = model_name:find("-", 1, true)
+        if not dash then return nil end
+        local weapon = model_name:sub(dash + 1):match("^%s*(.-)%s*$")
+        return weapon ~= "" and weapon or nil
+    end
+    local function get_weapon(force)
+        local now = os.clock()
+        if not force and now - weapon_cache.t < 0.05 then return weapon_cache.name end
+        local vm = workspace:FindFirstChild("ViewModels")
+        local fp = vm and vm:FindFirstChild("FirstPerson")
+        if not fp then weapon_cache.t = now; weapon_cache.name = nil; return nil end
+        local found = nil
+        for _, c in ipairs(fp:GetChildren()) do
+            found = parse_weapon_name(c.Name)
+            if found then break end
+        end
+        weapon_cache.t = now; weapon_cache.name = found
+        return found
+    end
+    local function is_sling(w)    return w and false end
+    local function is_infinite(w) return w and INFINITE_WPNS[w] == true end
+    local function pick_melee()   return (cfg.weapon_slot or "primary") == "melee" end
+    local function want_slot()    return SLOTS[cfg.weapon_slot or "primary"] or 1 end
+    function sling_active() return false end
+
+    local function hook_fast_melee()
+        if _G.daydreamer_ragebot_melee_hooked then return end
+        local ok, melee_module = pcall(function()
+            return require(local_player.PlayerScripts.Modules.ItemTypes.Melee)
+        end)
+        if not (ok and type(melee_module) == "table") then return end
+        if type(melee_module.StartShooting) ~= "function" then return end
+        local orig = melee_module.StartShooting
+        melee_module.StartShooting = function(self, p1, p2)
+            local old
+            if cfg.master and not in_lobby() and pick_melee() and self.Info then
+                old = self.Info.AttackCooldown
+                self.Info.AttackCooldown = 0
+            end
+            local r = { orig(self, p1, p2) }
+            if old ~= nil and self.Info then self.Info.AttackCooldown = old end
+            return table.unpack(r)
+        end
+        _G.daydreamer_ragebot_melee_hooked = true
+    end
+    task.spawn(function()
+        for _ = 1, 20 do
+            hook_fast_melee()
+            if _G.daydreamer_ragebot_melee_hooked then break end
+            task.wait(1)
+        end
+    end)
+
+    local function is_teammate(p)
+        if not p then return false end
+        return local_player:GetAttribute("TeamID") == p:GetAttribute("TeamID")
+    end
+
+    local function valid_char(char)
+        if not char or not char.Parent then return false end
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if not hum or hum.Health <= 0 then return false end
+        if not char:FindFirstChild("HumanoidRootPart") then return false end
+        local tp = players:GetPlayerFromCharacter(char)
+        return tp and not is_teammate(tp)
+    end
+
+    local function get_ammo(weapon)
+        weapon = weapon or get_weapon()
+        local m = get_modules()
+        if not m.fighter then return 0,0,pick_melee() end
+        if is_infinite(weapon) then return nil,nil,false end
+        local lf = m.fighter.LocalFighter
+        if not (lf and lf.EquippedItem) then return 0,0,pick_melee() end
+        local cur, max_a, is_melee = 0, 0, false
+        pcall(function()
+            local item = lf.EquippedItem
+            local nm = tostring(item:Get("Name") or "")
+            cur     = item:Get("CurrentAmmo") or item:Get("Ammo") or 0
+            max_a   = item:Get("MaxAmmo")     or item:Get("MaxBullets") or cur
+            is_melee = nm:lower():find("melee",1,true) ~= nil or MELEE_NAMES[nm] == true
+        end)
+        if pick_melee() then is_melee = true end
+        return tonumber(cur) or 0, tonumber(max_a) or 0, is_melee
+    end
+
+    local function can_shoot(weapon)
+        weapon = weapon or get_weapon()
+        local char = local_player.Character
+        if not char then return false end
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if not hum or hum.Health <= 0 then return false end
+        if is_infinite(weapon) then return true end
+        local cur, _, melee = get_ammo(weapon)
+        if cur == nil then return true end
+        return cur > 0 or melee
+    end
+
+    local function vm_reloading()
+        local vm = workspace:FindFirstChild("ViewModels")
+        local fp = vm and vm:FindFirstChild("FirstPerson")
+        if not fp then return false end
+        local found = false
+        pcall(function()
+            for _, d in ipairs(fp:GetDescendants()) do
+                if d:IsA("Animator") then
+                    for _, tr in ipairs(d:GetPlayingAnimationTracks()) do
+                        local nm = (tr.Name or ""):lower()
+                        local an = tr.Animation
+                        if an then nm = nm .. " " .. tostring(an.Name):lower() end
+                        if nm:find("reload", 1, true) then found = true return end
+                    end
+                end
+            end
+        end)
+        return found
+    end
+
+    local reload_check_t = 0
+    local reload_check_value = false
+    local function check_reloading(weapon)
+        local now = tick()
+        if now - reload_check_t < 0.08 then return reload_check_value end
+        reload_check_t = now
+        local function finish(value) reload_check_value = value == true; return reload_check_value end
+        if is_infinite(weapon or get_weapon()) then return finish(false) end
+        local m = get_modules()
+        local lf = m.fighter and m.fighter.LocalFighter
+        if not (lf and lf.EquippedItem) then return finish(false) end
+        local res = false
+        pcall(function()
+            for _, k in ipairs({"Reloading","IsReloading","IsReload"}) do
+                local v = lf.EquippedItem:Get(k)
+                if v == true or v == 1 then res = true return end
+            end
+        end)
+        if res then return finish(true) end
+        if vm_reloading() then return finish(true) end
+        return finish(state.reload_at > 0 and (now - state.reload_at) < 1.75)
+    end
+
+    local MAX_VOID_UNDER_FLOOR = 0.5
+    local function void_hrp()
+        local char = local_player.Character
+        return char and char:FindFirstChild("HumanoidRootPart")
+    end
+    local function floor_limited_void_cf(root)
+        if not root then return nil end
+        local pos = root.Position
+        local params = RaycastParams.new()
+        params.FilterType = Enum.RaycastFilterType.Exclude
+        local char = local_player.Character
+        if char then params.FilterDescendantsInstances = { char } end
+        local ok, result = pcall(function()
+            return workspace:Raycast(pos + Vector3.new(0, 8, 0), Vector3.new(0, -512, 0), params)
+        end)
+        if not ok or not result then return nil end
+        local min_y = result.Position.Y - MAX_VOID_UNDER_FLOOR
+        local y = math.max(pos.Y, min_y)
+        return CFrame.new(pos.X, y, pos.Z) * CFrame.Angles(math.pi, math.pi, math.pi)
+    end
+    local function clr_snap()
+        if vsnap.cf then
+            local hrp = void_hrp()
+            if hrp and (not vsnap.char or vsnap.char == local_player.Character) then
+                pcall(function() hrp.CFrame = vsnap.cf end)
+            end
+        end
+        vsnap.cf, vsnap.lv, vsnap.av, vsnap.char = nil, nil, nil, nil
+    end
+    local MAX_REAL_POS = 1e6
+    local function snap_void(hrp)
+        if not hrp then return end
+        if in_lobby() then return end
+        if not vsnap.cf then
+            local cf = hrp.CFrame
+            if cf.Position.Magnitude >= MAX_REAL_POS then return end
+            vsnap.cf   = cf
+            vsnap.char = local_player.Character
+        end
+        pcall(function()
+            local cf = floor_limited_void_cf(hrp)
+            if cf then hrp.CFrame = cf end
+        end)
+    end
+
+    run_svc:BindToRenderStep("ragebot_vfr_csync", Enum.RenderPriority.First.Value, function()
+        if not vsnap.cf then return end
+        if vsnap.char and vsnap.char ~= local_player.Character then
+            vsnap.cf, vsnap.lv, vsnap.av, vsnap.char = nil, nil, nil, nil
+            return
+        end
+        local hrp = void_hrp()
+        if not hrp then return end
+        pcall(function() hrp.CFrame = vsnap.cf end)
+    end)
+
+    local function on_respawn()
+        vsnap.cf, vsnap.lv, vsnap.av, vsnap.char = nil, nil, nil, nil
+        oldpos, oldpos_char = nil, nil
+        orbit.serverpos, orbit.savedpos = nil, nil
+        vspam.phase = nil
+    end
+    rbtrack(local_player.CharacterAdded:Connect(on_respawn))
+
+    local last_slot_force = 0
+    local function lf_items()
+        local m = get_modules(); local lf = m.fighter and m.fighter.LocalFighter
+        return lf and lf.Items
+    end
+    local function slot_item(idx)
+        local items = lf_items(); if not items then return nil end
+        if items[idx] then return items[idx] end
+        if items[tostring(idx)] then return items[tostring(idx)] end
+        local ordered = {}
+        for _, it in pairs(items) do if it then ordered[#ordered+1] = it end end
+        table.sort(ordered, function(a,b)
+            return (tonumber(a:Get("Slot") or a:Get("Index")) or 99) < (tonumber(b:Get("Slot") or b:Get("Index")) or 99)
+        end)
+        return ordered[idx]
+    end
+    local function which_slot(item)
+        if not item then return nil end
+        local items = lf_items(); local oid = item:Get("ObjectID")
+        if items and oid then
+            for i = 1,3 do
+                local it = items[i] or items[tostring(i)]
+                if it and it:Get("ObjectID") == oid then return i end
+            end
+        end
+    end
+    local function press_slot(idx)
+        pcall(function()
+            local vim = game:GetService("VirtualInputManager")
+            local kc = ({Enum.KeyCode.One, Enum.KeyCode.Two, Enum.KeyCode.Three})[idx]
+            if not kc then return end
+            vim:SendKeyEvent(true, kc, false, game); task.wait(0.02)
+            vim:SendKeyEvent(false, kc, false, game)
+        end)
+    end
+    local function eq_slot()
+        if in_lobby() then return end
+        if not cfg.enabled then return end
+        local m = get_modules(); local lf = m.fighter and m.fighter.LocalFighter
+        if not lf then return end
+        local want = want_slot()
+        local eq = lf.EquippedItem
+        if eq and which_slot(eq) == want then return end
+        local now = tick(); if now - last_slot_force < 0.06 then return end
+        last_slot_force = now
+        local item = slot_item(want); local oid = item and item:Get("ObjectID")
+        if oid then
+            local rm = replicated_storage.Remotes.Replication.Fighter.UseItem
+            for _, en in ipairs({"Equip","Switch","Select","EquipItem","ChangeItem"}) do
+                pcall(function()
+                    local ev = m.enums:ToEnum(en)
+                    if ev then rm:FireServer(oid, ev, nil, nil) end
+                end)
+            end
+        end
+        pcall(function()
+            if lf.EquipItem then lf:EquipItem(want) end
+            if lf.SwitchToSlot then lf:SwitchToSlot(want) end
+        end)
+        press_slot(want)
+    end
+
+    local function atk_cfg()
+        if pick_melee() and not cfg.custom_atk then
+            return {height=0,front=0,side=0,vertical=0,radius=0}
+        end
+        if cfg.custom_atk then
+            return {height=cfg.custom_height or 2,front=cfg.custom_front or 0,
+                    side=cfg.custom_side or 0,vertical=cfg.custom_vert or 0,radius=cfg.custom_radius or 0}
+        end
+        if cfg.atk_pos == "under" then
+            return {height=0,front=0,side=0,vertical=-(cfg.under_offset or 4),radius=0}
+        end
+        local w = get_weapon()
+        return {height=(w and w:lower():find("sniper")) and 8 or 2,front=0,side=0,vertical=0,radius=0}
+    end
+    local function orb_base(root)
+        if not root then return Vector3.zero end
+        local s = atk_cfg()
+        return root.Position + root.CFrame.LookVector*s.front + root.CFrame.RightVector*s.side + Vector3.new(0,s.vertical,0)
+    end
+    local function refresh_atk() local s=atk_cfg(); orbit.height=s.height; orbit.radius=s.radius or 0 end
+    local resolve_hit_part
+
+    local function clear_shot_line(origin, target_part, target_pos)
+        if not target_part then return false end
+        local dir = target_pos - origin
+        if dir.Magnitude < 1e-3 then return true end
+        local params = RaycastParams.new()
+        params.FilterType = Enum.RaycastFilterType.Exclude
+        local ignore = {}
+        local char = local_player.Character
+        if char then ignore[#ignore + 1] = char end
+        params.FilterDescendantsInstances = ignore
+        local ok, result = pcall(function() return workspace:Raycast(origin, dir, params) end)
+        if not ok then return true end
+        if not result then return true end
+        local hit = result.Instance
+        return hit and target.char and hit:IsDescendantOf(target.char)
+    end
+
+    local function clear_attack_pos(troot, hit_part)
+        if not troot then return nil end
+        local s = atk_cfg()
+        local base = troot.Position
+            + Vector3.new(0, s.height, 0)
+            + troot.CFrame.LookVector * s.front
+            + troot.CFrame.RightVector * s.side
+        local candidates = {
+            base,
+            base + Vector3.new(0, 2, 0),
+            base + Vector3.new(0, 4, 0),
+            troot.Position + Vector3.new(0, math.max(s.height or 0, 4), 0),
+            troot.Position + Vector3.new(0, 7, 0),
+            troot.Position + troot.CFrame.LookVector * -5 + Vector3.new(0, 3, 0),
+            troot.Position + troot.CFrame.RightVector * 5 + Vector3.new(0, 3, 0),
+            troot.Position + troot.CFrame.RightVector * -5 + Vector3.new(0, 3, 0),
+        }
+        local target_pos = hit_part and hit_part.Position or troot.Position
+        for _, pos in ipairs(candidates) do
+            if clear_shot_line(pos, hit_part or troot, target_pos) then return pos end
+        end
+        return nil
+    end
+
+    local function set_vspam_attack_pos()
+        if not target.char then return false end
+        local troot = target.char:FindFirstChild("HumanoidRootPart")
+        if not troot then return false end
+        local hit_part = resolve_hit_part(target.char, cfg.hit_part) or troot
+        local surf_pos = clear_attack_pos(troot, hit_part)
+        if not surf_pos then return false end
+        orbit.serverpos = surf_pos
+        local surf_cf = CFrame.new(surf_pos)
+        local hrp = void_hrp()
+        if hrp then pcall(function() hrp.CFrame = surf_cf end) end
+        return true
+    end
+
+    local function tick_vspam()
+        if not cfg.voidspam then return end
+        local now = tick(); local elapsed = now - vspam.last
+        if vspam.phase == "shoot" then
+            set_vspam_attack_pos()
+            if elapsed >= vspam.duration then
+                vspam.phase="hide"; vspam.duration=(cfg.vs_hide_ms or 500)/1000; vspam.last=now
+            end
+        elseif vspam.phase == "hide" then
+            if elapsed >= vspam.duration then
+                vspam.phase="shoot"; vspam.duration=(cfg.vs_shoot_ms or 500)/1000; vspam.last=now
+                clr_snap()
+                if set_vspam_attack_pos() then vspam.shoot_ready_at = now + 0.08 end
+            end
+        else
+            vspam.phase="shoot"; vspam.duration=(cfg.vs_shoot_ms or 500)/1000; vspam.last=now
+            set_vspam_attack_pos()
+            vspam.shoot_ready_at = now + 0.08
+        end
+    end
+    local function tick_ammo(weapon)
+        weapon = weapon or get_weapon()
+        if is_infinite(weapon) then
+            state.outofammo=false; state.reloading=false; state.reload_at=0; return nil,nil,false
+        end
+        local cur, _, melee = get_ammo(weapon)
+        local was_oom = state.outofammo
+        state.outofammo = not melee and (tonumber(cur) or 0) <= 0
+        local rel = check_reloading(weapon)
+        if rel and not state.reloading then state.reload_at = tick()
+        elseif not rel then state.reload_at = 0 end
+        state.reloading = rel
+        if not state.outofammo and was_oom and cfg.voidspam then
+            vspam.phase = "shoot"; vspam.last = tick()
+        end
+        return cur, nil, melee
+    end
+    local autoshoot
+
+    local function stop_sync()
+        if not state.csync then return end
+        if orbit.conn then orbit.conn:Disconnect(); orbit.conn=nil end
+        state.csync=false; orbit.active=false; clr_snap(); vspam.phase=nil; vspam.shoot_ready_at=0
+        local m = get_modules(); local lf = m.fighter and m.fighter.LocalFighter
+        if orbit.savedpos and lf and lf.Entity and lf.Entity.RootPart and not _G.dreamerunderground then
+            pcall(function() lf.Entity.RootPart.CFrame = orbit.savedpos end)
+        end
+        orbit.serverpos=nil; orbit.savedpos=nil; oldpos=nil; oldpos_char=nil
+    end
+    local function start_sync()
+        if in_lobby() then return end
+        if state.csync then return end
+        if target.immune and not sling_active() then return end
+        if not target.char or not valid_char(target.char) then return end
+        local m = get_modules(); if not m.ready then return end
+        orbit.serverpos = nil
+        eq_slot(); state.csync=true; orbit.active=true; refresh_atk()
+        local lf0 = m.fighter.LocalFighter
+        if lf0 and lf0.Entity and lf0.Entity.RootPart and not orbit.savedpos then
+            orbit.savedpos = lf0.Entity.RootPart.CFrame
+        end
+        orbit.conn = run_svc.Heartbeat:Connect(function(dt)
+            if not state.csync then return end
+            if target.immune and not sling_active() then stop_sync() return end
+            if not target.char or not valid_char(target.char) then stop_sync() return end
+            local m = get_modules(); local lf = m.fighter and m.fighter.LocalFighter
+            if not lf or not lf.Entity or not lf.Entity.RootPart then return end
+            local _w = get_weapon(); local sling = is_sling(_w)
+            local eq = lf.EquippedItem
+            if eq and not pick_melee() then
+                local nm = tostring(eq:Get("Name") or ""):lower()
+                if nm:find("fist",1,true) or nm:find("utility",1,true) then return end
+            end
+            eq_slot()
+            local myroot = lf.Entity and lf.Entity.RootPart
+            if not myroot then return end
+            do
+                local cf0 = myroot.CFrame
+                if cf0.Position.Magnitude < MAX_REAL_POS then
+                    oldpos = cf0; oldpos_char = local_player.Character
+                end
+            end
+            if state.reloading and not sling then
+                if cfg.voidspam then
+                    local hrp = void_hrp(); if hrp then snap_void(hrp) end
+                    return
+                end
+            end
+            if not sling and cfg.voidspam then
+                tick_vspam()
+                if vspam.phase == "hide" then
+                    local hrp = void_hrp(); if hrp then snap_void(hrp) end
+                    return
+                end
+            end
+            local tchar = target.char
+            if not tchar then stop_sync() return end
+            local root = tchar:FindFirstChild("HumanoidRootPart")
+            if not root then stop_sync() return end
+            if target_deflecting() then
+                if cfg.voidspam then local hrp = void_hrp(); if hrp then snap_void(hrp) end end
+                return
+            end
+            if state.outofammo and not is_infinite(_w) then
+                if cfg.voidspam then
+                    local hrp = void_hrp()
+                    if hrp then snap_void(hrp)
+                    else
+                        local cf = floor_limited_void_cf(myroot)
+                        if cf then orbit.serverpos = cf.Position; pcall(function() myroot.CFrame = cf end) end
+                    end
+                    return
+                end
+            end
+            local s = atk_cfg(); orbit.height=s.height; orbit.radius=s.radius or 0
+            orbit.angle = orbit.angle + orbit.speed*dt
+            orbit.serverpos = orb_base(root) + Vector3.new(
+                math.cos(orbit.angle)*orbit.radius, orbit.height, math.sin(orbit.angle)*orbit.radius)
+            if cfg.voidspam and not sling then
+                local hit_part = resolve_hit_part(target.char, cfg.hit_part) or root
+                orbit.serverpos = clear_attack_pos(root, hit_part) or orbit.serverpos
+            end
+            if not _G.dreamerunderground then
+                local cur_cf = myroot.CFrame
+                local new_cf = CFrame.new(orbit.serverpos)
+                if (cfg.voidspam and vspam.phase == "shoot") or (new_cf.Position - cur_cf.Position).Magnitude < 2000 then
+                    myroot.CFrame = new_cf; orbit.savedpos = cur_cf
+                end
+            end
+            if cfg.voidspam and cfg.autoshoot and not target.immune then autoshoot() end
+        end)
+    end
+
+    local pred_vel=Vector3.new(); local pred_last_pos=nil; local pred_last_t=0
+    local function update_vel()
+        if not target.char or not cfg.predict then pred_vel=Vector3.new(); pred_last_pos=nil; return end
+        local root = target.char:FindFirstChild("HumanoidRootPart"); if not root then return end
+        local now=tick(); local dt=now-pred_last_t
+        if dt>0 and dt<0.1 and pred_last_pos then
+            pred_vel = pred_vel:Lerp((root.Position-pred_last_pos)/dt, 0.6)
+        end
+        pred_last_pos=root.Position; pred_last_t=now
+    end
+    local function predict_pos(part, origin)
+        if not cfg.predict or not part then return part and part.Position or Vector3.new() end
+        local dist = (part.Position-origin).Magnitude
+        local ping = 0; pcall(function()
+            ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()/1000 end)
+        return part.Position + pred_vel*((dist/3000+ping)*cfg.predict_mul)
+    end
+
+    resolve_hit_part = function(char, name)
+        if not char then return nil end
+        local fc = function(n) return char:FindFirstChild(n) end
+        if name=="Closest" then
+            local myroot = local_player.Character and local_player.Character:FindFirstChild("HumanoidRootPart")
+            if not myroot then return fc("Head") end
+            local best,bd=nil,math.huge
+            for _,p in pairs(char:GetChildren()) do
+                if p:IsA("BasePart") then local d=(p.Position-myroot.Position).Magnitude
+                    if d<bd then bd=d; best=p end end
+            end; return best or fc("Head")
+        elseif name=="Random" then
+            local t={"Head","HumanoidRootPart","UpperTorso"}; return fc(t[math.random(#t)]) or fc("Head")
+        end
+        return fc(name) or fc("HumanoidRootPart") or fc("Head")
+    end
+
+    autoshoot = function(weapon)
+        weapon = weapon or get_weapon()
+        if in_lobby() then return end
+        if not cfg.enabled or not cfg.autoshoot or not target.char then return end
+        if target.immune and not is_sling(weapon) then return end
+        if target_deflecting() then return end
+        if cfg.voidspam and not sling_active() then
+            if vspam.phase=="hide" then return end
+            if vspam.phase=="shoot" and tick() < (vspam.shoot_ready_at or 0) then return end
+        end
+        local melee = pick_melee()
+        local m = get_modules(); local lf = m.fighter and m.fighter.LocalFighter
+        if not (lf and lf.EquippedItem) then return end
+        if not is_infinite(weapon) and not melee then
+            if state.reloading or state.outofammo then return end
+            if not can_shoot(weapon) then return end
+        end
+        if not valid_char(target.char) then return end
+        local hit_part = resolve_hit_part(target.char, cfg.hit_part); if not hit_part then return end
+        local root = local_player.Character and local_player.Character:FindFirstChild("HumanoidRootPart")
+        if state.csync and not orbit.serverpos then return end
+        local shoot_pos = (state.csync and orbit.serverpos) or (root and root.Position) or Vector3.new()
+        local target_pos = predict_pos(hit_part, shoot_pos)
+        if cfg.voidspam and not sling_active() and not clear_shot_line(shoot_pos, hit_part, target_pos) then
+            return
+        end
+        if not (m.utility and m.enums) then return end
+        local data = {
+            [utf8.char(1)] = {
+                [utf8.char(0)] = m.utility:EncodeCFrame(CFrame.new(shoot_pos, target_pos)),
+                [utf8.char(1)] = m.utility:EncodeCFrame(CFrame.new(shoot_pos, target_pos)),
+                [utf8.char(2)] = hit_part,
+                [utf8.char(3)] = m.utility:EncodeCFrame(CFrame.new(0.43,0.25,0.42)),
+            },
+        }
+        local oid = lf.EquippedItem:Get("ObjectID"); if not oid then return end
+        local attempts = melee and 1 or math.clamp(math.floor(tonumber(cfg.shoot_attempts) or 1), 1, 3)
+        for _ = 1, attempts do
+            pcall(function()
+                replicated_storage.Remotes.Replication.Fighter.UseItem:FireServer(
+                    oid, m.enums:ToEnum("StartShooting"), data, nil)
+            end)
+        end
+        if weapon ~= "Flamethrower" and type(lf.Input) == "function" then
+            task.delay(0.03, function() pcall(lf.Input, lf, "FinishShooting") end)
+        end
+    end
+
+    local function nearest()
+        if in_lobby() then return nil end
+        local cursor = userinput:GetMouseLocation()
+        local best, best_d = nil, math.huge
+        for _, p in players:GetPlayers() do
+            if p ~= local_player and p.Character and valid_char(p.Character) then
+                local root = p.Character:FindFirstChild("HumanoidRootPart")
+                if root then
+                    local wts = _G.dreamerw2s or function(pos) return camera:WorldToViewportPoint(pos) end
+                    local sp, on = wts(root.Position, camera)
+                    if on and sp then
+                        local d = (Vector2.new(sp.X,sp.Y)-cursor).Magnitude
+                        if d < best_d then best=p.Character; best_d=d end
+                    end
+                end
+            end
+        end
+        return best
+    end
+    local function clear_target()
+        cfg.enabled=false; stop_sync()
+        target.char=nil; target.player=nil; target.manual=false; target.immune=false
+    end
+    local function set_target(char)
+        if in_lobby() then return end
+        if not char then return end
+        orbit.serverpos = nil
+        cfg.enabled=true; target.char=char
+        target.player=players:GetPlayerFromCharacter(char)
+        target.immune=false; target.manual=false
+        local root = char:FindFirstChild("HumanoidRootPart")
+        target.immune = root and root:FindFirstChild("Attachment") ~= nil
+        if not target.immune or sling_active() then eq_slot(); start_sync() end
+    end
+    task.defer(function()
+        local m = get_modules(); if not m.camctrl then return end
+        local old = m.camctrl.Update
+        m.camctrl.Update = function(...)
+            local lf = m.fighter and m.fighter.LocalFighter
+            if not _G.dreamerunderground and not cfg.voidspam then
+                if state.csync and lf and lf.Entity and lf.Entity.RootPart and oldpos
+                   and oldpos_char == local_player.Character then
+                    lf.Entity.RootPart.CFrame = oldpos
+                end
+            end
+            return old(...)
+        end
+    end)
+
+    local immune_list = {}
+    local next_immune_scan = 0
+    rbtrack(run_svc.Heartbeat:Connect(function()
+        local now = tick()
+        if now < next_immune_scan then return end
+        next_immune_scan = now + 0.1
+        for _, p in pairs(players:GetPlayers()) do
+            if p ~= local_player then
+                local char = p.Character
+                local root = char and char:FindFirstChild("HumanoidRootPart")
+                local now_immune = root and root:FindFirstChild("Attachment") ~= nil
+                if now_immune and not immune_list[p] then
+                    immune_list[p] = true
+                    if target.player == p then
+                        target.immune=true
+                        if not sling_active() then vspam.phase=nil; clr_snap(); stop_sync() end
+                    end
+                elseif not now_immune and immune_list[p] then
+                    immune_list[p] = nil
+                    if target.player == p then
+                        target.immune = false
+                        if cfg.enabled and target.char and valid_char(target.char) then start_sync() end
+                    end
+                end
+            end
+        end
+    end))
+
+    local function update_sling(weapon) return is_sling(weapon or get_weapon()) end
+    local fflag_sling_state = nil
+    local function update_fflag(weapon, target_ok)
+        local want = cfg.enabled and not in_lobby() and target.char
+            and target_ok ~= false
+            and (target_ok == true or valid_char(target.char))
+            and is_sling(weapon or get_weapon())
+        if fflag_sling_state == want then return end
+        fflag_sling_state = want
+        if want then
+            pcall(function() setfflag("TargetTimeDelayFacctorTenths","999999") end)
+        else
+            pcall(function() setfflag("TargetTimeDelayFacctorTenths","1") end)
+        end
+    end
+
+    rbtrack(run_svc.Heartbeat:Connect(function()
+        get_modules()
+        if in_lobby() then
+            if cfg.enabled or state.csync or target.char then clear_target() end
+            cfg.master = false
+            update_fflag(nil, false); update_sling(nil)
+            return
+        end
+        local active = cfg.master or cfg.enabled or state.csync
+        if not active then update_fflag(nil, false); return end
+        local weapon = get_weapon()
+        local target_ok = target.char and valid_char(target.char) or false
+        local sling = update_sling(weapon)
+        update_fflag(weapon, target_ok)
+        local cur, _, melee = tick_ammo(weapon)
+        if cfg.master and cfg.auto then
+            if (cur==nil or cur>0 or melee) and not state.reloading then
+                if not cfg.enabled or not target.char or not target_ok then
+                    local nt = nearest()
+                    if nt then
+                        if cfg.enabled then stop_sync() end
+                        set_target(nt)
+                        target_ok = target.char and valid_char(target.char) or false
+                        sling = is_sling(weapon)
+                    end
+                end
+            end
+        end
+        if cfg.enabled and target.char then
+            if not target_ok then clear_target(); return end
+            eq_slot()
+            if cfg.autoshoot and (not target.immune or sling) then
+                if not (state.csync and cfg.voidspam and not sling) then autoshoot(weapon) end
+            end
+        end
+    end))
+    rbtrack(run_svc.RenderStepped:Connect(function()
+        if in_lobby() then pred_vel=Vector3.new(); pred_last_pos=nil; return end
+        if cfg.enabled and target.char and cfg.predict then update_vel() end
+    end))
+
+    -- Status GUI (with safe parenting - never blocks load)
+    local status_gui, status_lbl
+    do
+        local function try_parent(gui)
+            if type(gethui) == "function" then
+                local ok, h = pcall(gethui)
+                if ok and h then
+                    local pok = pcall(function() gui.Parent = h end)
+                    if pok then return true end
+                end
+            end
+            local cg_ok, cg = pcall(function() return game:GetService("CoreGui") end)
+            if cg_ok and cg then
+                local pok = pcall(function() gui.Parent = cg end)
+                if pok then return true end
+            end
+            local lpl = players.LocalPlayer
+            local pg = lpl and lpl:FindFirstChildOfClass("PlayerGui")
+            if pg then
+                local pok = pcall(function() gui.Parent = pg end)
+                if pok then return true end
+            end
+            return false
+        end
+
+        local gui = Instance.new("ScreenGui")
+        gui.Name = "rb_status"
+        gui.ResetOnSpawn = false
+        gui.IgnoreGuiInset = true
+        gui.DisplayOrder = 10001
+        gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+
+        if try_parent(gui) then
+            local lbl = Instance.new("TextLabel")
+            lbl.BackgroundTransparency = 1
+            lbl.AnchorPoint = Vector2.new(0.5, 0.5)
+            lbl.Position = UDim2.new(0.5, 0, 0.5, 30)
+            lbl.Size = UDim2.new(0, 300, 0, 20)
+            lbl.TextColor3 = Color3.fromRGB(255, 255, 255)
+            lbl.TextSize = 14
+            lbl.Font = Enum.Font.Gotham
+            lbl.TextStrokeTransparency = 0.5
+            lbl.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+            lbl.Visible = false
+            lbl.Parent = gui
+            status_gui = gui
+            status_lbl = lbl
+        else
+            pcall(function() gui:Destroy() end)
+            status_gui, status_lbl = nil, nil
+        end
+    end
+
+    local next_status_update = 0
+    rbtrack(run_svc.RenderStepped:Connect(function()
+        if not cfg.status_label or not status_lbl then return end
+        local now = tick()
+        if now < next_status_update then return end
+        next_status_update = now + 0.1
+        local text
+        if not cfg.master then
+            text = in_lobby() and "ragebot: disabled (in lobby)" or " "
+        elseif not target.char then
+            text = "ragebot: idle"
+        elseif target.immune then
+            text = "ragebot: target is immune"
+        elseif target_deflecting() then
+            text = "ragebot: target deflecting with katana"
+        elseif state.reloading or state.outofammo then
+            text = "ragebot: out of ammo, reloading"
+        elseif cfg.voidspam and vspam.phase == "hide" then
+            text = "ragebot: voidspamming"
+        elseif state.csync then
+            text = "ragebot: attacking"
+        else
+            text = "ragebot: idle"
+        end
+        status_lbl.Text = text
+        status_lbl.Visible = true
+    end))
+
+    return {
+        cfg = cfg,
+        set_master = function(v)
+            if v == true and in_lobby() then cfg.master = false; clear_target(); return false end
+            cfg.master = v == true
+            if v then
+                local nt = nearest()
+                if nt then target.manual = true; set_target(nt) end
+            else
+                clear_target()
+            end
+            return true
+        end,
+        set_custom_atk = function(v) cfg.custom_atk = v == true; refresh_atk() end,
+        set_predict = function(v) cfg.predict = v == true end,
+        set_voidspam = function(v)
+            cfg.voidspam = v == true
+            if not v then vspam.phase = nil; vspam.shoot_ready_at = 0; clr_snap() end
+        end,
+        set_attempts = function(v) cfg.shoot_attempts = math.clamp(math.floor(tonumber(v) or 1), 1, 3) end,
+        set_hit_part = function(v) cfg.hit_part = v or "Head" end,
+        set_weapon_slot = function(v) cfg.weapon_slot = v or "primary"; refresh_atk(); eq_slot() end,
+        set_atk_mode = function(v) cfg.atk_pos = v or "default"; refresh_atk() end,
+        set_under_offset = function(v) cfg.under_offset = tonumber(v) or 4; refresh_atk() end,
+        set_custom_height = function(v) cfg.custom_height = tonumber(v) or 2; refresh_atk() end,
+        set_custom_front = function(v) cfg.custom_front = tonumber(v) or 0; refresh_atk() end,
+        set_custom_side = function(v) cfg.custom_side = tonumber(v) or 0; refresh_atk() end,
+        set_custom_vert = function(v) cfg.custom_vert = tonumber(v) or 0; refresh_atk() end,
+        set_custom_radius = function(v) cfg.custom_radius = tonumber(v) or 0; refresh_atk() end,
+        set_predict_mul = function(v) cfg.predict_mul = (tonumber(v) or 12) / 10 end,
+        set_vs_shoot_ms = function(v) cfg.vs_shoot_ms = tonumber(v) or 500 end,
+        set_vs_hide_ms = function(v) cfg.vs_hide_ms = tonumber(v) or 500 end,
+        set_status_label = function(v)
+            cfg.status_label = v == true
+            if status_lbl then status_lbl.Visible = v == true end
+        end,
+        cleanup = function()
+            cfg.master = false; cfg.enabled = false
+            pcall(stop_sync)
+            pcall(function() run_svc:UnbindFromRenderStep("ragebot_vfr_csync") end)
+            for _, c in ipairs(rb_conns) do pcall(function() c:Disconnect() end) end
+            rb_conns = {}
+            pcall(function() if orbit.conn then orbit.conn:Disconnect(); orbit.conn = nil end end)
+            pcall(function() if status_gui then status_gui:Destroy() end end)
+            pcall(function() setfflag("TargetTimeDelayFacctorTenths", "1") end)
+        end,
+    }
+end)()
+
+shared.daydreamer_rivals_ragebot_cleanup = Ragebot.cleanup
+
+
+-- ============================================================================
+-- 4. DEVICE PROMPT & UI CONSTRUCTION
+-- ============================================================================
+local function AskForDeviceAndLoad()
+    local pGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    local gui = Instance.new("ScreenGui"); gui.Name = "DeviceSelector"; gui.ResetOnSpawn = false; gui.IgnoreGuiInset = true; gui.DisplayOrder = 999; gui.Parent = pGui
+
+    local bg = Instance.new("Frame"); bg.Size = UDim2.new(0, 320, 0, 210); bg.Position = UDim2.new(0.5, -160, 0.5, -105); bg.BackgroundColor3 = Color3.fromRGB(15, 15, 18); bg.BorderSizePixel = 0; bg.Parent = gui
+    Instance.new("UICorner", bg).CornerRadius = UDim.new(0, 10)
+    local stroke = Instance.new("UIStroke", bg); stroke.Color = Color3.fromRGB(40, 40, 45); stroke.Thickness = 1
+
+    local title = Instance.new("TextLabel"); title.Size = UDim2.new(1, 0, 0, 50); title.BackgroundTransparency = 1; title.Text = "What device are you using?"; title.TextColor3 = Color3.fromRGB(230, 230, 235); title.Font = Enum.Font.GothamBold; title.TextSize = 16; title.Parent = bg
+
+    local function makeBtn(text, yPos, scaleValue)
+        local btn = Instance.new("TextButton"); btn.Size = UDim2.new(0, 280, 0, 38); btn.Position = UDim2.new(0, 20, 0, yPos); btn.BackgroundColor3 = Color3.fromRGB(30, 30, 36); btn.Text = text; btn.TextColor3 = Color3.fromRGB(200, 200, 205); btn.Font = Enum.Font.GothamMedium; btn.TextSize = 14; btn.Parent = bg
+        Instance.new("UICorner", btn).CornerRadius = UDim.new(0, 6)
+        btn.MouseEnter:Connect(function() btn.BackgroundColor3 = Color3.fromRGB(45, 45, 55) end)
+        btn.MouseLeave:Connect(function() btn.BackgroundColor3 = Color3.fromRGB(30, 30, 36) end)
+        btn.MouseButton1Click:Connect(function()
+            gui:Destroy()
+
+            UILibrary:Build({ Scale = scaleValue })
+
+            local CombatTab = UILibrary:AddTab({ Name = "Combat", Icon = "target" })
+
+            -- Silent Aim
+            UILibrary:AddSubTab(CombatTab, { Name = "silent aim", Icon = "target", Build = function(sub)
+                UILibrary:AddToggle(sub, { Name = "enabled", Default = false, Callback = function(v) CombatState.silent_aim.enabled = v end })
+                UILibrary:AddSlider(sub, { Name = "fov", Min = 10, Max = 750, Default = 100, Callback = function(v) CombatState.silent_aim.fov = v end })
+                UILibrary:AddToggle(sub, { Name = "draw fov", Default = false, Callback = function(v) CombatState.silent_aim.draw_fov = v end })
+                UILibrary:AddColorPicker(sub, { Name = "fov color", Default = Color3.new(1,1,1), Callback = function(c) CombatState.silent_aim.fov_color = c end })
+                UILibrary:AddSlider(sub, { Name = "hit chance", Min = 0, Max = 100, Default = 100, Callback = function(v) CombatState.silent_aim.hit_chance = v end })
+                UILibrary:AddToggle(sub, { Name = "katana deflect check", Default = false, Callback = function(v) CombatState.silent_aim.katana_check = v end })
+                UILibrary:AddToggle(sub, { Name = "visible check", Default = false, Callback = function(v) CombatState.silent_aim.visible_check = v end })
+                UILibrary:AddToggle(sub, { Name = "manipulation", Default = true, Callback = function(v) CombatState.silent_aim.manipulation = v end })
+                UILibrary:AddDropdown(sub, { Name = "hit part", Options = {"Head", "HumanoidRootPart", "Torso", "UpperTorso", "LowerTorso", "Random", "Closest"}, Default = "Head", Callback = function(v) CombatState.silent_aim.hit_part = v end })
+                UILibrary:AddSlider(sub, { Name = "head hit chance", Min = 0, Max = 100, Default = 0, Callback = function(v) CombatState.silent_aim.head_hit_chance = v end })
+            end })
+
+            -- Aim Assist
+            UILibrary:AddSubTab(CombatTab, { Name = "aim assist", Icon = "target", Build = function(sub)
+                UILibrary:AddToggle(sub, { Name = "enabled", Default = false, Callback = function(v) CombatState.aim_assist.enabled = v end })
+                UILibrary:AddSlider(sub, { Name = "fov", Min = 10, Max = 1000, Default = 500, Callback = function(v) CombatState.aim_assist.fov = v end })
+                UILibrary:AddToggle(sub, { Name = "draw fov", Default = false, Callback = function(v) CombatState.aim_assist.draw_fov = v end })
+                UILibrary:AddColorPicker(sub, { Name = "fov color", Default = Color3.new(1,1,1), Callback = function(c) CombatState.aim_assist.fov_color = c end })
+                UILibrary:AddSlider(sub, { Name = "smoothness", Min = 1, Max = 100, Default = 20, Callback = function(v) CombatState.aim_assist.smoothness = v end })
+                UILibrary:AddDropdown(sub, { Name = "aim method", Options = {"Linear", "Snap", "Expo", "EaseIn", "EaseOut", "EaseInOut", "Cubic"}, Default = "Linear", Callback = function(v) CombatState.aim_assist.aim_method = v end })
+                UILibrary:AddDropdown(sub, { Name = "aim part", Options = {"Head", "HumanoidRootPart", "Torso", "UpperTorso", "LowerTorso", "Random", "Closest"}, Default = "Head", Callback = function(v) CombatState.aim_assist.aim_part = v end })
+                UILibrary:AddToggle(sub, { Name = "visibility check", Default = false, Callback = function(v) CombatState.aim_assist.visible_check = v end })
+                UILibrary:AddToggle(sub, { Name = "sticky target", Default = false, Callback = function(v) CombatState.aim_assist.sticky_target = v end })
+                UILibrary:AddToggle(sub, { Name = "katana deflect check", Default = false, Callback = function(v) CombatState.aim_assist.katana_check = v end })
+                UILibrary:AddSlider(sub, { Name = "reaction time", Min = 0, Max = 500, Default = 0, Callback = function(v) CombatState.aim_assist.reaction_time = v end })
+                UILibrary:AddSlider(sub, { Name = "target switch delay", Min = 0, Max = 500, Default = 0, Callback = function(v) CombatState.aim_assist.target_switch_delay = v end })
+                UILibrary:AddSlider(sub, { Name = "overshoot chance", Min = 0, Max = 100, Default = 0, Callback = function(v) CombatState.aim_assist.overshoot_chance = v end })
+                UILibrary:AddSlider(sub, { Name = "overshoot distance", Min = 1, Max = 100, Default = 15, Callback = function(v) CombatState.aim_assist.overshoot_pixels = v end })
+                UILibrary:AddToggle(sub, { Name = "prediction", Default = false, Callback = function(v) CombatState.aim_assist.prediction = v end })
+                UILibrary:AddSlider(sub, { Name = "prediction strength x", Min = 0, Max = 100, Default = 50, Callback = function(v) CombatState.aim_assist.prediction_strength_x = v end })
+                UILibrary:AddSlider(sub, { Name = "prediction strength y", Min = 0, Max = 100, Default = 50, Callback = function(v) CombatState.aim_assist.prediction_strength_y = v end })
+                UILibrary:AddToggle(sub, { Name = "jitter", Default = false, Callback = function(v) CombatState.aim_assist.jitter = v end })
+                UILibrary:AddSlider(sub, { Name = "jitter strength x", Min = 0, Max = 200, Default = 0, Callback = function(v) CombatState.aim_assist.jitter_strength_x = v end })
+                UILibrary:AddSlider(sub, { Name = "jitter strength y", Min = 0, Max = 200, Default = 0, Callback = function(v) CombatState.aim_assist.jitter_strength_y = v end })
+            end })
+
+            -- Triggerbot
+            UILibrary:AddSubTab(CombatTab, { Name = "triggerbot", Icon = "target", Build = function(sub)
+                UILibrary:AddToggle(sub, { Name = "enabled", Default = false, Callback = function(v) CombatState.triggerbot.enabled = v end })
+                UILibrary:AddSlider(sub, { Name = "reaction time", Min = 0, Max = 500, Default = 0, Callback = function(v) CombatState.triggerbot.reaction_time = v end })
+                UILibrary:AddSlider(sub, { Name = "miss chance", Min = 0, Max = 100, Default = 0, Callback = function(v) CombatState.triggerbot.miss_chance = v end })
+                UILibrary:AddToggle(sub, { Name = "katana deflect check", Default = false, Callback = function(v) CombatState.triggerbot.katana_check = v end })
+                UILibrary:AddToggle(sub, { Name = "flashbang check", Default = true, Callback = function(v) CombatState.triggerbot.flashbang_check = v end })
+                UILibrary:AddToggle(sub, { Name = "scope check", Default = true, Callback = function(v) CombatState.triggerbot.scope_check = v end })
+            end })
+
+            -- Tracers
+            UILibrary:AddSubTab(CombatTab, { Name = "bullet tracers", Icon = "wave", Build = function(sub)
+                UILibrary:AddToggle(sub, { Name = "enabled", Default = false, Callback = function(v) CombatState.bullet_tracers.enabled = v end })
+                UILibrary:AddDropdown(sub, { Name = "line type", Options = {"Solid", "Dashed", "Lightning"}, Default = "Solid", Callback = function(v) CombatState.bullet_tracers.line_type = v end })
+                UILibrary:AddSlider(sub, { Name = "duration", Min = 25, Max = 1500, Default = 250, Callback = function(v) CombatState.bullet_tracers.duration = v end })
+                UILibrary:AddSlider(sub, { Name = "max distance", Min = 50, Max = 4000, Default = 2000, Callback = function(v) CombatState.bullet_tracers.max_distance = v end })
+                UILibrary:AddSlider(sub, { Name = "thickness", Min = 1, Max = 8, Default = 2, Callback = function(v) CombatState.bullet_tracers.thickness = v end })
+                UILibrary:AddSlider(sub, { Name = "transparency", Min = 0, Max = 100, Default = 10, Callback = function(v) CombatState.bullet_tracers.transparency = v end })
+                UILibrary:AddToggle(sub, { Name = "local shots only", Default = true, Callback = function(v) CombatState.bullet_tracers.local_only = v end })
+                UILibrary:AddSlider(sub, { Name = "lightning jaggedness", Min = 1, Max = 50, Default = 14, Callback = function(v) CombatState.bullet_tracers.lightning_jaggedness = v end })
+                UILibrary:AddColorPicker(sub, { Name = "color", Default = Color3.new(1,1,1), Callback = function(c) CombatState.bullet_tracers.color = c end })
+            end })
+
+            -- Hit Sounds
+            UILibrary:AddSubTab(CombatTab, { Name = "hit sounds", Icon = "bell", Build = function(sub)
+                local files = combat_instance:list_hit_sound_files()
+                UILibrary:AddToggle(sub, { Name = "enabled", Default = false, Callback = function(v) CombatState.hit_sounds.enabled = v end })
+                UILibrary:AddLabel(sub, { Text = "Folder: " .. HIT_SOUND_DIR })
+                UILibrary:AddDropdown(sub, { Name = "hit sound file", Options = files, Default = files[1] or "", Callback = function(v) CombatState.hit_sounds.hit_file = v end })
+                UILibrary:AddDropdown(sub, { Name = "shot sound file", Options = files, Default = files[1] or "", Callback = function(v) CombatState.hit_sounds.shot_file = v end })
+                UILibrary:AddDropdown(sub, { Name = "reload sound file", Options = files, Default = files[1] or "", Callback = function(v) CombatState.hit_sounds.reload_file = v end })
+                UILibrary:AddDropdown(sub, { Name = "equip sound file", Options = files, Default = files[1] or "", Callback = function(v) CombatState.hit_sounds.equip_file = v end })
+                UILibrary:AddSlider(sub, { Name = "volume", Min = 0, Max = 150, Default = 70, Callback = function(v) CombatState.hit_sounds.volume = v end })
+                UILibrary:AddSlider(sub, { Name = "pitch", Min = 50, Max = 200, Default = 100, Callback = function(v) CombatState.hit_sounds.pitch = v end })
+                UILibrary:AddButton(sub, { Name = "Refresh Sounds", Callback = function() UILibrary:BuildPage(sub) end })
+            end })
+
+            -- Ragebot
+            UILibrary:AddSubTab(CombatTab, { Name = "ragebot", Icon = "target", Build = function(sub)
+                local customSliders = {}
+                local predictMulSlider
+                local vsShootSlider, vsHideSlider
+
+                UILibrary:AddToggle(sub, { Name = "ragebot", Default = false, Callback = function(v)
+                    Ragebot.set_master(v)
+                end })
+                UILibrary:AddSlider(sub, { Name = "shoot attempts", Min = 1, Max = 3, Default = 1, Callback = function(v) Ragebot.set_attempts(v) end })
+                UILibrary:AddDropdown(sub, { Name = "hit part", Options = {"Head","HumanoidRootPart","Torso","UpperTorso","Closest","Random"}, Default = "Head", Callback = function(v) Ragebot.set_hit_part(v) end })
+                UILibrary:AddDropdown(sub, { Name = "weapon", Options = {"primary","secondary","melee"}, Default = "primary", Callback = function(v) Ragebot.set_weapon_slot(v) end })
+                UILibrary:AddDropdown(sub, { Name = "attack pos", Options = {"default","under"}, Default = "default", Callback = function(v) Ragebot.set_atk_mode(v) end })
+                UILibrary:AddSlider(sub, { Name = "under offset", Min = 1, Max = 25, Default = 4, Callback = function(v) Ragebot.set_under_offset(v) end })
+
+                UILibrary:AddToggle(sub, { Name = "custom position override", Default = false, Callback = function(v)
+                    Ragebot.set_custom_atk(v)
+                    for _, s in ipairs(customSliders) do if s.Row then s.Row.Visible = v == true end end
+                end })
+                customSliders[1] = UILibrary:AddSlider(sub, { Name = "orbit height", Min = -25, Max = 30, Default = 2, Callback = function(v) Ragebot.set_custom_height(v) end })
+                customSliders[2] = UILibrary:AddSlider(sub, { Name = "front offset", Min = -20, Max = 20, Default = 0, Callback = function(v) Ragebot.set_custom_front(v) end })
+                customSliders[3] = UILibrary:AddSlider(sub, { Name = "side offset", Min = -20, Max = 20, Default = 0, Callback = function(v) Ragebot.set_custom_side(v) end })
+                customSliders[4] = UILibrary:AddSlider(sub, { Name = "vertical offset (set to 20 against knife users)", Min = -25, Max = 30, Default = 0, Callback = function(v) Ragebot.set_custom_vert(v) end })
+                customSliders[5] = UILibrary:AddSlider(sub, { Name = "orbit radius", Min = 0, Max = 25, Default = 0, Callback = function(v) Ragebot.set_custom_radius(v) end })
+                for _, s in ipairs(customSliders) do if s.Row then s.Row.Visible = false end end
+
+                UILibrary:AddToggle(sub, { Name = "prediction", Default = false, Callback = function(v)
+                    Ragebot.set_predict(v)
+                    if predictMulSlider and predictMulSlider.Row then predictMulSlider.Row.Visible = v == true end
+                end })
+                predictMulSlider = UILibrary:AddSlider(sub, { Name = "predict mult", Min = 1, Max = 30, Default = 12, Callback = function(v) Ragebot.set_predict_mul(v) end })
+                if predictMulSlider.Row then predictMulSlider.Row.Visible = false end
+
+                UILibrary:AddToggle(sub, { Name = "voidspam", Default = false, Callback = function(v)
+                    Ragebot.set_voidspam(v)
+                    if vsShootSlider and vsShootSlider.Row then vsShootSlider.Row.Visible = v == true end
+                    if vsHideSlider and vsHideSlider.Row then vsHideSlider.Row.Visible = v == true end
+                end })
+                vsShootSlider = UILibrary:AddSlider(sub, { Name = "attack time", Min = 0, Max = 1000, Default = 500, Suffix = "ms", Callback = function(v) Ragebot.set_vs_shoot_ms(v) end })
+                vsHideSlider = UILibrary:AddSlider(sub, { Name = "hide time", Min = 0, Max = 1000, Default = 500, Suffix = "ms", Callback = function(v) Ragebot.set_vs_hide_ms(v) end })
+                if vsShootSlider.Row then vsShootSlider.Row.Visible = false end
+                if vsHideSlider.Row then vsHideSlider.Row.Visible = false end
+
+                UILibrary:AddToggle(sub, { Name = "status label", Default = false, Callback = function(v) Ragebot.set_status_label(v) end })
+            end })
+
+            -- ==========================================================
+            -- SETTINGS TAB
+            -- ==========================================================
+            local SettingsTab = UILibrary:AddTab({ Name = "Settings", Icon = "gear" })
+
+            UILibrary:AddSubTab(SettingsTab, { Name = "theme", Icon = "palette", Build = function(sub)
+                local themeKeys = {
+                    "PanelBg", "SidebarBg", "SubBarBg", "SearchBg", "InputBg",
+                    "ActiveBg", "HoverBg", "TrackOff", "KnobOff", "Border",
+                    "Active", "Text", "TextDim", "TextMuted", "Gold", "Green", "Red"
+                }
+                for _, key in ipairs(themeKeys) do
+                    UILibrary:AddColorPicker(sub, {
+                        Name = key,
+                        Default = UILibrary.Theme[key],
+                        Callback = function(c)
+                            UILibrary.Theme[key] = c
+                            UILibrary:ApplyTheme()
+                        end
+                    })
+                end
+                UILibrary:AddButton(sub, {
+                    Name = "Reset theme to default",
+                    Callback = function()
+                        for k, v in pairs(UILibrary.DefaultTheme) do UILibrary.Theme[k] = v end
+                        UILibrary:ApplyTheme()
+                        UILibrary:BuildPage(sub)
+                    end
+                })
+            end })
+
+            UILibrary:AddSubTab(SettingsTab, { Name = "unload", Icon = "wrench", Build = function(sub)
+                UILibrary:AddLabel(sub, { Text = "Unload removes the UI and restores all" })
+                UILibrary:AddLabel(sub, { Text = "hooked game functions to their originals." })
+
+                UILibrary:AddButton(sub, {
+                    Name = "Hide UI (toggle)",
+                    Callback = function() UILibrary:ToggleUI() end
+                })
+                UILibrary:AddButton(sub, {
+                    Name = "Test notification",
+                    Callback = function() UILibrary:Notify("Script is active", 2) end
+                })
+                UILibrary:AddButton(sub, {
+                    Name = "Unload script",
+                    Callback = function()
+                        pcall(function() Ragebot.cleanup() end)
+                        pcall(function() combat_instance:Unload() end)
+                        pcall(function() UILibrary:Destroy() end)
+                        local pg = game:GetService("Players").LocalPlayer:FindFirstChildOfClass("PlayerGui")
+                        if pg then
+                            for _, g in ipairs(pg:GetChildren()) do
+                                if g.Name == "DeviceSelector" then g:Destroy() end
+                            end
+                        end
+                    end
+                })
+                UILibrary:AddButton(sub, {
+                    Name = "Rejoin game",
+                    Callback = function()
+                        pcall(function() Ragebot.cleanup() end)
+                        pcall(function() combat_instance:Unload() end)
+                        pcall(function() UILibrary:Destroy() end)
+                        pcall(function()
+                            game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+                        end)
+                    end
+                })
+                UILibrary:AddLabel(sub, { Text = "Tip: use Rejoin if anything glitches." })
+            end })
+
+        end)
+    end
+
+    makeBtn("PC (100% size)", 60, 1.0)
+    makeBtn("Tablet (85% size)", 108, 0.85)
+    makeBtn("Phone (65% size)", 156, 0.65)
+end
+
+AskForDeviceAndLoad()
